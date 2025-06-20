@@ -1,5 +1,3 @@
-
-
 import { Outlet } from "react-router";
 import "../src/App.css";
 import Navbar from "./components/Navbar/Navbar";
