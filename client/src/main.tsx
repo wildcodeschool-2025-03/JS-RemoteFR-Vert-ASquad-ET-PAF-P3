@@ -5,13 +5,17 @@ import "./App.css";
 
 import App from "./App";
 import Homepage from "./pages/Homepage";
+import Offers from "./pages/Offers";
 
 /* ************************************************************************* */
 
 const router = createBrowserRouter([
   {
     element: <App />,
-    children: [{ path: "/", element: <Homepage /> }],
+    children: [
+      { path: "/", element: <Homepage /> },
+      { path: "/offers", element: <Offers /> },
+    ],
   },
 ]);
 
