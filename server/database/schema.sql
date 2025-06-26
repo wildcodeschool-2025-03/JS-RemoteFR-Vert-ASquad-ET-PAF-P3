@@ -21,3 +21,22 @@ values
  pertinents et vertueux.")
  (2,"", "Les liens les plus durables.")
  (3,"", "Externatic, plus que du recrutement")
+
+
+ CREATE TABLE offer (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  category VARCHAR(20) NOT NULL,
+  description TEXT NOT NULL,
+  wage VARCHAR(150) NOT NULL,
+  requierements VARCHAR(150) NOT NULL,
+  FOREIGN KEY (city_id)
+  REFERENCES KEY city(id)
+  ON DELETE CASCADE
+  ON UPDATE NO ACTION,
+  FOREIGN KEY (company_id)
+  REFERENCES KEY company(id)
+  ON DELETE CASCADE
+  ON UPDATE NO ACTION,
+ );
+
