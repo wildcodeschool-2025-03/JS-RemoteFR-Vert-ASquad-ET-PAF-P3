@@ -46,18 +46,6 @@ VALUES ("jdoe", "John", "Doe", "jdoe@mail.com", "hashed_password_here", "0123456
  ('companyuser', 'Alice', 'Smith', 'alice@company.com', 'hashed_password', '0987654321', '456 Business Ave', NULL, 'siret.pdf', 2);
 
 
-
-CREATE TABLE candidate (
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  birthday DATE NOT NULL,
-  users_id INT UNSIGNED NOT NULL,
-  FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION
-);
-INSERT INTO candidate (birthday, users_id)
-VALUES ('1990-05-15', 1);
-
-
-
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   SIRET VARCHAR(20) NOT NULL,
@@ -73,6 +61,7 @@ CREATE TABLE city (
   departement_name VARCHAR(20) NOT NULL,
   id_departement VARCHAR(5) NOT NULL
 );
+
 
 INSERT INTO city (departement_name, id_departement)
 VALUES ('Paris', '75');
