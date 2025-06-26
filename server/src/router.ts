@@ -22,4 +22,11 @@ router.post("/:id", homepageActions.add);
 router.put("/:id", homepageActions.edit);
 router.delete("/:id", homepageActions.destroy);
 
+/* ************************************************************************* */
+import offersActions from "./modules/offers/offersActions";
+
+router.get("/offers", offersActions.browse);
+router.get("/offers/:id", offersActions.read);
+router.get("/offers", offersActions.add);
+
 export default router;
