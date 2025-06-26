@@ -17,7 +17,7 @@ export default function Homepage() {
   const [infohome, setInfoHome] = useState<homes[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/`)
+    fetch(`${import.meta.env.VITE_API_URL}/home`)
       .then((response) => response.json())
       .then((data: homes[]) => {
         setInfoHome(data);

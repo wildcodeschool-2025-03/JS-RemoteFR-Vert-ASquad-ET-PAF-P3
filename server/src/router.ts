@@ -16,10 +16,10 @@ router.post("/api/items", itemActions.add);
 /* ************************************************************************* */
 import homepageActions from "./modules/item/homepage/homepageActions";
 
-router.get("/", homepageActions.browse);
-router.get("/:id", homepageActions.read);
-router.post("/:id", homepageActions.add);
-router.put("/:id", homepageActions.edit);
-router.delete("/:id", homepageActions.destroy);
+router.get("/home", homepageActions.browse);
+router.get("/home/:id", homepageActions.read);
+router.post("/home/:id", homepageActions.add);
+router.put("/home/:id", homepageActions.edit);
+router.delete("/home/:id", homepageActions.destroy);
 
 export default router;
