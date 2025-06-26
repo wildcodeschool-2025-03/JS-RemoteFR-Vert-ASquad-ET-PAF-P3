@@ -10,7 +10,7 @@ import developper1 from "../assets/images/developer-looking-at-code-2.png";
 type homes = {
   id: number;
   title: string;
-  paragraphe: string;
+  paragraph: string;
 };
 
 export default function Homepage() {
@@ -48,12 +48,12 @@ export default function Homepage() {
         />
         {paragraphe1.map((p1) => (
           <p className="homepageParagraph" key={p1.id}>
-            {p1.paragraphe}
+            {p1.paragraph}
           </p>
         ))}
         {paragraphe2.map((p2) => (
           <h2 className="phraseAccroche" key={p2.id}>
-            {p2.paragraphe}
+            {p2.paragraph}
           </h2>
         ))}
       </div>
@@ -70,7 +70,7 @@ export default function Homepage() {
       </ul>
       {paragraphe3.map((p) => (
         <h2 className="phraseAccroche" key={p.id}>
-          {p.paragraphe}
+          {p.paragraph}
         </h2>
       ))}
       <img
