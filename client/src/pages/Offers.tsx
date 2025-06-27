@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import "../styles/Offers.css";
 
-import { Bounce,ToastContainer,  toast } from "react-toastify";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 type Offer = {
   id: number;
