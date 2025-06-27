@@ -16,17 +16,17 @@ router.post("/api/items", itemActions.add);
 /* ************************************************************************* */
 import homepageActions from "./modules/item/homepage/homepageActions";
 
-router.get("/", homepageActions.browse);
-router.get("/:id", homepageActions.read);
-router.post("/:id", homepageActions.add);
-router.put("/:id", homepageActions.edit);
-router.delete("/:id", homepageActions.destroy);
+router.get("/home", homepageActions.browse);
+router.get("/home/:id", homepageActions.read);
+router.post("/home", homepageActions.add);
+router.put("/home/:id", homepageActions.edit);
+router.delete("/home/:id", homepageActions.destroy);
 
 /* ************************************************************************* */
 import offersActions from "./modules/offers/offersActions";
 
 router.get("/offers", offersActions.browse);
 router.get("/offers/:id", offersActions.read);
-router.get("/offers", offersActions.add);
+router.post("/offers", offersActions.add);
 
 export default router;

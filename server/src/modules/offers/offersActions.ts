@@ -13,8 +13,11 @@ const browse: RequestHandler = async (req, res, next) => {
 const read: RequestHandler = async (req, res, next) => {
   try {
     const offerId = Number(req.params.id);
+    if (offerId == null) {
+      res.status(400).json({ error: "Invalid offer ID" });
+    }
     const offer = await offersRepository.read(offerId);
-    if (offer == null) {
+    if (!offer) {
       res.sendStatus(404);
     } else {
       res.json(offer);
@@ -24,19 +27,17 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
-// The A of BREAD - Add (Create) operation
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newOffer = {
-      id: Number(req.params.id),
-      job_title: req.body.job_title,
+      jobTitle: req.body.jobTitle,
       metier: req.body.metier,
-      contract_type: req.body.contract_type,
+      contractType: req.body.contractType,
       description: req.body.description,
       salary: req.body.salary,
-      requierements: req.body.requierements,
-      city_id: Number(req.params.city_id),
-      company_id: Number(req.params.company_id),
+      requirements: req.body.requirements,
+      city_id: Number(req.body.city_id),
+      company_id: Number(req.body.company_id),
     };
 
     const insertId = await offersRepository.create(newOffer);
