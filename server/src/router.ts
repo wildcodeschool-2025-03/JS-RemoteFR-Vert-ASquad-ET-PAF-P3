@@ -18,15 +18,8 @@ import homepageActions from "./modules/item/homepage/homepageActions";
 
 router.get("/home", homepageActions.browse);
 router.get("/home/:id", homepageActions.read);
-router.post("/home", homepageActions.add);
+router.post("/home/:id", homepageActions.add);
 router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
-
-/* ************************************************************************* */
-import offersActions from "./modules/offers/offersActions";
-
-router.get("/offers", offersActions.browse);
-router.get("/offers/:id", offersActions.read);
-router.post("/offers", offersActions.add);
 
 export default router;
