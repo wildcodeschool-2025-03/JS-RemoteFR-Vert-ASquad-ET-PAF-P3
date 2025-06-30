@@ -73,9 +73,9 @@
     padding-top: 2.5rem;
     width: 40%;
   }
-.imageDev1 {
-max-height:25em;  
-}
+  .imageDev1 {
+    max-height: 25em;
+  }
 
   .homepageParagraph {
     padding-top: 1.5rem;
@@ -113,13 +113,13 @@ max-height:25em;
   }
 
   .imageDev {
-    width:35%;
+    width: 35%;
     padding: 2rem 0 0 1rem;
   }
 
   .imageDev1 {
     opacity: 10%;
-    max-height:30em;  
+    max-height: 30em;
   }
 
   .homepageParagraph {
