@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "../styles/Offers.css";
 
 type Offer = {
+  offer_id: number;
   id: number;
   jobTitle: string;
   metier: string;
@@ -10,24 +11,39 @@ type Offer = {
   description: string;
   salary: string;
   requirements: string;
-  city_id: number;
-  company_id: number;
   city: City[];
   company: Company[];
 };
 
 type City = {
+  id: number;
   name: string;
   departementId: number;
 };
 
 type Company = {
+  id: number;
   siret: string;
 };
+
+// type Offer = {
+//   offer_id: number;
+//   jobTitle: string;
+//   metier: string;
+//   contractType: string;
+//   description: string;
+//   salary: string;
+//   requirements: string;
+//   city_id: number;
+//   city_name: string;
+//   company_id: number;
+//   company_siret: string;
+// };
 
 export default function Offers() {
   const [options, setOptions] = useState<Offer[]>([]);
   const [filter, setfilter] = useState<Offer[]>([]);
+  // const [located,setLocated] = useState<City[]>([]);
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("");
   const [salary, setSalary] = useState("");
@@ -43,6 +59,8 @@ export default function Offers() {
 
   const metiers = [...new Set(options.map((o) => o.metier))];
   const salaries = [...new Set(options.map((s) => s.salary))];
+  // const loc = [...new Set(options.map((d) => d.city_name))];
+  // console.log(loc);
 
   const handleSearch = () => {
     let result = options;
@@ -76,7 +94,10 @@ export default function Offers() {
     setSearch("");
     setSelect("");
     setSalary("");
+    return setfilter(options);
   };
+
+  console.log(options);
 
   return (
     <>
@@ -122,6 +143,7 @@ export default function Offers() {
             onChange={(e) => setlocation(e.target.value)}
           >
             <option value=""> 📍Départements</option>
+
             <option value="" />
           </select>
         </span>
@@ -141,7 +163,7 @@ export default function Offers() {
       </div>
 
       {(filter.length > 0 ? filter : options).map((o) => (
-        <div className="offres" key={o.id}>
+        <div className="offres" key={o.offer_id}>
           <h2>{o.jobTitle}</h2>
           <h3>
             {o.contractType} - {o.metier}
