@@ -64,15 +64,18 @@
 @media (min-width: 640px) {
   .homepagetitle {
     font-size: 2.5rem;
-    padding-top: 9.5rem;
+    padding-top: 8rem;
     padding-left: 20rem;
   }
 
   .imageDev {
-    padding-left: 12px;
+    padding-left: 35px;
     padding-top: 2.5rem;
-    width: 50%;
+    width: 40%;
   }
+.imageDev1 {
+max-height:25em;  
+}
 
   .homepageParagraph {
     padding-top: 1.5rem;
@@ -82,16 +85,16 @@
 
   .listdomaine {
     padding: 3rem;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .listdomaine a {
-    font-size: 2em;
+    font-size: 1.8em;
     padding: 0 0 0 2rem;
   }
 
   .phraseAccroche {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .imageDev2 {
@@ -104,27 +107,26 @@
 
 @media (min-width: 1024px) {
   .homepagetitle {
-    font-size: 4rem;
-    padding-top: 4rem;
-    padding-left: 35.5rem;
+    font-size: 2.5rem;
+    padding-top: 5rem;
+    padding-left: 30.5rem;
   }
 
   .imageDev {
-    padding: 2rem 0 0 2rem;
-    width: 40%;
+    width:35%;
+    padding: 2rem 0 0 1rem;
   }
 
   .imageDev1 {
     opacity: 10%;
-    object-fit: cover;
-    width: 100%;
+    max-height:30em;  
   }
 
   .homepageParagraph {
-    z-index: 1;
     padding-left: 32rem;
-    font-size: 2rem;
-    margin-top: -25rem;
+    font-size: 1.5rem;
+    margin-top: -20rem;
+    color: #000000;
   }
 
   .listdomaine {
@@ -133,9 +135,7 @@
     background-color: #ca2061;
     display: flex;
     list-style: none;
-    font-size: 2rem;
-    width: 100%;
-    margin-top: -17.5rem;
+    margin-top: -16rem;
   }
 
   .listdomaine a {
@@ -144,20 +144,20 @@
     flex: none;
     display: flex;
     align-items: center;
-    font-size: 2.5rem;
-    padding: 0 0 0 7rem;
+    font-size: 2rem;
+    padding: 0 0 0 8rem;
   }
 
   .phraseAccroche {
     margin: 1rem;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20rem;
   }
 
   .imageDev2 {
-    width: 80%;
-    margin: -15em 0 2em 8em;
+    width: 50%;
+    margin: -17em 0 2em 20em;
   }
 }
