@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import "../styles/Offers.css";
 
-import { Bounce, ToastContainer, toast } from "react-toastify";
-
 type Offer = {
   id: number;
   jobTitle: string;
@@ -14,14 +12,26 @@ type Offer = {
   requirements: string;
   city_id: number;
   company_id: number;
+  city: City[];
+  company: Company[];
+};
+
+type City = {
+  name: string;
+  departementId: number;
+};
+
+type Company = {
+  siret: string;
 };
 
 export default function Offers() {
   const [options, setOptions] = useState<Offer[]>([]);
   const [filter, setfilter] = useState<Offer[]>([]);
   const [search, setSearch] = useState("");
-  const [select, setselect] = useState("");
-  const [salary, setsalary] = useState("");
+  const [select, setSelect] = useState("");
+  const [salary, setSalary] = useState("");
+  const [location, setlocation] = useState("");
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/offers`)
@@ -32,14 +42,23 @@ export default function Offers() {
   }, []);
 
   const metiers = [...new Set(options.map((o) => o.metier))];
-  const yearly = [...new Set(options.map((s) => s.salary))];
+  const salaries = [...new Set(options.map((s) => s.salary))];
 
   const handleSearch = () => {
     let result = options;
 
     if (search.trim() !== "" || undefined) {
       result = result.filter((o) =>
-        o.jobTitle.toLowerCase().includes(search.toLowerCase()),
+        o.jobTitle
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")
+          .toLowerCase()
+          .includes(
+            search
+              .normalize("NFD")
+              .replace(/\p{Diacritic}/gu, "")
+              .toLowerCase(),
+          ),
       );
     }
 
@@ -51,27 +70,16 @@ export default function Offers() {
       result = result.filter((s) => s.salary === salary);
     }
     setfilter(result);
-    if (filter.length > 0) {
-      toast.error("Réessaye ce que tu as cherché n'existe pas");
-    }
-    setfilter(result);
+  };
+
+  const handlereset = () => {
+    setSearch("");
+    setSelect("");
+    setSalary("");
   };
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={4000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Bounce}
-      />
       <h1 className="title">Nos offres d'emploi</h1>
 
       <div className="formulaire" aria-label="filter_bar">
@@ -87,7 +95,7 @@ export default function Offers() {
         </span>
         <span className="select_categories">
           <p> Catégories</p>
-          <select onChange={(e) => setselect(e.target.value)}>
+          <select value={select} onChange={(e) => setSelect(e.target.value)}>
             <option value="">Domaine(s)</option>
             {metiers.map((a) => (
               <option value={a} key={a}>
@@ -98,9 +106,9 @@ export default function Offers() {
         </span>
         <span className="select_salary">
           <p> Salaires </p>
-          <select onChange={(e) => setsalary(e.target.value)}>
+          <select value={salary} onChange={(e) => setSalary(e.target.value)}>
             <option value=""> Salaire(s) / année</option>
-            {yearly.sort().map((s) => (
+            {salaries.sort().map((s) => (
               <option value={s} key={s}>
                 {s}/année
               </option>
@@ -109,8 +117,11 @@ export default function Offers() {
         </span>
         <span className="select_dpt">
           <p> Départements</p>
-          <select>
-            <option value=""> 📍Departement</option>
+          <select
+            value={location}
+            onChange={(e) => setlocation(e.target.value)}
+          >
+            <option value=""> 📍Départements</option>
             <option value="" />
           </select>
         </span>
@@ -123,7 +134,9 @@ export default function Offers() {
           >
             Filtrer
           </button>
-          <input type="reset" className="reset" />
+          <button type="button" className="reset" onClick={handlereset}>
+            Réinitialiser
+          </button>
         </span>
       </div>
 
