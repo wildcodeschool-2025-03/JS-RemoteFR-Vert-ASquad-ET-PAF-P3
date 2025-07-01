@@ -134,7 +134,9 @@ export default function Offers() {
           >
             <option value=""> 📍Départements</option>
             {options.map((c) => (
-              <option value={id} key={id}>{c.contractType}</option>
+              <option value={id} key={id}>
+                {c.contractType}
+              </option>
             ))}
           </select>
         </span>
