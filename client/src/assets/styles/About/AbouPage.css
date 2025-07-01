@@ -1,0 +1,103 @@
+/* AboutPage styles globaux ou spécifiques (layout général, scroll, etc.) */
+
+body {
+  overflow-x: hidden;
+  background: #f4eeee;
+}
+
+.about-fullpage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #f4eeee;
+}
+
+.about-sections-container {
+  transition: transform 1.3s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+  height: 100vh;
+}
+
+.about-section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+/* Navigation à points */
+.about-indicator {
+  position: fixed;
+  right: 2.5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.about-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 2px solid #fff;
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 8px 2px #ca2061, 0 2px 8px rgba(202, 32, 97, 0.07);
+}
+
+.about-dot.active {
+  background: #ca2061;
+  transform: scale(1.25);
+  box-shadow: 0 4px 16px rgba(202, 32, 97, 0.15);
+}
+
+.about-dot:hover {
+  background: #851342;
+}
+
+.about-dot:focus {
+  outline: 2px solid #ca2061;
+  outline-offset: 2px;
+}
+
+/* Scrollbar custom */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #f4eeee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+  .about-fullpage,
+  .about-sections-container,
+  .about-section {
+    height: auto;
+    min-height: unset;
+    width: 100vw;
+    display: block;
+    align-items: unset;
+    justify-content: unset;
+  }
+
+  .about-section {
+    scroll-snap-align: unset;
+    padding-bottom: 2rem;
+  }
+
+  .about-indicator {
+    display: none;
+  }
+}

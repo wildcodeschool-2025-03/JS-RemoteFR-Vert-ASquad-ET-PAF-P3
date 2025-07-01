@@ -1,0 +1,73 @@
+/* AboutJoin section styles spécifiques */
+
+.about-join-content {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.about-join-mainblock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.7rem;
+}
+
+.about-join-mainblock h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.3rem;
+  color: #333;
+  line-height: 1.15;
+}
+
+.about-join-mainblock p {
+  font-size: 1.08rem;
+  color: #333;
+  margin-bottom: 0.3rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.about-join-jobs {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.about-join-job-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
+  padding: 0.7rem 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-join-job {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  color: #ca2061;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.about-join-job span:first-child {
+  font-weight: 700;
+  color: #851342;
+}

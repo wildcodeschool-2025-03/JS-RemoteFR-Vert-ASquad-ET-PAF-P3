@@ -1,0 +1,108 @@
+/* À importer dans AboutPage.tsx pour appliquer les styles communs à toutes les sections About */
+
+.about-section {
+  width: 100vw;
+  box-sizing: border-box;
+  position: relative;
+  background: #f4eeee;
+}
+
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  color: #ca2061;
+  font-weight: 700;
+  font-size: 1.08rem;
+  border-radius: 9999px;
+  padding: 0.5rem 1.4rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
+  letter-spacing: 0.01em;
+}
+
+.about-list {
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.about-list li {
+  background: #fff;
+  color: #ca2061;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: 1.2rem;
+  padding: 0.7rem 1.2rem;
+  box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
+  width: 100%;
+  text-align: center;
+}
+
+.about-btn-main {
+  background: linear-gradient(90deg, #ca2061 0%, #851342 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.about-btn-secondary {
+  background: #fff;
+  color: #ca2061;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: 2px solid #ca2061;
+  border-radius: 1.5rem;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
+}
+
+@media (max-width: 700px) {
+  .about-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 3.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .about-badge {
+    font-size: 1rem;
+    padding: 0.45rem 1.3rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .about-list {
+    max-width: 100vw;
+  }
+
+  .about-btn-main,
+  .about-btn-secondary {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 1.1rem 0;
+    font-size: 1.08rem;
+    border-radius: 1.7rem;
+    box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
+    display: block;
+  }
+}
