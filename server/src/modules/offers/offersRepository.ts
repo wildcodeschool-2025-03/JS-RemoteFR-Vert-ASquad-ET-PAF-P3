@@ -35,7 +35,7 @@ class offersRepository {
     const [rows] = await databaseClient.query<Rows>("select * from offer");
     return rows as Offer[];
   }
-  
+
   async read(id: number) {
     if (!id) {
       console.log("erreur");
@@ -46,8 +46,6 @@ class offersRepository {
     );
     return rows[0] as Offer;
   }
-
-
 }
 
 export default new offersRepository();

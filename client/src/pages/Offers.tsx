@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import "../styles/Offers.css";
+import { useParams } from "react-router";
 
 type Offer = {
   offer_id: number;
@@ -11,8 +12,8 @@ type Offer = {
   description: string;
   salary: string;
   requirements: string;
-  city: City[];
-  company: Company[];
+  cities: City[];
+  companies: Company[];
 };
 
 type City = {
@@ -26,21 +27,8 @@ type Company = {
   siret: string;
 };
 
-// type Offer = {
-//   offer_id: number;
-//   jobTitle: string;
-//   metier: string;
-//   contractType: string;
-//   description: string;
-//   salary: string;
-//   requirements: string;
-//   city_id: number;
-//   city_name: string;
-//   company_id: number;
-//   company_siret: string;
-// };
-
 export default function Offers() {
+  const { id } = useParams();
   const [options, setOptions] = useState<Offer[]>([]);
   const [filter, setfilter] = useState<Offer[]>([]);
   // const [located,setLocated] = useState<City[]>([]);
@@ -59,8 +47,6 @@ export default function Offers() {
 
   const metiers = [...new Set(options.map((o) => o.metier))];
   const salaries = [...new Set(options.map((s) => s.salary))];
-  // const loc = [...new Set(options.map((d) => d.city_name))];
-  // console.log(loc);
 
   const handleSearch = () => {
     let result = options;
@@ -87,6 +73,9 @@ export default function Offers() {
     if (salary !== "") {
       result = result.filter((s) => s.salary === salary);
     }
+    if (location !== "") {
+      result = result.filter((s) => s.salary === salary);
+    }
     setfilter(result);
   };
 
@@ -94,6 +83,7 @@ export default function Offers() {
     setSearch("");
     setSelect("");
     setSalary("");
+    setlocation("");
     return setfilter(options);
   };
 
@@ -143,8 +133,9 @@ export default function Offers() {
             onChange={(e) => setlocation(e.target.value)}
           >
             <option value=""> 📍Départements</option>
-
-            <option value="" />
+            {options.map((c) => (
+              <option value={id} key={id}>{c.contractType}</option>
+            ))}
           </select>
         </span>
         <span className="submit">
