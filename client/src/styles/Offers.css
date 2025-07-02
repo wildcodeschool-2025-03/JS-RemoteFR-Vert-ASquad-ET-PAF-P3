@@ -1,150 +1,187 @@
 .title {
   font-size: 2rem;
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .formulaire {
-  background-color: #851342;
-  padding: 1rem;
+  background-color: #ca2061;
   border-radius: 10px;
-  margin: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  padding: 1em;
+  margin: 0.5em;
+}
+.recherche{
+grid-column: 1 / 5;
+grid-row: 1;
 }
 
-.input_search {
-  input {
-    display: flex;
-    flex-direction: column;
+.catégories{
+grid-column: 2 / 2;
+grid-row: 2;
+}
+
+.salaires{
+grid-column: 3 / 3;
+grid-row: 2;
+}
+
+.départements{
+grid-column: 4 / 4;
+grid-row: 2;
+}
+
+
+.search_label{
+  font-size: 1em;
+  
+}
+.search_input{
     border-radius: 5em;
     width: 100%;
-    padding: 1em;
-  }
-}
-
-label {
-  color: white;
-  padding: 1em 2rem 0 0;
-}
-.select_categories {
-  width: 100%;
-  font-size: 1em;
-  display: flex;
-  flex-direction: column;
-}
-
-.select_salary {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.select_dpt {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.submit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .button_filter {
-    width: 80%;
-    padding: 0.5rem;
-    margin: 1em 0 0 0;
-    background-color: #ff8639;
-    color: white;
-    font-size: 1.2em;
-    border-radius: 5em;
-  }
-  .reset {
-    margin: 1em 0 0;
-    background-color: #70696c;
-    color: white;
-    font-size: 1em;
-    width: 80%;
     padding: 0.5em;
-    border-radius: 5em;
+    margin: 0.5em;
   }
+
+p {
+  color: white;
+  padding: 0.5em;
+  font-size: 1em
 }
+
+select{
+  font-size: 0.7em;
+  padding: 0.5em 0 0.5em 0;
+  width: 100%;
+}
+
+select option {
+  font-size: 0.7em;
+}
+
+.submit{
+ grid-column: 1 / 5;
+  grid-row: 3;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin-top: 2em;
+}
+
+  .button_filter, .reset {
+    background-color: #70696c;
+    color: #ffffff;
+    font-size: 1em;
+    border-radius: 5em;
+    width: 6em;
+    margin: 0.5em; 
+    padding: 0.5em 0.5em; }
+
+.button_filter:hover, .reset:hover{
+  background-color: #de377c;}
+
+.button_filter:active, .reset:active {
+  background-color: #de377c;
+  box-shadow: 0 2px #70696c;
+  transform: translateY(4px);
+}
+
+
 .offres {
-  background-color: rgb(175, 172, 172);
+  background-color:  #98888e;
   padding: 1.5rem;
+  border: solid 2px black;
   margin: 1rem;
-  gap: 2em;
+  gap: 1em;
   border-radius: 1em;
 }
 
+.offres:hover{
+  background-color: rgb(215, 206, 206);
+}
+
 @media (min-width: 1024px) {
+
   .formulaire {
-    background-color: #851342;
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
-    justify-content: center;
-    width: 90%;
-    position: relative;
-    left: 4em;
-  }
+  background-color: #ca2061;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1.5em;
+  align-items: center;
+  padding: 1em;
+}
+.recherche{
+grid-column: 1 / 2;
+grid-row: 1;
+}
 
-  .input_search {
-    label {
-      position: relative;
-      right: 2em;
-    }
-    input {
-      display: flex;
-      flex-direction: column;
-      border-radius: 5em;
-      width: 200%;
-      padding: 1em 2em 1em 0;
-      position: relative;
-      right: 5.5em;
-    }
-  }
-  p {
-    color: white;
-    padding: 1em 2em 0 0;
-  }
-  .select_categories {
-    width: 10%;
-    font-size: 1em;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    left: 5em;
-  }
+.catégories{
+grid-column: 2 / 3;
+grid-row: 1;
+}
 
-  .select_salary {
-    width: 12%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    left: 4em;
-  }
-  .select_dpt {
-    width: 12.5%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    left: 3em;
-  }
+.salaires{
+grid-column: 3 / 4;
+grid-row: 1;
+}
 
-  .submit {
-    display: flex;
-    flex-direction: row;
-    gap: 2em;
-    position: relative;
-    left: 2em;
-    .reset {
-      margin: 1em 0 0;
-      width: 120%;
-    }
-    .button_filter {
-      width: 100%;
-      border-radius: 1em;
-      padding: 0.3em 1em 0.3em 1em;
-    }
-  }
+.départements{
+grid-column: 4 / 5;
+grid-row: 1;
+}
+
+p , .search_label {
+  color: white;
+  font-size: 1em
+}
+
+.search_input, select{
+ border-radius: 5em;
+    width: 100%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    font-size: 0.9em;
+}
+
+select option {
+  font-size: 0.7em;
+}
+.submit{
+  grid-column: 5 / 6;
+  grid-row: 1;
+}
+
+  .button_filter, .reset {
+    background-color: #70696c;
+    color: #ffffff;
+    font-size: 1.2em;
+    border-radius: 5em;
+    padding: 0.5em 0.5em;  
+}
+
+
+.button_filter:hover, .reset:hover{
+  background-color: #de377c;}
+
+.button_filter:active, .reset:active {
+  background-color: #de377c;
+  box-shadow: 0 2px #70696c;
+  transform: translateY(4px);
+}
+
+
+.offres {
+  background-color:  #98888e;
+  padding: 1.5rem;
+  border: solid 2px black;
+  margin: 1rem;
+  border-radius: 1em;
+}
+
+.offres:hover{
+  background-color: rgb(215, 206, 206);
+}
 }

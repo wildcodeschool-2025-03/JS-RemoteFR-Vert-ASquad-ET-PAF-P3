@@ -3,7 +3,7 @@ import offersRepository from "./offersRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const offers = await offersRepository.readAll();
+    const offers = await offersRepository.read();
     res.json(offers);
   } catch (err) {
     next(err);
@@ -16,7 +16,7 @@ const read: RequestHandler = async (req, res, next) => {
     if (offerId == null) {
       res.status(400).json({ error: "Invalid offer ID" });
     }
-    const offer = await offersRepository.read(offerId);
+    const offer = await offersRepository.read();
     if (!offer) {
       res.sendStatus(404);
     } else {
@@ -47,20 +47,40 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-// const edit: RequestHandler = async (req, res, next) => {
-//   try {
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const modifyOffer = {
+    id: Number(req.params.id),
+    jobTitle: req.body.jobTitle,
+      metier: req.body.metier,
+      contractType: req.body.contractType,
+      description: req.body.description,
+      salary: req.body.salary,
+      requirements: req.body.requirements,
+      city_id: Number(req.body.city_id),
+      company_id: Number(req.body.company_id),
+    };
+    const affectedRows = await offersRepository.update(modifyOffer);
 
-//   } catch (err){
-//     next(err);
-//   }
-// };
+    if (affectedRows == null) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 
-// const destroy: RequestHandler = async (req, res, next) => {
-//   try {
 
-//   } catch (err){
-//     next(err);
-//   }
-// };
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const offerId = Number(req.params.id);
+    await offersRepository.delete(offerId);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
 
-export default { browse, read, add };
+export default { browse, read, add , edit, destroy};

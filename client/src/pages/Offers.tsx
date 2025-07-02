@@ -1,52 +1,44 @@
 import { useEffect, useState } from "react";
 
 import "../styles/Offers.css";
-import { useParams } from "react-router";
 
 type Offer = {
   offer_id: number;
-  id: number;
   jobTitle: string;
   metier: string;
   contractType: string;
   description: string;
   salary: string;
   requirements: string;
-  cities: City[];
-  companies: Company[];
-};
-
-type City = {
-  id: number;
-  name: string;
-  departementId: number;
-};
-
-type Company = {
-  id: number;
-  siret: string;
+  city_id:number;
+  company_id: number;
+city_name: string;
+  company_siret : string
+departementId: number;
 };
 
 export default function Offers() {
-  const { id } = useParams();
   const [options, setOptions] = useState<Offer[]>([]);
   const [filter, setfilter] = useState<Offer[]>([]);
-  // const [located,setLocated] = useState<City[]>([]);
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("");
   const [salary, setSalary] = useState("");
-  const [location, setlocation] = useState("");
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/offers`)
       .then((response) => response.json())
       .then((data: Offer[]) => {
         setOptions(data);
+        setfilter(data)
       });
   }, []);
+console.log(options)
 
   const metiers = [...new Set(options.map((o) => o.metier))];
   const salaries = [...new Set(options.map((s) => s.salary))];
+  const cities = [...new Set(options.map((s) => s.city_name))];
+
 
   const handleSearch = () => {
     let result = options;
@@ -74,7 +66,7 @@ export default function Offers() {
       result = result.filter((s) => s.salary === salary);
     }
     if (location !== "") {
-      result = result.filter((s) => s.salary === salary);
+      result = result.filter((s) => s.city_name === location);
     }
     setfilter(result);
   };
@@ -83,63 +75,69 @@ export default function Offers() {
     setSearch("");
     setSelect("");
     setSalary("");
-    setlocation("");
+    setLocation("");
     return setfilter(options);
   };
 
-  console.log(options);
-
   return (
-    <>
+    <>     
       <h1 className="title">Nos offres d'emploi</h1>
 
       <div className="formulaire" aria-label="filter_bar">
-        <span className="input_search">
-          <label htmlFor="Recherche"> Recherche</label>
+          <span className="recherche">
+            <p className="search_label"> Recherche</p>
           <input
             type="text"
             id="search"
             placeholder=" 🔎 Rechercher votre métier"
             value={search}
+            aria-label="recherche emploi"
             onChange={(e) => setSearch(e.target.value)}
-          />
-        </span>
-        <span className="select_categories">
+          className="search_input"/>
+          </span>
+
+          <span className="catégories">
           <p> Catégories</p>
-          <select value={select} onChange={(e) => setSelect(e.target.value)}>
+          <select value={select} aria-label="recherche par catégories de domaines"
+ onChange={(e) => setSelect(e.target.value)}>
             <option value="">Domaine(s)</option>
             {metiers.map((a) => (
-              <option value={a} key={a}>
+              <option value={a} key={a} className="options_values">
                 {a}
               </option>
             ))}
           </select>
-        </span>
-        <span className="select_salary">
+          </span>
+
+          <span className="salaires">
           <p> Salaires </p>
-          <select value={salary} onChange={(e) => setSalary(e.target.value)}>
-            <option value=""> Salaire(s) / année</option>
+          <select value={salary} aria-label="recherche par tranches de salaires"
+onChange={(e) => setSalary(e.target.value)}>
+            <option value=""> Salaire(s)</option>
             {salaries.sort().map((s) => (
               <option value={s} key={s}>
                 {s}/année
               </option>
             ))}
           </select>
-        </span>
-        <span className="select_dpt">
-          <p> Départements</p>
+          </span>
+
+          <span className="départements">
+          <p>Départements</p>
           <select
             value={location}
-            onChange={(e) => setlocation(e.target.value)}
-          >
-            <option value=""> 📍Départements</option>
-            {options.map((c) => (
-              <option value={id} key={id}>
-                {c.contractType}
+            aria-label="recherche par départements"
+            onChange={(e) => setLocation(e.target.value)}
+          className="dpt">
+            <option value="">📍Départements</option>
+            {cities.map((c) => (
+              <option value={c} key={c}>
+              {c}
               </option>
             ))}
           </select>
-        </span>
+          </span>
+
         <span className="submit">
           <button
             type="submit"
@@ -159,11 +157,13 @@ export default function Offers() {
         <div className="offres" key={o.offer_id}>
           <h2>{o.jobTitle}</h2>
           <h3>
-            {o.contractType} - {o.metier}
+          {o.departementId} - {o.city_name}
           </h3>
-          <p>{o.description}</p>
+          <h4>{o.contractType}</h4>
         </div>
       ))}
+      
+
     </>
   );
 }
