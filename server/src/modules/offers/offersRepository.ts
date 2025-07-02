@@ -32,11 +32,9 @@ class offersRepository {
     return result.insertId;
   }
 
- async read() {
- 
-
-  const [rows] = await databaseClient.query<Rows>(
-    `SELECT 
+  async read() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT 
       offer.*, 
       city.id AS city_id,city.name AS city_name, 
       city.departementId, 
@@ -44,13 +42,13 @@ class offersRepository {
     FROM offer
      JOIN city ON offer.city_id = city_id
      JOIN company ON offer.company_id = company_id`,
-  );
-  return rows as Offer[];
-}
-async update(offer: Offer) {
+    );
+    return rows as Offer[];
+  }
+  async update(offer: Offer) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE offer SET jobTitle = ?, metier = ?, contractType = ?, description = ?, salary = ?, requirements = ?, city_id = ?, company_id = ? where id = ?",
-    [
+      [
         offer.jobTitle,
         offer.metier,
         offer.contractType,
@@ -73,6 +71,6 @@ async update(offer: Offer) {
     );
     return result.affectedRows;
   }
-};
+}
 
 export default new offersRepository();

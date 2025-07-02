@@ -50,8 +50,8 @@ const add: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     const modifyOffer = {
-    id: Number(req.params.id),
-    jobTitle: req.body.jobTitle,
+      id: Number(req.params.id),
+      jobTitle: req.body.jobTitle,
       metier: req.body.metier,
       contractType: req.body.contractType,
       description: req.body.description,
@@ -72,7 +72,6 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-
 const destroy: RequestHandler = async (req, res, next) => {
   try {
     const offerId = Number(req.params.id);
@@ -83,4 +82,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add , edit, destroy};
+export default { browse, read, add, edit, destroy };

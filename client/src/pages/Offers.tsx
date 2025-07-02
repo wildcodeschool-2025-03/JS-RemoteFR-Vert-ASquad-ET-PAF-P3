@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import "../styles/Offers.css";
+import "../assets/styles/Offers.css";
 
 type Offer = {
   offer_id: number;
@@ -10,11 +10,11 @@ type Offer = {
   description: string;
   salary: string;
   requirements: string;
-  city_id:number;
+  city_id: number;
   company_id: number;
-city_name: string;
-  company_siret : string
-departementId: number;
+  city_name: string;
+  company_siret: string;
+  departementId: number;
 };
 
 export default function Offers() {
@@ -30,15 +30,14 @@ export default function Offers() {
       .then((response) => response.json())
       .then((data: Offer[]) => {
         setOptions(data);
-        setfilter(data)
+        setfilter(data);
       });
   }, []);
-console.log(options)
+  console.log(options);
 
   const metiers = [...new Set(options.map((o) => o.metier))];
   const salaries = [...new Set(options.map((s) => s.salary))];
   const cities = [...new Set(options.map((s) => s.city_name))];
-
 
   const handleSearch = () => {
     let result = options;
@@ -80,12 +79,12 @@ console.log(options)
   };
 
   return (
-    <>     
+    <>
       <h1 className="title">Nos offres d'emploi</h1>
 
       <div className="formulaire" aria-label="filter_bar">
-          <span className="recherche">
-            <p className="search_label"> Recherche</p>
+        <span className="recherche">
+          <p className="search_label"> Recherche</p>
           <input
             type="text"
             id="search"
@@ -93,13 +92,17 @@ console.log(options)
             value={search}
             aria-label="recherche emploi"
             onChange={(e) => setSearch(e.target.value)}
-          className="search_input"/>
-          </span>
+            className="search_input"
+          />
+        </span>
 
-          <span className="catégories">
+        <span className="catégories">
           <p> Catégories</p>
-          <select value={select} aria-label="recherche par catégories de domaines"
- onChange={(e) => setSelect(e.target.value)}>
+          <select
+            value={select}
+            aria-label="recherche par catégories de domaines"
+            onChange={(e) => setSelect(e.target.value)}
+          >
             <option value="">Domaine(s)</option>
             {metiers.map((a) => (
               <option value={a} key={a} className="options_values">
@@ -107,12 +110,15 @@ console.log(options)
               </option>
             ))}
           </select>
-          </span>
+        </span>
 
-          <span className="salaires">
+        <span className="salaires">
           <p> Salaires </p>
-          <select value={salary} aria-label="recherche par tranches de salaires"
-onChange={(e) => setSalary(e.target.value)}>
+          <select
+            value={salary}
+            aria-label="recherche par tranches de salaires"
+            onChange={(e) => setSalary(e.target.value)}
+          >
             <option value=""> Salaire(s)</option>
             {salaries.sort().map((s) => (
               <option value={s} key={s}>
@@ -120,23 +126,24 @@ onChange={(e) => setSalary(e.target.value)}>
               </option>
             ))}
           </select>
-          </span>
+        </span>
 
-          <span className="départements">
+        <span className="départements">
           <p>Départements</p>
           <select
             value={location}
             aria-label="recherche par départements"
             onChange={(e) => setLocation(e.target.value)}
-          className="dpt">
+            className="dpt"
+          >
             <option value="">📍Départements</option>
             {cities.map((c) => (
               <option value={c} key={c}>
-              {c}
+                {c}
               </option>
             ))}
           </select>
-          </span>
+        </span>
 
         <span className="submit">
           <button
@@ -157,13 +164,11 @@ onChange={(e) => setSalary(e.target.value)}>
         <div className="offres" key={o.offer_id}>
           <h2>{o.jobTitle}</h2>
           <h3>
-          {o.departementId} - {o.city_name}
+            {o.departementId} - {o.city_name}
           </h3>
           <h4>{o.contractType}</h4>
         </div>
       ))}
-      
-
     </>
   );
 }

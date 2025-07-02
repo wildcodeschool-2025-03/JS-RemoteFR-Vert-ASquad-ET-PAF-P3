@@ -26,7 +26,6 @@ VALUES
 
 CREATE TABLE users (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,  
-  username VARCHAR(255) NULL,
   firstname VARCHAR(255) NOT NULL,
   lastname VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
@@ -41,19 +40,20 @@ CREATE TABLE users (
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
-INSERT INTO users (username, firstname, lastname, email, password, number, address, picture, document, role_id)
-VALUES ("jdoe", "John", "Doe", "jdoe@mail.com", "hashed_password_here", "0123456789", "123 Main St", NULL, "passport.pdf", 1),
- ('companyuser', 'Alice', 'Smith', 'alice@company.com', 'hashed_password', '0987654321', '456 Business Ave', NULL, 'siret.pdf', 2);
+INSERT INTO users ( firstname, lastname, email, password, number, address, picture, document, role_id)
+VALUES ( "John", "Doe", "jdoe@mail.com", "hashed_password_here", "0123456789", "123 Main St", NULL, "passport.pdf", 1),
+ ('Alice', 'Smith', 'alice@company.com', 'hashed_password', '0987654321', '456 Business Ave', NULL, 'siret.pdf', 2);
 
 
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(20) NOT NULL,
   SIRET VARCHAR(20) NOT NULL,
   users_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
-INSERT INTO company (SIRET, users_id)
-VALUES ('12345678901234', 2);
+INSERT INTO company (name,SIRET, users_id)
+VALUES ("Company",'12345678901234', 2);
 
 
 CREATE TABLE city (
@@ -77,8 +77,8 @@ VALUES ('Paris', '75');
   requirements VARCHAR(150) NOT NULL,
   city_id INT UNSIGNED NOT NULL,
   company_id INT UNSIGNED NOT NULL,
-  FOREIGN KEY (city_id) REFERENCES  city(id) ON DELETE CASCADE ON UPDATE NO ACTION,
-  FOREIGN KEY (company_id) REFERENCES  company(id) ON DELETE CASCADE ON UPDATE NO ACTION
+  FOREIGN KEY (city_id) REFERENCES city(id) ON DELETE CASCADE ON UPDATE NO ACTION,
+  FOREIGN KEY (company_id) REFERENCES company(id) ON DELETE CASCADE ON UPDATE NO ACTION
  );
 
 INSERT INTO offer (
