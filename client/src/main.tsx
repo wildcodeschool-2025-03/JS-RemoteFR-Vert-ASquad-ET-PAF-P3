@@ -13,9 +13,11 @@ import Offers from "./pages/Offers";
 const router = createBrowserRouter([
   {
     element: <App />,
-    children: [{ path: "/", element: <Homepage /> },
+    children: [
+      { path: "/", element: <Homepage /> },
       { path: "*", element: <NotFound /> },
-      { path: "/offers", element: <Offers /> }],
+      { path: "/offers", element: <Offers /> },
+    ],
   },
 ]);
 
