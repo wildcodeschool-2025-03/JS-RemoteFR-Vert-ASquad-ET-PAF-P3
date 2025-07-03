@@ -5,6 +5,7 @@ import "./App.css";
 
 import App from "./App";
 import Homepage from "./pages/Homepage";
+import NotFound from "./pages/NotFound";
 import Offers from "./pages/Offers";
 
 /* ************************************************************************* */
@@ -12,10 +13,9 @@ import Offers from "./pages/Offers";
 const router = createBrowserRouter([
   {
     element: <App />,
-    children: [
-      { path: "/", element: <Homepage /> },
-      { path: "/offers", element: <Offers /> },
-    ],
+    children: [{ path: "/", element: <Homepage /> },
+      { path: "*", element: <NotFound /> },
+      { path: "/offers", element: <Offers /> }],
   },
 ]);
 
