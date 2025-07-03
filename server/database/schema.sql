@@ -17,13 +17,6 @@ CREATE TABLE role (
   label VARCHAR(50) NOT NULL
 );
 
-INSERT INTO role (label)
-VALUES
-  ("candidat"),
-  ("company"),
-  ("admin"),
-  ("consultant");
-
 CREATE TABLE users (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,  
   firstname VARCHAR(255) NOT NULL,
@@ -40,10 +33,6 @@ CREATE TABLE users (
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
-INSERT INTO users ( firstname, lastname, email, password, number, address, picture, document, role_id)
-VALUES ( "John", "Doe", "jdoe@mail.com", "hashed_password_here", "0123456789", "123 Main St", NULL, "passport.pdf", 1),
- ('Alice', 'Smith', 'alice@company.com', 'hashed_password', '0987654321', '456 Business Ave', NULL, 'siret.pdf', 2);
-
 
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -52,8 +41,6 @@ CREATE TABLE company (
   users_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
-INSERT INTO company (name,SIRET, users_id)
-VALUES ("Company",'12345678901234', 2);
 
 
 CREATE TABLE city (
@@ -61,10 +48,6 @@ CREATE TABLE city (
   name VARCHAR(20) NOT NULL,
   departementId VARCHAR(5) NOT NULL
 );
-
-
-INSERT INTO city (name, departementId)
-VALUES ('Paris', '75');
 
 
  CREATE TABLE offer (
@@ -81,9 +64,3 @@ VALUES ('Paris', '75');
   FOREIGN KEY (company_id) REFERENCES company(id) ON DELETE CASCADE ON UPDATE NO ACTION
  );
 
-INSERT INTO offer (
-  jobTitle, metier, contractType, description, salary, requirements, city_id, company_id
-)
-VALUES (
-  'Développeur Full Stack', 'Informatique', 'CDI', 'Développement d\'applications web.', '45K€', 'Expérience 2 ans minimum', 1, 1
-);

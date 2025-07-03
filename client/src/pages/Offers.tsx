@@ -1,5 +1,5 @@
+import { ListFilter,Search} from "lucide-react";
 import { useEffect, useState } from "react";
-
 import "../assets/styles/Offers.css";
 
 type Offer = {
@@ -85,10 +85,11 @@ export default function Offers() {
       <div className="formulaire" aria-label="filter_bar">
         <span className="recherche">
           <p className="search_label"> Recherche</p>
-          <input
+          <Search size={16}/>
+<input
             type="text"
             id="search"
-            placeholder=" 🔎 Rechercher votre métier"
+            placeholder="Rechercher votre métier"
             value={search}
             aria-label="recherche emploi"
             onChange={(e) => setSearch(e.target.value)}
@@ -135,8 +136,8 @@ export default function Offers() {
             aria-label="recherche par départements"
             onChange={(e) => setLocation(e.target.value)}
             className="dpt"
-          >
-            <option value="">📍Départements</option>
+          >            
+          <option value="">Départements</option>
             {cities.map((c) => (
               <option value={c} key={c}>
                 {c}
@@ -152,10 +153,10 @@ export default function Offers() {
             key={search}
             className="button_filter"
           >
-            Filtrer
+            <ListFilter size={16} /> Filtrer
           </button>
           <button type="button" className="reset" onClick={handlereset}>
-            Réinitialiser
+          Réinitialiser
           </button>
         </span>
       </div>
