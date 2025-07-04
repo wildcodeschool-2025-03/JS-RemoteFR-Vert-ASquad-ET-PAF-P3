@@ -1,7 +1,7 @@
 import { Menu, Moon, X } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/EXTERNATIC-logo.png";
 import "../../assets/styles/Navbar.css";
 
 const Navbar: React.FC = () => {
@@ -12,8 +12,8 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { name: "Accueil", href: "#", active: true },
-    { name: "Offres", href: "#" },
+    { name: "Accueil", href: "/", active: true },
+    { name: "Offres", href: "/offers" },
     { name: "À Propos", href: "#" },
   ];
 

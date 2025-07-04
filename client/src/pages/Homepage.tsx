@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
-import "../styles/homepage.css";
+import "../assets/styles/homepage.css";
 
 import developper2 from "../assets/images/Frame 3.png";
 import developper from "../assets/images/developer-looking-at-code-1.png";

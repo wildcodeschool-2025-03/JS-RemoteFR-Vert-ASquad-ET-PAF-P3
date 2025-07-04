@@ -3,7 +3,7 @@
 import databaseClient, {
   type Result,
   type Rows,
-} from "../../../../database/client";
+} from "../../../database/client";
 
 type homes = {
   id: number;
