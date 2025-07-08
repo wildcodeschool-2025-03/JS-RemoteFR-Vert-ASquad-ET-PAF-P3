@@ -1,4 +1,4 @@
-import { Lock,Mail  } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 import { Link } from "react-router";
 import "../assets/styles/inscription.css";
 
