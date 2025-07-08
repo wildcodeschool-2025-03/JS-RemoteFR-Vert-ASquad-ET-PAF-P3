@@ -9,7 +9,6 @@ import Homepage from "./pages/Homepage";
 import NotFound from "./pages/NotFound";
 import Offers from "./pages/Offers";
 
-
 /* ************************************************************************* */
 
 const router = createBrowserRouter([
