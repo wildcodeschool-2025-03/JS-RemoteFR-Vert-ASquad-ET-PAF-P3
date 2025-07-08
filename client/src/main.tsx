@@ -6,6 +6,7 @@ import "./App.css";
 import App from "./App";
 import Connexion from "./pages/Connexion";
 import Homepage from "./pages/Homepage";
+import Inscription from "./pages/Inscription";
 import NotFound from "./pages/NotFound";
 import Offers from "./pages/Offers";
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFound /> },
       { path: "/offers", element: <Offers /> },
       { path: "/connexion", element: <Connexion /> },
+      { path: "/inscription", element: <Inscription /> },
     ],
   },
 ]);
