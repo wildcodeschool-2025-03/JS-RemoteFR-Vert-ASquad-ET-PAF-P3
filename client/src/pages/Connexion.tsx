@@ -1,12 +1,12 @@
 import { Link } from "react-router";
 import "../assets/styles/connexion.css";
-import { Lock, Mail  } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 
 export default function Connexion() {
   return (
     <>
       <div className="connexion_page">
-        <div className="filter_connexion"/>
+        <div className="filter_connexion" />
       </div>
       <div className="form_card_connexion">
         <h2>Connexion</h2>
