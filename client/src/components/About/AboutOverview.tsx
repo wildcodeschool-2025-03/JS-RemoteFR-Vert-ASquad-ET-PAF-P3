@@ -4,7 +4,7 @@ import { stats } from "../../data/about/stats";
 
 export default function AboutOverview() {
   return (
-    <section className="about-section about-overview about-bg-apropos">
+    <section className="about-section about-overview about-bg-overview">
       <div className="about-overview-content">
         <div className="about-overview-left">
           <span

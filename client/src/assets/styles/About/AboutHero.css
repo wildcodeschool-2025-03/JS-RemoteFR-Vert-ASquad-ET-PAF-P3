@@ -33,16 +33,14 @@
 
 .about-gradient-pink {
   background: linear-gradient(90deg, #ca2061 0%, #851342 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
 
 .about-gradient-dark {
   background: linear-gradient(90deg, #333 0%, #851342 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
 
 .about-hero-black {

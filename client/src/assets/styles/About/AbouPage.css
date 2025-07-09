@@ -69,17 +69,6 @@ body {
   outline-offset: 2px;
 }
 
-/* Scrollbar custom */
-::-webkit-scrollbar {
-  width: 8px;
-  background: #f4eeee;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 8px;
-}
-
 @media (max-width: 900px) {
   .about-fullpage,
   .about-sections-container,

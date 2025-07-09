@@ -1,8 +1,34 @@
 import { ArrowRight, Briefcase } from "lucide-react";
+import { useEffect, useState } from "react";
 import { aboutContent } from "../../data/about/content";
-import { jobs } from "../../data/about/jobs";
+
+interface Offer {
+  id: number;
+  jobTitle: string;
+  city_name: string;
+}
 
 export default function AboutJoin() {
+  const [offers, setOffers] = useState<Offer[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch("/api/offers/featured");
+        if (response.ok) {
+          const data = await response.json();
+          setOffers(data);
+        }
+      } catch (error) {
+        console.error("Erreur lors du chargement des offres:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOffers();
+  }, []);
   return (
     <section className="about-section about-join about-bg-join">
       <div className="about-join-content">
@@ -25,15 +51,25 @@ export default function AboutJoin() {
           ))}
         </ul>
         <div className="about-join-jobs">
-          {jobs.map((job) => (
-            <div className="about-join-job-card" key={job.title}>
-              <div className="about-join-job">
-                <span>{job.title}</span>
-                <span>{job.location}</span>
-                <ArrowRight size={18} />
-              </div>
+          {loading ? (
+            <div className="about-join-loading">
+              <p>Chargement des offres...</p>
             </div>
-          ))}
+          ) : offers.length > 0 ? (
+            offers.map((offer) => (
+              <div className="about-join-job-card" key={offer.id}>
+                <div className="about-join-job">
+                  <span>{offer.jobTitle}</span>
+                  <span>{offer.city_name}</span>
+                  <ArrowRight size={18} />
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="about-join-no-offers">
+              <p>Aucune offre disponible</p>
+            </div>
+          )}
         </div>
       </div>
     </section>
