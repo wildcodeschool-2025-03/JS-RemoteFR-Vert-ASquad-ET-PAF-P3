@@ -1,7 +1,12 @@
 import { Lock, Mail } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import "../assets/styles/inscription.css";
-import { type ChangeEventHandler, type FormEventHandler, useRef, useState } from "react";
+import {
+  type ChangeEventHandler,
+  type FormEventHandler,
+  useRef,
+  useState,
+} from "react";
 
 export default function Inscription() {
   const emailRef = useRef<HTMLInputElement>(null);
