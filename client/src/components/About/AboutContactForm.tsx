@@ -4,8 +4,8 @@ import { aboutContent } from "../../data/about/content";
 
 export default function AboutContactForm() {
   const [contactSent, setContactSent] = useState(false);
-  const [ContactIsSubmitting, setContactIsSubmitting] = useState(false);
-  const [form, setForm] = useState({
+  const [contactIsSubmitting, setContactIsSubmitting] = useState(false);
+  const [contactForm, setContactForm] = useState({
     prenom: "",
     nom: "",
     email: "",
@@ -18,7 +18,7 @@ export default function AboutContactForm() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setContactForm({ ...contactForm, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -59,7 +59,7 @@ export default function AboutContactForm() {
               id="prenom"
               name="prenom"
               placeholder="Prénom"
-              value={form.prenom}
+              value={contactForm.prenom}
               onChange={handleChange}
               required
               aria-required="true"
@@ -74,7 +74,7 @@ export default function AboutContactForm() {
               id="nom"
               name="nom"
               placeholder="Nom"
-              value={form.nom}
+              value={contactForm.nom}
               onChange={handleChange}
               required
               aria-required="true"
@@ -92,7 +92,7 @@ export default function AboutContactForm() {
               id="email"
               name="email"
               placeholder="Email"
-              value={form.email}
+              value={contactForm.email}
               onChange={handleChange}
               required
               aria-required="true"
@@ -109,7 +109,7 @@ export default function AboutContactForm() {
             <select
               id="sujet"
               name="sujet"
-              value={form.sujet}
+              value={contactForm.sujet}
               onChange={handleChange}
               required
               aria-required="true"
@@ -133,7 +133,7 @@ export default function AboutContactForm() {
             name="message"
             rows={4}
             placeholder="Votre message..."
-            value={form.message}
+            value={contactForm.message}
             onChange={handleChange}
             required
             aria-required="true"
@@ -147,13 +147,13 @@ export default function AboutContactForm() {
         <button
           type="submit"
           className="about-btn-main"
-          disabled={ContactIsSubmitting}
-          aria-describedby={ContactIsSubmitting ? "submit-status" : undefined}
+          disabled={contactIsSubmitting}
+          aria-describedby={contactIsSubmitting ? "submit-status" : undefined}
         >
-          {ContactIsSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+          {contactIsSubmitting ? "Envoi en cours..." : "Envoyer le message"}
         </button>
 
-        {ContactIsSubmitting && (
+        {contactIsSubmitting && (
           <span id="submit-status" className="sr-only" aria-live="polite">
             Envoi du message en cours
           </span>
