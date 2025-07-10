@@ -1,12 +1,7 @@
 import { ArrowRight, Briefcase } from "lucide-react";
 import { useEffect, useState } from "react";
 import { aboutContent } from "../../data/about/content";
-
-interface Offer {
-  id: number;
-  jobTitle: string;
-  city_name: string;
-}
+import type { Offer } from "../../types/about";
 
 export default function AboutJoin() {
   const [offers, setOffers] = useState<Offer[]>([]);
@@ -21,7 +16,6 @@ export default function AboutJoin() {
           setOffers(data);
         }
       } catch (error) {
-        console.error("Erreur lors du chargement des offres:", error);
       } finally {
         setLoading(false);
       }
@@ -51,11 +45,13 @@ export default function AboutJoin() {
           ))}
         </ul>
         <div className="about-join-jobs">
-          {loading ? (
+          {loading && (
             <div className="about-join-loading">
               <p>Chargement des offres...</p>
             </div>
-          ) : offers.length > 0 ? (
+          )}
+          {!loading &&
+            offers.length > 0 &&
             offers.map((offer) => (
               <div className="about-join-job-card" key={offer.id}>
                 <div className="about-join-job">
@@ -64,8 +60,8 @@ export default function AboutJoin() {
                   <ArrowRight size={18} />
                 </div>
               </div>
-            ))
-          ) : (
+            ))}
+          {!loading && offers.length === 0 && (
             <div className="about-join-no-offers">
               <p>Aucune offre disponible</p>
             </div>

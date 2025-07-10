@@ -1,9 +1,12 @@
 import { isValidElement, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
-import type { AboutHeroProps, Props } from "../../types/about.ts";
+import type {
+  AboutFullpageLayoutProps,
+  AboutHeroProps,
+} from "../../types/about.ts";
 import AboutHero from "./AboutHero";
 
-function AboutFullpageLayout({ children }: Props) {
+function AboutFullpageLayout({ children }: AboutFullpageLayoutProps) {
   const [currentSection, setCurrentSection] = useState(0);
   const lastScrollTime = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);

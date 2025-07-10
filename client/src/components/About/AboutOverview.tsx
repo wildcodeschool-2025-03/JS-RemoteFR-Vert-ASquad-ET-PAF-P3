@@ -25,7 +25,7 @@ export default function AboutOverview() {
         <div className="about-overview-right">
           <div className="about-overview-stats">
             {stats.map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.id}>
                 <span>{stat.value}</span>
                 <br />
                 {stat.label}
