@@ -3,8 +3,8 @@ import { contactSubjects } from "../../data/about/contactSubjects";
 import { aboutContent } from "../../data/about/content";
 
 export default function AboutContactForm() {
-  const [sent, setSent] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contactSent, setContactSent] = useState(false);
+  const [ContactIsSubmitting, setContactIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     prenom: "",
     nom: "",
@@ -23,16 +23,16 @@ export default function AboutContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setContactIsSubmitting(true);
 
     setTimeout(() => {
-      setIsSubmitting(false);
-      setSent(true);
-      setTimeout(() => setSent(false), 4000);
+      setContactIsSubmitting(false);
+      setContactSent(true);
+      setTimeout(() => setContactSent(false), 4000);
     }, 1000);
   };
 
-  if (sent) {
+  if (contactSent) {
     return (
       <div className="about-contact-confirm" role="alert" aria-live="polite">
         {aboutContent.contact.confirm}
@@ -147,13 +147,13 @@ export default function AboutContactForm() {
         <button
           type="submit"
           className="about-btn-main"
-          disabled={isSubmitting}
-          aria-describedby={isSubmitting ? "submit-status" : undefined}
+          disabled={ContactIsSubmitting}
+          aria-describedby={ContactIsSubmitting ? "submit-status" : undefined}
         >
-          {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+          {ContactIsSubmitting ? "Envoi en cours..." : "Envoyer le message"}
         </button>
 
-        {isSubmitting && (
+        {ContactIsSubmitting && (
           <span id="submit-status" className="sr-only" aria-live="polite">
             Envoi du message en cours
           </span>
