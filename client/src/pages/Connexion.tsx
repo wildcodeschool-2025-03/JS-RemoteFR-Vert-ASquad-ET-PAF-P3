@@ -53,15 +53,17 @@ export default function Connexion() {
             id="email"
             placeholder="Entrer votre adresse mail"
             ref={emailRef}
+            required
           />
 
           <label htmlFor="password">Password</label>
           <Lock size={24} />
           <input
-            type="text"
+            type="password"
             id="password"
             placeholder="Entrer votre mot de passe"
             ref={passwordRef}
+            required
           />
 
           <input type="submit" value="Connexion" className="button_connexion" />

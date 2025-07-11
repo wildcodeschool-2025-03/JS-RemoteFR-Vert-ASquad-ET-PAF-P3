@@ -1,57 +1,11 @@
-import { Lock, Mail } from "lucide-react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import "../assets/styles/inscription.css";
-import {
-  type ChangeEventHandler,
-  type FormEventHandler,
-  useRef,
-  useState,
-} from "react";
+
+import { useState } from "react";
+import Candidat from "../components/Inscription/Candidat";
 
 export default function Inscription() {
-  const emailRef = useRef<HTMLInputElement>(null);
-  const firstnameRef = useRef<HTMLInputElement>(null);
-  const lastnameRef = useRef<HTMLInputElement>(null);
-
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
-
-  const handlePassword: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setPassword(event.target.value);
-  };
-  const handleConfirmPassword: ChangeEventHandler<HTMLInputElement> = (
-    event,
-  ) => {
-    setConfirmPassword(event.target.value);
-  };
-
-  const handleSubmit: FormEventHandler = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/inscription`,
-        {
-          method: "POST",
-          headers: { "content-type ": "application/json" },
-          body: JSON.stringify({
-            lastname: (lastnameRef.current as HTMLInputElement).value,
-            firstname: (firstnameRef.current as HTMLInputElement).value,
-            email: (emailRef.current as HTMLInputElement).value,
-            password,
-          }),
-        },
-      );
-      if (response.status === 201) {
-        navigate("/connexion");
-      } else {
-        console.error("Error");
-      }
-    } catch (err) {
-      ("Erreur: vérifiez vos coordonnées!");
-    }
-  };
+  const [roleId, setRoleId] = useState<number | null>(null);
 
   return (
     <>
@@ -60,70 +14,37 @@ export default function Inscription() {
       </div>
       <div className="form_card_inscription">
         <h2>Inscription</h2>
-
-        <form
-          action="inscription_form"
-          className="inscription_form"
-          onSubmit={handleSubmit}
-        >
-          <div className="firstname-lastname">
-            <label htmlFor="Nom">Nom</label>
-            <label htmlFor="Prénom">Prénom</label>
-            <input
-              type="text"
-              id="lastname"
-              placeholder="Entrez votre nom"
-              ref={lastnameRef}
-            />
-            <input
-              type="text"
-              id="firstname"
-              placeholder="Entrez votre prénom"
-              ref={firstnameRef}
-            />
-          </div>
-          <label htmlFor="email">Email</label>
-          <Mail size={24} />
-          <input
-            type="text"
-            id="email"
-            placeholder="Entrez votre adresse mail"
-            ref={emailRef}
-          />
-          <label htmlFor="password">Mot de passe</label>
-          <Lock size={24} />
-          <input
-            type="text"
-            id="password"
-            value={password}
-            placeholder="Entrez votre mot de passe"
-            onChange={handlePassword}
-          />
-
-          <label htmlFor="confirm-password">Confirmez votre mot de passe</label>
-          <Lock size={24} />
-          <input
-            type="text"
-            id="confirm-password"
-            placeholder="Confirmez votre mot de passe"
-            value={confirmPassword}
-            onChange={handleConfirmPassword}
-          />
-
-          <input
-            type="submit"
-            value="Valider votre inscription"
-            className="button_inscription"
-          />
-        </form>
         <p>
-          Vous avez déjà un compte <br />
-          Cliquez sur{" "}
+          Vous avez déjà un compte Cliquez sur{" "}
           <Link to="/connexion" className="link_connexion">
             {" "}
             se connecter
           </Link>
         </p>
+
+        <div>
+          <legend> Quel est votre profil ? </legend>
+          <input
+            type="radio"
+            id="candidat"
+            name="profil"
+            value={1}
+            onChange={(e) => setRoleId(Number(e.target.value))}
+            required
+          />
+          <label htmlFor="candidat">candidat</label>
+          <input
+            type="radio"
+            id="entreprise"
+            name="profil"
+            value={2}
+            onChange={(e) => setRoleId(Number(e.target.value))}
+            required
+          />
+          <label htmlFor="entreprise">entreprise</label>
+        </div>
+
+        <Candidat roleId={roleId} />
       </div>
     </>
   );
