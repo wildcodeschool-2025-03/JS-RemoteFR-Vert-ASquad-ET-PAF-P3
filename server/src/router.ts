@@ -33,7 +33,7 @@ router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
-// router.get("/inscription", userActions.browse);
+router.get("/inscription", userActions.browse);
 // router.get("/inscription/:id", userActions.read);
 router.post("/inscription", authActions.hashPassword, userActions.add);
 

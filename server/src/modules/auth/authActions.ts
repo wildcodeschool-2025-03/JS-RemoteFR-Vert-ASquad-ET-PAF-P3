@@ -22,15 +22,13 @@ const login: RequestHandler = async (req, res, next) => {
 
     if (verified) {
       const { hashed_password, ...userWithoutHashedPassword } = users;
-      const myPayload: MyPayload = {
+      const myPayload: JwtPayload = {
         sub: users.id.toString(),
       };
 
-      const token = await jwt.sign(
-        myPayload,
-        process.env.APP_SECRET as string,
-        { expiresIn: "1h" },
-      );
+      const token = jwt.sign(myPayload, process.env.APP_SECRET as string, {
+        expiresIn: "1h",
+      });
 
       res.json({
         user: userWithoutHashedPassword,

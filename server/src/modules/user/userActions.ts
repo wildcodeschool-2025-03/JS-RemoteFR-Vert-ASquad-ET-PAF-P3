@@ -63,7 +63,7 @@ const edit: RequestHandler = async (req, res, next) => {
     };
     const affectedRows = await userRepository.update(editUser);
 
-    if (affectedRows == null) {
+    if (!affectedRows) {
       res.sendStatus(404);
     } else {
       res.sendStatus(204);
@@ -83,4 +83,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add };
+export default { browse, add };

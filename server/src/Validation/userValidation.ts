@@ -30,31 +30,18 @@ const validateUser: RequestHandler = (req, res, next) => {
     number: z.string().min(2).max(45).optional(),
     picture_src: z.string().min(2).optional(),
     picture_alt: z.string().min(2).optional(),
-    document: z.string(),
+    document: z.string().optional(),
     role_id: z.number(),
   });
 
-  // const validData: RequestHandler = async (req, res,next) => {
-  //  try{
-  //   await userSchema.safeParse({
-  //     email,
-  //   hashed_password,
-  //   firstname,
-  //   lastname,
-  //   address,
-  //   number,
-  //   picture_src,
-  //   picture_alt,
-  //   document,
-  //   role_id
-  // });
-  // next();
-  // }
-  // catch(error){
-  //   if(!validData){
-  //     const error = validData.;
-  //     res.status(401).json(error);
-  //     return;
-  // }}
-  // }
+  const validData = userSchema.safeParse(req.body);
+
+  console.log(validData);
+  if (!validData.success) {
+    res.sendStatus(422);
+  } else {
+    next();
+  }
 };
+
+export { validateUser };
