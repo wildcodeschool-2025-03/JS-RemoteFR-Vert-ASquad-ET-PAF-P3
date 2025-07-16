@@ -40,16 +40,14 @@
     padding: 1em;
   }
 
-  p {
-    font-size: 1.2em;
-    position: relative;
-    top: -0.6em;
-  }
-
   .link_inscription {
-    color: #ca2061;
+    color: #ffffff;
     font-size: 1em;
-    font-weight: bold;
+    text-decoration: none;
+  }
+  .link_inscription:hover {
+    color: #ff297b;
+    font-size: 1.2em;
   }
 }
 
@@ -109,6 +107,8 @@
 
 @media (min-width: 640px) {
   .form_card_connexion {
+    position: relative;
+    top: 5em;
     h2 {
       font-size: 2.5em;
     }
@@ -120,9 +120,12 @@
     }
 
     .link_inscription {
-      color: #ca2061;
-      font-size: 1.3em;
-      font-weight: bold;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .link_inscription:hover {
+      color: #ff297b;
+      font-size: 1.5em;
     }
   }
 
@@ -144,14 +147,12 @@
 
     .lucide.lucide-mail {
       position: relative;
-      bottom: -2.2em;
-      padding: 0.2em;
+      bottom: -1.6em;
     }
 
     .lucide.lucide-lock {
       position: relative;
-      bottom: -2.2em;
-      padding: 0.2em;
+      bottom: -1.6em;
     }
 
     .button_connexion {
@@ -175,7 +176,7 @@
     color: rgb(255, 255, 255);
     backdrop-filter: blur(4px);
     width: 50%;
-
+    top: 0;
     h2 {
       font-size: 2.5em;
     }
@@ -185,9 +186,13 @@
     }
 
     .link_inscription {
-      color: #ca2061;
-      font-size: 1.3em;
-      font-weight: bold;
+      color: #ffffff;
+      font-size: 1em;
+      text-decoration: none;
+    }
+    .link_inscription:hover {
+      color: #ff297b;
+      font-size: 1.2em;
     }
   }
 
