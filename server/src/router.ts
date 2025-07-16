@@ -3,8 +3,6 @@ import express from "express";
 const router = express.Router();
 
 /* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
 
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";
@@ -35,8 +33,6 @@ router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
-router.get("/inscription", userActions.browse);
-router.get("/inscription/:id", userActions.read);
 router.post(
   "/inscription",
   validateUser,
@@ -45,10 +41,5 @@ router.post(
 );
 
 router.post("/connexion", authActions.login);
-
-router.get("/connexion", userActions.add);
-router.get("/connexion/:id", userActions.read);
-// router.put("/connexion/:id", userActions.edit);
-// router.delete("/connexion/:id", userActions.destroy);
 
 export default router;

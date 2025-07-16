@@ -58,33 +58,6 @@ class UserRepository {
     );
     return rows[0] as Users;
   }
-
-  async update(user: Users) {
-    const [result] = await databaseClient.query<Result>(
-      "UPDATE users SET  email = ?, hashed_password = ?, firstname = ?, lastname = ?, address = ?, number = ?, picture_src = ?, picture_alt = ?, document = ?, role_id = ? WHERE id = ?",
-      [
-        user.email,
-        user.hashed_password,
-        user.firstname,
-        user.lastname,
-        user.address,
-        user.number,
-        user.document,
-        user.picture_src,
-        user.picture_alt,
-        user.role_id,
-      ],
-    );
-    return result.affectedRows;
-  }
-
-  async delete(usersId: number) {
-    const [result] = await databaseClient.query<Result>(
-      "DELETE FROM users WHERE id = ?",
-      [usersId],
-    );
-    return result.affectedRows;
-  }
 }
 
 export default new UserRepository();
