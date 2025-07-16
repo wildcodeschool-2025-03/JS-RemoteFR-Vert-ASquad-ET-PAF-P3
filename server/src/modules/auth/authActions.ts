@@ -73,9 +73,7 @@ const verifyToken: RequestHandler = (req, res, next) => {
     let token: string | undefined;
     if (req.cookies?.access_token) {
       token = req.cookies.access_token;
-    } 
-    
-    else if (req.get("Authorization")?.split(" ")) {
+    } else if (req.get("Authorization")?.split(" ")) {
       throw new Error("Authorization header is missing");
     }
 
