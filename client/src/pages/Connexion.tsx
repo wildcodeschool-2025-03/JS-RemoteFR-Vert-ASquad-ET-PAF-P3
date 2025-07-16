@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router";
 import "../assets/styles/connexion.css";
 import { Lock, Mail } from "lucide-react";
 import { type FormEventHandler, useRef } from "react";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 export default function Connexion() {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -12,21 +13,19 @@ export default function Connexion() {
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/connexion`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: (emailRef.current as HTMLInputElement).value,
-            password: (passwordRef.current as HTMLInputElement).value,
-          }),
-        },
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: (emailRef.current as HTMLInputElement).value,
+          password: (passwordRef.current as HTMLInputElement).value,
+        }),
+      });
 
       if (response.status === 200) {
-        navigate("/tableaudebord");
+        navigate("/dashboard");
       } else {
+        toast.error("Erreur : vérifiez vos coordonnées !");
         console.info(response);
       }
     } catch (err) {
@@ -35,6 +34,20 @@ export default function Connexion() {
   };
   return (
     <>
+      {" "}
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
       <div className="connexion_page">
         <div className="filter_connexion" />
       </div>
@@ -68,11 +81,10 @@ export default function Connexion() {
 
           <input type="submit" value="Connexion" className="button_connexion" />
         </form>
+        <p>Tu veux te donner une chance ?</p>
         <p>
-          Vous voulez créer un compte <br />
-          Cliquez sur{" "}
-          <Link to="/inscription" className="link_inscription">
-            créer mon compte
+          <Link to="/signup" className="link_inscription">
+            Inscrit toi{" "}
           </Link>
         </p>
       </div>

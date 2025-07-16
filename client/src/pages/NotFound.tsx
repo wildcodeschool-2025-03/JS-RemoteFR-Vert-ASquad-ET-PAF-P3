@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import "../styles/NotFound.css";
+import "../assets/styles/NotFound.css";
 import img404 from "../assets/images/404.png";
 import { getRandomMessage } from "../data/404";
 
