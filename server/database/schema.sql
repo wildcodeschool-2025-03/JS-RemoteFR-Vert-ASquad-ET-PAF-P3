@@ -6,7 +6,7 @@ CREATE TABLE home (
 insert into home (id, title, paragraph)
 values
 (1,"Cabinet de recrutement informatique", "Nous cultivons les liens que nous établissons,
- les faisant grandir sur le long terme. En tant que membre actif de l’écosystème tech local, 
+ les faisant grandir sur le long terme. En tant que membre actif de l'écosystème tech local, 
  nous nous appuyons sur un réseau riche en expériences et en expertises. Cela nous permet de tisser des liens à la fois 
  pertinents et vertueux."),
  (2," ", "Les liens les plus durables."),
@@ -16,6 +16,11 @@ CREATE TABLE role (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,  
   label VARCHAR(50) NOT NULL
 );
+
+INSERT INTO role (id, label) VALUES
+(1, 'candidate'),
+(2, 'company'),
+(3, 'admin');
 
 CREATE TABLE users (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,  
