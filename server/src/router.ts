@@ -33,13 +33,8 @@ router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
-router.post(
-  "/inscription",
-  validateUser,
-  authActions.hashPassword,
-  userActions.add,
-);
+router.post("/signup", validateUser, authActions.hashPassword, userActions.add);
 
-router.post("/connexion", authActions.login);
+router.post("/login", authActions.login);
 
 export default router;
