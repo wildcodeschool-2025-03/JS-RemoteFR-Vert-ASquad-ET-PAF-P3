@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
             <button
               type="button"
               className="btn-login"
-              onClick={() => navigate("/connexion")}
+              onClick={() => navigate("/login")}
             >
               Se connecter
             </button>
@@ -110,7 +110,7 @@ const Navbar: React.FC = () => {
                 <button
                   type="button"
                   className="mobile-btn-login"
-                  onClick={() => navigate("/connexion")}
+                  onClick={() => navigate("/login")}
                 >
                   Se connecter
                 </button>
