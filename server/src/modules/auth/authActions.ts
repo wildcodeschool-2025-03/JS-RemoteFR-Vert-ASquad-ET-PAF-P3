@@ -3,6 +3,7 @@ import type { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
 import userRepository from "../user/userRepository";
 
+import cookieParser from "cookie-parser";
 import type { JwtPayload } from "jsonwebtoken";
 import type { MyPayload } from "../../types/express";
 
@@ -30,9 +31,15 @@ const login: RequestHandler = async (req, res, next) => {
         expiresIn: "1h",
       });
 
+      res.cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 1000 * 60 * 60,
+      });
       res.json({
         user: userWithoutHashedPassword,
-        token,
+        cookieParser,
       });
     } else {
       res.sendStatus(422);
@@ -63,18 +70,18 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 
 const verifyToken: RequestHandler = (req, res, next) => {
   try {
-    const authorizationHeader = req.get("Authorization");
-
-    if (authorizationHeader == null) {
+    let token: string | undefined;
+    if (req.cookies?.access_token) {
+      token = req.cookies.access_token;
+    } 
+    
+    else if (req.get("Authorization")?.split(" ")) {
       throw new Error("Authorization header is missing");
     }
 
-    const [type, token] = authorizationHeader.split(" ");
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
+    if (!token) {
+      throw new Error("Token not found");
     }
-
     req.auth = jwt.verify(token, process.env.APP_SECRET as string) as MyPayload;
     next();
   } catch (err) {

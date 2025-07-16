@@ -12,8 +12,7 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const userId = Number(req.params.id);
-    const user = await userRepository.read(userId);
+    const user = await userRepository.readByEmailWithPassword(req.params.id);
 
     if (user == null) {
       res.sendStatus(401);
@@ -25,7 +24,7 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
-const add: RequestHandler = async (req, res, next) => {
+const add: RequestHandler = async (req, res) => {
   try {
     const newUser = {
       email: req.body.email,
@@ -42,7 +41,7 @@ const add: RequestHandler = async (req, res, next) => {
     const insertId = await userRepository.create(newUser);
     res.status(201).json({ insertId });
   } catch (err) {
-    next(err);
+    res.status(409).json({ message: "Email déjà existant" });
   }
 };
 
