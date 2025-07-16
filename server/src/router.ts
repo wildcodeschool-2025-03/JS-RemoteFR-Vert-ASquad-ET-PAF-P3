@@ -22,6 +22,8 @@ router.post("/home", homepageActions.add);
 router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
 
+import { validateUser } from "./Validation/userValidation";
+
 /* ************************************************************************* */
 import authActions from "./modules/auth/authActions";
 import offersActions from "./modules/offers/offersActions";
@@ -34,13 +36,18 @@ router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
 router.get("/inscription", userActions.browse);
-// router.get("/inscription/:id", userActions.read);
-router.post("/inscription", authActions.hashPassword, userActions.add);
+router.get("/inscription/:id", userActions.read);
+router.post(
+  "/inscription",
+  validateUser,
+  authActions.hashPassword,
+  userActions.add,
+);
 
 router.post("/connexion", authActions.login);
 
 router.get("/connexion", userActions.add);
-// router.get("/connexion/:id", userActions.read)
+router.get("/connexion/:id", userActions.read);
 // router.put("/connexion/:id", userActions.edit);
 // router.delete("/connexion/:id", userActions.destroy);
 
