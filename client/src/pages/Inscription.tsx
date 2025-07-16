@@ -36,6 +36,15 @@ export default function Candidat() {
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
+    if (!roleId) {
+      toast.error("Veuillez sélectionner votre profil");
+      return;
+    } 
+     if (password !== confirmPassword) {
+      toast.error("Vos mots de passes ne correspondent pas");
+      return;
+    }
+
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: "POST",
@@ -49,10 +58,6 @@ export default function Candidat() {
         }),
       });
 
-      if (!roleId) {
-        toast.error("Veuillez sélectionner votre profil");
-        return;
-      }
       if (response.status === 201) {
         toast.success(
           "Vous êtes inscrit, redirection vers la page de connexion !",
@@ -61,11 +66,9 @@ export default function Candidat() {
           navigate("/login");
         }, 2000);
       } else {
-        toast.error("Erreur : vérifiez vos coordonnées !");
+        toast.error("Cet utilisateur existe déjà !");
       }
-    } catch (err) {
-      console.error("Les coordonnées sont déjà existantes !");
-    }
+    } catch (error) {}
   };
   return (
     <>
@@ -89,10 +92,10 @@ export default function Candidat() {
       <div className="form_card_inscription">
         <h2>Inscription</h2>
         <p>
-          Déjà inscrit ?
+          Déjà inscris ?
           <Link to="/login" className="link_connexion">
             {" "}
-            Se connecter
+            Connecte-toi
           </Link>
         </p>
         <form className="inscription_form" onSubmit={handleSubmit}>
@@ -147,6 +150,7 @@ export default function Candidat() {
             ref={emailRef}
             placeholder="Votre adresse mail"
             required
+            title="Votre email doit suivre ce format"
           />
           <label htmlFor="password">Mot de passe</label>
           <Lock />
@@ -157,7 +161,8 @@ export default function Candidat() {
             onChange={handlePassword}
             placeholder="Entrez votre mot de passe"
             required
-            minLength={8}
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Votre mot de passe doit contenir au moins un chiffre et une lettre majuscule et minuscule avec au moins 8 caractères ou plus"
           />
 
           <label htmlFor="confirm-password">Confirmez votre mot de passe</label>
@@ -169,7 +174,7 @@ export default function Candidat() {
             value={confirmPassword}
             onChange={confirmHandlePassword}
             required
-            minLength={8}
+            title="Votre mot de passe doit correspondre"
           />
 
           <button type="submit" className="button_inscription">

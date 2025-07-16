@@ -84,7 +84,7 @@ export default function Connexion() {
         <p>Tu veux te donner une chance ?</p>
         <p>
           <Link to="/signup" className="link_inscription">
-            Inscrit toi{" "}
+            Inscris toi{" "}
           </Link>
         </p>
       </div>
