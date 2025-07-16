@@ -55,6 +55,7 @@ const hashPassword: RequestHandler = async (req, res, next) => {
     const hashedPassword = await argon2.hash(password, hashingOptions);
     req.body.hashed_password = hashedPassword;
     req.body.password = undefined;
+    console.log(req.body.password)
     next();
   } catch (err) {
     next(err);

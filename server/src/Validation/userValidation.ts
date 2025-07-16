@@ -1,12 +1,10 @@
 import type { RequestHandler } from "express";
-import { password } from "payload/dist/fields/validations";
 import z from "zod";
-import Users from "../types/UserType";
 
 const validateUser: RequestHandler = (req, res, next) => {
   const {
     email,
-    hashed_password,
+    password,
     firstname,
     lastname,
     address,
@@ -23,7 +21,7 @@ const validateUser: RequestHandler = (req, res, next) => {
       .regex(
         /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_'+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/i,
       ),
-    hashed_password: z.string().min(8),
+    password: z.string().min(8),
     firstname: z.string().min(2).max(45).optional(),
     lastname: z.string().min(2).max(45).optional(),
     address: z.string().min(2).max(45).optional(),
@@ -38,7 +36,7 @@ const validateUser: RequestHandler = (req, res, next) => {
 
   console.log(validData);
   if (!validData.success) {
-    res.sendStatus(422);
+    res.sendStatus(422).json(validData.error.format());
   } else {
     next();
   }

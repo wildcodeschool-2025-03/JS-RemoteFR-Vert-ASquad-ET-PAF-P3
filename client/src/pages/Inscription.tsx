@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import "../assets/styles/inscription.css";
-import Company from "../components/Inscription/Company";
 
 import { useState } from "react";
 import Candidat from "../components/Inscription/Candidat";
@@ -46,7 +45,6 @@ export default function Inscription() {
         </div>
 
         <Candidat roleId={roleId} />
-        <Company roleId={roleId} />
       </div>
     </>
   );
