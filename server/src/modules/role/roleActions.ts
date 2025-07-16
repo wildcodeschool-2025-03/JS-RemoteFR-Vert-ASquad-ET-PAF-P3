@@ -6,7 +6,7 @@ const browse: RequestHandler = async (req, res, next) => {
   try {
     const roles = await RoleRepository.readAll();
 
-    res.json(roles);
+    res.status(200).json(roles);
   } catch (err) {
     next(err);
   }
@@ -21,7 +21,7 @@ const read: RequestHandler = async (req, res, next) => {
     if (role == null) {
       res.sendStatus(404);
     } else {
-      res.json(role);
+      res.status(200).json(role);
     }
   } catch (err) {
     next(err);

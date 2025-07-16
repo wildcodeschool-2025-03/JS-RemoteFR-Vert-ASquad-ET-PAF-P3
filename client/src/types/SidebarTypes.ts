@@ -39,14 +39,8 @@ export type AdminNavId =
 
 export type NavItemId = CandidateNavId | CompanyNavId | AdminNavId;
 
-export interface SidebarHandlers {
-  onLogout: () => void;
-  onDeleteAccount: () => void;
-}
-
 export interface RoleConfig {
   navItems: NavItem[];
-  showDeleteAccount: boolean;
   logoSize?: "small" | "medium" | "large";
   color: string;
 }

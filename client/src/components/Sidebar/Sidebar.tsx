@@ -1,17 +1,14 @@
 import { Menu, X } from "lucide-react";
-import type React from "react";
-import { useState } from "react";
+import { type default as React, useState } from "react";
 import { Link } from "react-router";
 import logoVertical from "../../assets/images/logo-vertical.png";
-import { commonActions, getRoleConfig } from "../../constants/roleConfigs";
+import { getRoleConfig } from "../../constants/roleConfigs";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { useRoles } from "../../hooks/useRoles";
-import { useSidebarHandlers } from "../../hooks/useSidebarUserActions";
 import type { SidebarProps } from "../../types/SidebarTypes";
 import "../../assets/styles/Sidebar.css";
 
 const Sidebar: React.FC<SidebarProps> = ({ activeItem, userRole }) => {
-  const { onLogout, onDeleteAccount } = useSidebarHandlers();
   const { getRoleColor, loading } = useRoles();
   const roleConfig = getRoleConfig(userRole);
   const roleColor = getRoleColor(userRole);
@@ -93,36 +90,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, userRole }) => {
             ))
           )}
         </nav>
-
-        {!loading && (
-          <div className="sidebar-footer">
-            <button
-              type="button"
-              className="nav-item logout-btn"
-              onClick={() => {
-                onLogout();
-                if (isMobile) closeMenu();
-              }}
-            >
-              {commonActions.logout.icon}
-              <span>{commonActions.logout.label}</span>
-            </button>
-
-            {roleConfig.showDeleteAccount && (
-              <button
-                type="button"
-                className="nav-item delete-btn"
-                onClick={() => {
-                  onDeleteAccount();
-                  if (isMobile) closeMenu();
-                }}
-              >
-                {commonActions.deleteAccount.icon}
-                <span>{commonActions.deleteAccount.label}</span>
-              </button>
-            )}
-          </div>
-        )}
       </div>
     </>
   );

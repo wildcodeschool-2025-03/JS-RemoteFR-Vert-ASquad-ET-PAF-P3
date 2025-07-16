@@ -4,9 +4,7 @@ import {
   Building2,
   FolderOpen,
   LayoutDashboard,
-  LogOut,
   Mail,
-  Trash2,
   User,
   Users,
   UsersRound,
@@ -53,7 +51,6 @@ export const candidateConfig: RoleConfig = {
       label: "Entreprises",
     },
   ],
-  showDeleteAccount: true,
   logoSize: "medium",
   color: "#CA2061",
 };
@@ -97,7 +94,6 @@ export const companyConfig: RoleConfig = {
       label: "Trombinoscope",
     },
   ],
-  showDeleteAccount: false,
   logoSize: "medium",
   color: "#FF8639",
 };
@@ -135,21 +131,9 @@ export const adminConfig: RoleConfig = {
       label: "Messages",
     },
   ],
-  showDeleteAccount: false,
   logoSize: "large",
   color: "#851342",
 };
-
-export const commonActions = {
-  logout: {
-    icon: <LogOut size={18} />,
-    label: "Déconnexion",
-  },
-  deleteAccount: {
-    icon: <Trash2 size={18} />,
-    label: "Supprimer le compte",
-  },
-} as const;
 
 export const roleConfigs: Record<UserRole, RoleConfig> = {
   candidate: candidateConfig,
