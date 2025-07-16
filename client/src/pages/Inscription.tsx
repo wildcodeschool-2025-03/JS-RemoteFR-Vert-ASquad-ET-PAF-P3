@@ -39,8 +39,8 @@ export default function Candidat() {
     if (!roleId) {
       toast.error("Veuillez sélectionner votre profil");
       return;
-    } 
-     if (password !== confirmPassword) {
+    }
+    if (password !== confirmPassword) {
       toast.error("Vos mots de passes ne correspondent pas");
       return;
     }
