@@ -49,43 +49,4 @@ const login: RequestHandler = async (req, res, next) => {
   }
 };
 
-const hashingOptions = {
-  type: argon2.argon2id,
-  memoryCost: 19 * 2 ** 10,
-  timeCost: 2,
-  parallelism: 1,
-};
-
-const hashPassword: RequestHandler = async (req, res, next) => {
-  try {
-    const { password } = req.body;
-    const hashedPassword = await argon2.hash(password, hashingOptions);
-    req.body.hashed_password = hashedPassword;
-    req.body.password = undefined;
-    next();
-  } catch (err) {
-    next(err);
-  }
-};
-
-const verifyToken: RequestHandler = (req, res, next) => {
-  try {
-    let token: string | undefined;
-    if (req.cookies?.access_token) {
-      token = req.cookies.access_token;
-    } else if (req.get("Authorization")?.split(" ")) {
-      throw new Error("Authorization header is missing");
-    }
-
-    if (!token) {
-      throw new Error("Token not found");
-    }
-    req.auth = jwt.verify(token, process.env.APP_SECRET as string) as MyPayload;
-    next();
-  } catch (err) {
-    console.error(err);
-    res.sendStatus(401);
-  }
-};
-
-export default { login, hashPassword, verifyToken };
+export default { login };
