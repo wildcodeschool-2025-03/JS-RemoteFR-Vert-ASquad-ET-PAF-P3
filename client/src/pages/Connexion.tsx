@@ -80,9 +80,9 @@ export default function Connexion() {
           <input type="submit" value="Connexion" className="button_connexion" />
         </form>
         <p>Tu veux te donner une chance ?</p>
-          <Link to="/signup" className="link_inscription">
-            Rejoins-nous !
-          </Link>
+        <Link to="/signup" className="link_inscription">
+          Rejoins-nous !
+        </Link>
       </section>
     </>
   );
