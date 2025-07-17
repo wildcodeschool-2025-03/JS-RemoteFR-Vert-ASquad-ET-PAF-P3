@@ -20,12 +20,16 @@ router.post("/home", homepageActions.add);
 router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
 
-import { validateUser } from "./Validation/userValidation";
+
 
 /* ************************************************************************* */
 import authActions from "./modules/auth/authActions";
 import offersActions from "./modules/offers/offersActions";
 import userActions from "./modules/user/userActions";
+
+import  { validateUser }  from "./Validation/userValidation";
+
+import hashPassword from "../src/modules/Utils/hashedPassword";
 
 router.get("/offers", offersActions.browse);
 router.get("/offers/:id", offersActions.read);
@@ -33,7 +37,7 @@ router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
-router.post("/signup", validateUser, authActions.hashPassword, userActions.add);
+router.post("/signup", validateUser, hashPassword, userActions.add);
 
 router.post("/login", authActions.login);
 
