@@ -1,12 +1,10 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
-import userRepository from "../user/userRepository";
+import userRepository from "../../modules/user/userRepository";
 
-import cookieParser from "cookie-parser";
 import type { JwtPayload } from "jsonwebtoken";
-import type { MyPayload } from "../../types/express";
-
+//
 const login: RequestHandler = async (req, res, next) => {
   try {
     const users = await userRepository.readByEmailWithPassword(req.body.email);

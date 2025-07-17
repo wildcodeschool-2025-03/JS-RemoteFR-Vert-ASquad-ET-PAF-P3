@@ -1,4 +1,4 @@
-type Users = {
+type UsersType = {
   id: number;
   email: string;
   hashed_password: string;
@@ -12,4 +12,4 @@ type Users = {
   role_id: number;
 };
 
-export default Users;
+export default UsersType;
