@@ -4,6 +4,10 @@ import express from "express";
 
 const app = express();
 
+import cookieParser from "cookie-parser";
+
+app.use(cookieParser());
+
 // Configure it
 
 /* ************************************************************************* */

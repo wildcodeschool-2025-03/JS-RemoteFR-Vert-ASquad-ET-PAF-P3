@@ -3,8 +3,6 @@ import express from "express";
 const router = express.Router();
 
 /* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
 
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";
@@ -23,7 +21,14 @@ router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
 
 /* ************************************************************************* */
+import authActions from "./middlewares/auth/authActions";
 import offersActions from "./modules/offers/offersActions";
+import roleActions from "./modules/role/roleActions";
+import userActions from "./modules/user/userActions";
+
+import { validateUser } from "./Validation/userValidation";
+
+import hashPassword from "./Utils/hashedPassword";
 
 router.get("/offers", offersActions.browse);
 router.get("/offers/:id", offersActions.read);
@@ -32,12 +37,15 @@ router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
 /* ************************************************************************* */
-import roleActions from "./modules/role/roleActions";
 
 router.get("/api/roles", roleActions.browse);
 router.get("/api/roles/:id", roleActions.read);
 router.post("/api/roles", roleActions.add);
 router.put("/api/roles/:id", roleActions.edit);
 router.delete("/api/roles/:id", roleActions.destroy);
+
+/* ************************************************************************* */
+router.post("/signup", validateUser, hashPassword, userActions.add);
+router.post("/login", authActions.login);
 
 export default router;
