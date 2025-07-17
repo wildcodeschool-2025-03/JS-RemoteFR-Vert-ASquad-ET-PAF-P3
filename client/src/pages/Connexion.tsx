@@ -26,15 +26,13 @@ export default function Connexion() {
         navigate("/dashboard");
       } else {
         toast.error("Erreur : vérifiez vos coordonnées !");
-        console.info(response);
       }
     } catch (err) {
-      console.error(err);
+      toast.error("Erreur: ne vous inquiétez la page va se rafraichir");
     }
   };
   return (
     <>
-      {" "}
       <ToastContainer
         position="top-right"
         autoClose={4000}
@@ -48,10 +46,10 @@ export default function Connexion() {
         theme="colored"
         transition={Bounce}
       />
-      <div className="connexion_page">
+      <section className="connexion_page">
         <div className="filter_connexion" />
-      </div>
-      <div className="form_card_connexion">
+      </section>
+      <section className="form_card_connexion">
         <h2>Connexion</h2>
 
         <form
@@ -82,12 +80,10 @@ export default function Connexion() {
           <input type="submit" value="Connexion" className="button_connexion" />
         </form>
         <p>Tu veux te donner une chance ?</p>
-        <p>
           <Link to="/signup" className="link_inscription">
-            Inscris toi{" "}
+            Rejoins-nous !
           </Link>
-        </p>
-      </div>
+      </section>
     </>
   );
 }
