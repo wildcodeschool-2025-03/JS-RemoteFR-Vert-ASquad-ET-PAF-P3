@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
 } from "react";
-// import user from "../assets/images/user.png";
 import "../assets/styles/inscription.css";
 
 import { useNavigate } from "react-router";
@@ -68,7 +67,9 @@ export default function Candidat() {
       } else {
         toast.error("Cet utilisateur existe déjà !");
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Une erreur est survenue, nous nous occupons de ça !");
+    }
   };
   return (
     <>
@@ -86,20 +87,19 @@ export default function Candidat() {
         transition={Bounce}
       />
 
-      <div className="inscription_page">
-        <div className="filter_inscription" />
-      </div>
-      <div className="form_card_inscription">
+      <section className="inscription_page">
+        <section className="filter_inscription" />
+      </section>
+      <section className="form_card_inscription">
         <h2>Inscription</h2>
         <p>
           Déjà inscris ?
           <Link to="/login" className="link_connexion">
-            {" "}
             Connecte-toi
           </Link>
         </p>
         <form className="inscription_form" onSubmit={handleSubmit}>
-          <div className="profil_role">
+          <section className="profil_role">
             <legend> Quel est votre profil ? </legend>
             <input
               type="radio"
@@ -119,11 +119,11 @@ export default function Candidat() {
               required
             />
             <label htmlFor="company">Recruteur</label>
-          </div>
+          </section>
 
           <Mail />
 
-          <div className="firstname-lastname">
+          <section className="firstname-lastname">
             <label htmlFor="firstname">Prénom</label>
             <input
               type="text"
@@ -141,7 +141,7 @@ export default function Candidat() {
               placeholder="Votre nom"
               required
             />
-          </div>
+          </section>
 
           <label htmlFor="email">Email</label>
           <input
@@ -181,7 +181,7 @@ export default function Candidat() {
             Valider mon compte
           </button>
         </form>
-      </div>
+      </section>
     </>
   );
 }
