@@ -40,9 +40,12 @@
     padding: 1em;
   }
 
+  .inscription_message {
+    text-align: center;
+    font-size: 1em;
+  }
   .link_inscription {
     color: #ffffff;
-    font-size: 1em;
     text-decoration: none;
   }
   .link_inscription:hover {
@@ -112,20 +115,19 @@
     h2 {
       font-size: 2.5em;
     }
-
-    p {
+    .inscription_message {
       font-size: 1.5em;
       position: relative;
       top: -1.5em;
-    }
 
-    .link_inscription {
-      color: #ffffff;
-      text-decoration: none;
-    }
-    .link_inscription:hover {
-      color: #ff297b;
-      font-size: 1.5em;
+      .link_inscription {
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .link_inscription:hover {
+        color: #ff297b;
+        font-size: 1.5em;
+      }
     }
   }
 
@@ -181,15 +183,10 @@
       font-size: 2.5em;
     }
 
-    p {
+    .inscription_message {
       font-size: 1.5em;
     }
 
-    .link_inscription {
-      color: #ffffff;
-      font-size: 1em;
-      text-decoration: none;
-    }
     .link_inscription:hover {
       color: #ff297b;
       font-size: 1.2em;
