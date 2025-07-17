@@ -17,16 +17,23 @@ CREATE TABLE role (
   label VARCHAR(50) NOT NULL
 );
 
+INSERT INTO role(id, label)
+VALUES
+(1,"candidat"),
+(2,"entreprise"),
+(3,"admin");
+
 CREATE TABLE users (
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,  
-  firstname VARCHAR(255) NOT NULL,
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,  
+  firstname VARCHAR(255)NOT NULL,
   lastname VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL, 
-  number  VARCHAR(20) NOT NULL,
-  address TEXT NOT NULL,
-  picture VARCHAR(255) DEFAULT NULL,
-  document VARCHAR(255) NOT NULL,
+  hashed_password VARCHAR(255) NOT NULL, 
+  number  VARCHAR(20),
+  address TEXT,
+  picture_src VARCHAR(255) ,
+  picture_alt VARCHAR(255) ,
+  document VARCHAR(255)  ,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   role_id INT UNSIGNED NOT NULL,  
