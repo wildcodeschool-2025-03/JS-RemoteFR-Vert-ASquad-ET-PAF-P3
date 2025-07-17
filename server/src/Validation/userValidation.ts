@@ -36,7 +36,6 @@ const validateUser: RequestHandler = (req, res, next) => {
 
   const validData = userSchema.safeParse(req.body);
 
-  console.log(validData);
   if (!validData.success) {
     res.sendStatus(422).json(validData.error.format());
   } else {
