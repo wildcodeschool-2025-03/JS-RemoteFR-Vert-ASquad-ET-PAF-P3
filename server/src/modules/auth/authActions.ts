@@ -37,9 +37,9 @@ const login: RequestHandler = async (req, res, next) => {
         sameSite: "strict",
         maxAge: 1000 * 60 * 60,
       });
-      res.json({
+      res.sendStatus(200).json({
         user: userWithoutHashedPassword,
-        cookieParser,
+        token,
       });
     } else {
       res.sendStatus(422);
