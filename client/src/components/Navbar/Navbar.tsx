@@ -110,8 +110,10 @@ const Navbar: React.FC = () => {
                 <button
                   type="button"
                   className="mobile-btn-login"
-                  onClick={() => {navigate("/login"); setIsMenuOpen(false);}}
-                
+                  onClick={() => {
+                    navigate("/login");
+                    setIsMenuOpen(false);
+                  }}
                 >
                   Se connecter
                 </button>
