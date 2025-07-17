@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllRoles } from "../services/roleService";
-import type { Role, RoleLabel } from "../types/Role";
-import { roleToLabel } from "../types/Role";
-
-interface RoleWithColor extends Role {
-  color: string;
-}
-
-const ROLE_COLORS: Record<RoleLabel, string> = {
-  candidate: "#CA2061", // Rose/Pink
-  company: "#FF8639", // Orange
-  admin: "#851342", // Burgundy/Dark Red
-};
+import type { Role, RoleId } from "../types/Role";
+import { roleExistsInList } from "../types/Role";
 
 export function useRoles() {
-  const [roles, setRoles] = useState<RoleWithColor[]>([]);
+  const [roles, setRoles] = useState<Role[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,13 +15,7 @@ export function useRoles() {
         setError(null);
 
         const rolesData = await getAllRoles();
-
-        const rolesWithColors = rolesData.map((role) => ({
-          ...role,
-          color: ROLE_COLORS[roleToLabel(role)],
-        }));
-
-        setRoles(rolesWithColors);
+        setRoles(rolesData); // Roles now include color from database
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to fetch roles");
       } finally {
@@ -42,25 +26,31 @@ export function useRoles() {
     fetchRoles();
   }, []);
 
-  const getRoleByLabel = (label: RoleLabel): RoleWithColor | undefined => {
-    return roles.find((role) => role.label === label);
+  const getRoleById = (id: RoleId): Role | undefined => {
+    return roles.find((role) => role.id === id);
   };
 
-  const getRoleColor = (label: RoleLabel): string => {
-    return ROLE_COLORS[label];
+  const getRoleColor = (id: RoleId): string => {
+    const role = roles.find((role) => role.id === id);
+    return role?.color || "#6B7280"; // Default gray if role not found
   };
 
-  const hasRole = (label: RoleLabel): boolean => {
-    return roles.some((role) => role.label === label);
+  const hasRole = (id: RoleId): boolean => {
+    return roles.some((role) => role.id === id);
+  };
+
+  const isValidRoleId = (id: number): id is RoleId => {
+    return roleExistsInList(id, roles);
   };
 
   return {
     roles,
     loading,
     error,
-    getRoleByLabel,
+    getRoleById,
     getRoleColor,
     hasRole,
+    isValidRoleId,
     refetch: () => {
       setLoading(true);
       setError(null);

@@ -2,6 +2,17 @@ import type { RequestHandler } from "express";
 
 import RoleRepository from "./roleRepository";
 
+// Helper function to validate and parse role ID
+function parseRoleId(idParam: string): number {
+  const id = Number.parseInt(idParam, 10);
+
+  if (Number.isNaN(id) || id <= 0) {
+    throw new Error("Invalid role ID: must be a positive number");
+  }
+
+  return id;
+}
+
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const roles = await RoleRepository.readAll();
@@ -14,7 +25,7 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const roleId = Number.parseInt(req.params.id, 10);
+    const roleId = parseRoleId(req.params.id);
 
     const role = await RoleRepository.read(roleId);
 
@@ -24,17 +35,22 @@ const read: RequestHandler = async (req, res, next) => {
       res.status(200).json(role);
     }
   } catch (err) {
-    next(err);
+    if (err instanceof Error && err.message.includes("Invalid role ID")) {
+      res.status(400).json({ error: err.message });
+    } else {
+      next(err);
+    }
   }
 };
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const roleId = Number.parseInt(req.params.id, 10);
+    const roleId = parseRoleId(req.params.id);
 
     const role = {
       id: roleId,
       label: req.body.label,
+      color: req.body.color,
     };
 
     const affectedRows = await RoleRepository.update(role);
@@ -45,7 +61,11 @@ const edit: RequestHandler = async (req, res, next) => {
       res.sendStatus(204);
     }
   } catch (err) {
-    next(err);
+    if (err instanceof Error && err.message.includes("Invalid role ID")) {
+      res.status(400).json({ error: err.message });
+    } else {
+      next(err);
+    }
   }
 };
 
@@ -53,6 +73,7 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newRole = {
       label: req.body.label,
+      color: req.body.color || "#FFFFFF",
     };
 
     const insertId = await RoleRepository.create(newRole);
@@ -65,7 +86,7 @@ const add: RequestHandler = async (req, res, next) => {
 
 const destroy: RequestHandler = async (req, res, next) => {
   try {
-    const roleId = Number.parseInt(req.params.id, 10);
+    const roleId = parseRoleId(req.params.id);
 
     const affectedRows = await RoleRepository.delete(roleId);
 
@@ -75,7 +96,11 @@ const destroy: RequestHandler = async (req, res, next) => {
       res.sendStatus(204);
     }
   } catch (err) {
-    next(err);
+    if (err instanceof Error && err.message.includes("Invalid role ID")) {
+      res.status(400).json({ error: err.message });
+    } else {
+      next(err);
+    }
   }
 };
 

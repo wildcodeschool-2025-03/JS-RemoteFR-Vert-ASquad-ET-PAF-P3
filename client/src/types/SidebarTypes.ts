@@ -1,14 +1,13 @@
 import type { ReactNode } from "react";
-import type { RoleLabel } from "./Role";
+import type { RoleId } from "./Role";
 
-export type UserRole = RoleLabel;
+export type UserRole = RoleId;
 
 export interface NavItem {
   id: string;
   path: string;
   icon: ReactNode;
   label: string;
-  roles?: UserRole[];
 }
 
 export interface SidebarProps {
@@ -16,31 +15,7 @@ export interface SidebarProps {
   userRole: UserRole;
 }
 
-export type CandidateNavId =
-  | "dashboard"
-  | "profile"
-  | "applications"
-  | "documents"
-  | "messagerie"
-  | "companies";
-export type CompanyNavId =
-  | "dashboard"
-  | "profile"
-  | "offers"
-  | "documents"
-  | "messagerie"
-  | "trombinoscope";
-export type AdminNavId =
-  | "dashboard"
-  | "candidates"
-  | "companies"
-  | "offers"
-  | "messagerie";
-
-export type NavItemId = CandidateNavId | CompanyNavId | AdminNavId;
-
 export interface RoleConfig {
   navItems: NavItem[];
-  logoSize?: "small" | "medium" | "large";
   color: string;
 }

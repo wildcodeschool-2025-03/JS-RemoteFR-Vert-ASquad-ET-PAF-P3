@@ -5,13 +5,14 @@ import type { Result, Rows } from "../../../database/client";
 type Role = {
   id: number;
   label: string;
+  color: string;
 };
 
 class RoleRepository {
   async create(role: Omit<Role, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into role (label) values (?)",
-      [role.label],
+      "insert into role (label, color) values (?, ?)",
+      [role.label, role.color],
     );
     return result.insertId;
   }
@@ -39,8 +40,8 @@ class RoleRepository {
 
   async update(role: Role) {
     const [result] = await databaseClient.query<Result>(
-      "update role set label = ? where id = ?",
-      [role.label, role.id],
+      "update role set label = ?, color = ? where id = ?",
+      [role.label, role.color, role.id],
     );
     return result.affectedRows;
   }

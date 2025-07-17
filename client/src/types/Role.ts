@@ -2,26 +2,27 @@
 export interface Role {
   id: number;
   label: string;
+  color: string;
 }
 
-export type RoleLabel = "candidate" | "company" | "admin";
+export type RoleId = number;
 
 export interface CreateRoleData {
   label: string;
+  color?: string;
 }
 
 export interface UpdateRoleData {
   id: number;
   label: string;
+  color: string;
 }
 
-export function isValidRoleLabel(label: string): label is RoleLabel {
-  return ["candidate", "company", "admin"].includes(label);
+export function isValidRoleId(id: number): id is RoleId {
+  return typeof id === "number" && id > 0;
 }
 
-export function roleToLabel(role: Role): RoleLabel {
-  if (isValidRoleLabel(role.label)) {
-    return role.label;
-  }
-  throw new Error(`Invalid role label: ${role.label}`);
+// Helper function to check if a role exists in a list
+export function roleExistsInList(id: number, validRoles: Role[]): boolean {
+  return validRoles.some((role) => role.id === id);
 }

@@ -1,5 +1,5 @@
 import { Menu, X } from "lucide-react";
-import { type default as React, useState } from "react";
+import { type CSSProperties, type KeyboardEvent, useState } from "react";
 import { Link } from "react-router";
 import logoVertical from "../../assets/images/logo-vertical.png";
 import { getRoleConfig } from "../../constants/roleConfigs";
@@ -8,9 +8,9 @@ import { useRoles } from "../../hooks/useRoles";
 import type { SidebarProps } from "../../types/SidebarTypes";
 import "../../assets/styles/Sidebar.css";
 
-const Sidebar: React.FC<SidebarProps> = ({ activeItem, userRole }) => {
-  const { getRoleColor, loading } = useRoles();
-  const roleConfig = getRoleConfig(userRole);
+const Sidebar = ({ activeItem, userRole }: SidebarProps) => {
+  const { roles, getRoleColor, loading } = useRoles();
+  const roleConfig = getRoleConfig(userRole, roles);
   const roleColor = getRoleColor(userRole);
   const isMobile = useIsMobile(768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,12 +18,12 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, userRole }) => {
   const sidebarStyle = {
     "--role-color": roleColor,
     "--role-color-hover": `${roleColor}33`,
-  } as React.CSSProperties;
+  } as CSSProperties;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleOverlayKeyDown = (event: React.KeyboardEvent) => {
+  const handleOverlayKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       closeMenu();

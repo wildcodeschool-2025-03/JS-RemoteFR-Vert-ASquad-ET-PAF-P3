@@ -31,4 +31,13 @@ router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
+/* ************************************************************************* */
+import roleActions from "./modules/role/roleActions";
+
+router.get("/api/roles", roleActions.browse);
+router.get("/api/roles/:id", roleActions.read);
+router.post("/api/roles", roleActions.add);
+router.put("/api/roles/:id", roleActions.edit);
+router.delete("/api/roles/:id", roleActions.destroy);
+
 export default router;

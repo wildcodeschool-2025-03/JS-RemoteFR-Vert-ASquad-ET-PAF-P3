@@ -1,6 +1,5 @@
 import {
   Briefcase,
-  BriefcaseIcon,
   Building2,
   FolderOpen,
   LayoutDashboard,
@@ -10,9 +9,11 @@ import {
   UsersRound,
 } from "lucide-react";
 
+import type { Role } from "../types/Role";
 import type { RoleConfig, UserRole } from "../types/SidebarTypes";
 
-export const candidateConfig: RoleConfig = {
+// Base configurations for known roles
+const candidateBaseConfig: Omit<RoleConfig, "color"> = {
   navItems: [
     {
       id: "dashboard",
@@ -51,11 +52,9 @@ export const candidateConfig: RoleConfig = {
       label: "Entreprises",
     },
   ],
-  logoSize: "medium",
-  color: "#CA2061",
 };
 
-export const companyConfig: RoleConfig = {
+const companyBaseConfig: Omit<RoleConfig, "color"> = {
   navItems: [
     {
       id: "dashboard",
@@ -72,7 +71,7 @@ export const companyConfig: RoleConfig = {
     {
       id: "offers",
       path: "/offers",
-      icon: <BriefcaseIcon size={18} />,
+      icon: <Briefcase size={18} />,
       label: "Offres",
     },
     {
@@ -94,11 +93,9 @@ export const companyConfig: RoleConfig = {
       label: "Trombinoscope",
     },
   ],
-  logoSize: "medium",
-  color: "#FF8639",
 };
 
-export const adminConfig: RoleConfig = {
+const adminBaseConfig: Omit<RoleConfig, "color"> = {
   navItems: [
     {
       id: "dashboard",
@@ -121,7 +118,7 @@ export const adminConfig: RoleConfig = {
     {
       id: "offers",
       path: "/offers",
-      icon: <BriefcaseIcon size={18} />,
+      icon: <Briefcase size={18} />,
       label: "Offres",
     },
     {
@@ -131,16 +128,61 @@ export const adminConfig: RoleConfig = {
       label: "Messages",
     },
   ],
-  logoSize: "large",
-  color: "#851342",
 };
 
-export const roleConfigs: Record<UserRole, RoleConfig> = {
-  candidate: candidateConfig,
-  company: companyConfig,
-  admin: adminConfig,
+// Default configuration for unknown roles
+const createDefaultRoleConfig = (role: Role): RoleConfig => ({
+  navItems: [
+    {
+      id: "dashboard",
+      path: "/dashboard",
+      icon: <LayoutDashboard size={18} />,
+      label: "Tableau de bord",
+    },
+  ],
+  color: role.color,
+});
+
+// Dynamic role configuration generator
+export const getRoleConfig = (
+  roleId: UserRole,
+  allRoles: Role[],
+): RoleConfig => {
+  const roleData = allRoles.find((r) => r.id === roleId);
+
+  if (!roleData) {
+    // Fallback for unknown roles
+    return createDefaultRoleConfig({
+      id: roleId,
+      label: "Unknown",
+      color: "#6B7280",
+    });
+  }
+
+  // Specific configurations for known roles
+  const specificConfigs: Record<number, Omit<RoleConfig, "color">> = {
+    1: candidateBaseConfig,
+    2: companyBaseConfig,
+    3: adminBaseConfig,
+  };
+
+  const baseConfig = specificConfigs[roleId];
+
+  if (baseConfig) {
+    return {
+      ...baseConfig,
+      color: roleData.color, // Use color from database
+    };
+  }
+
+  // Default configuration for new roles
+  return createDefaultRoleConfig(roleData);
 };
 
-export const getRoleConfig = (role: UserRole): RoleConfig => {
-  return roleConfigs[role];
+// Legacy exports for backward compatibility (but now dynamic)
+export const getRoleConfigLegacy = (
+  role: UserRole,
+  allRoles: Role[],
+): RoleConfig => {
+  return getRoleConfig(role, allRoles);
 };

@@ -1,11 +1,7 @@
 import type { CreateRoleData, Role, UpdateRoleData } from "../types/Role";
 
-// Configuration de l'API
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3310";
 
-/**
- * Récupère tous les rôles depuis l'API
- */
 export async function getAllRoles(): Promise<Role[]> {
   const response = await fetch(`${API_BASE_URL}/api/roles`);
 
@@ -16,9 +12,6 @@ export async function getAllRoles(): Promise<Role[]> {
   return await response.json();
 }
 
-/**
- * Récupère un rôle spécifique par son ID
- */
 export async function getRoleById(id: number): Promise<Role> {
   const response = await fetch(`${API_BASE_URL}/api/roles/${id}`);
 
@@ -29,9 +22,6 @@ export async function getRoleById(id: number): Promise<Role> {
   return await response.json();
 }
 
-/**
- * Crée un nouveau rôle
- */
 export async function createRole(
   roleData: CreateRoleData,
 ): Promise<{ insertId: number }> {
@@ -50,16 +40,16 @@ export async function createRole(
   return await response.json();
 }
 
-/**
- * Met à jour un rôle existant
- */
 export async function updateRole(roleData: UpdateRoleData): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/api/roles/${roleData.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ label: roleData.label }),
+    body: JSON.stringify({
+      label: roleData.label,
+      color: roleData.color,
+    }),
   });
 
   if (!response.ok) {
@@ -67,9 +57,6 @@ export async function updateRole(roleData: UpdateRoleData): Promise<void> {
   }
 }
 
-/**
- * Supprime un rôle
- */
 export async function deleteRole(id: number): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/api/roles/${id}`, {
     method: "DELETE",
