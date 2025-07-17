@@ -3,7 +3,7 @@ import type React from "react";
 import { useState } from "react";
 import logo from "../../assets/images/EXTERNATIC-logo.png";
 import "../../assets/styles/Navbar.css";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,13 +40,9 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="nav-actions">
-            <button
-              type="button"
-              className="btn-login"
-              onClick={() => navigate("/login")}
-            >
+            <NavLink to={"/login"} className="btn-login">
               Se connecter
-            </button>
+            </NavLink>
             <button
               type="button"
               aria-label="Mode sombre"
