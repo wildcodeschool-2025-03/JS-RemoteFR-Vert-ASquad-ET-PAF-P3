@@ -8,14 +8,14 @@ import databaseClient, {
 type homes = {
   id: number;
   title: string;
-  paragraph: string;
+  paragraphe: string;
 };
 
 class HomepageRepository {
   async create(homes: Omit<homes, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into home (title, paragraph) values (? , ?)",
-      [homes.title, homes.paragraph],
+      "insert into home (title, paragraphe) values (? , ?)",
+      [homes.title, homes.paragraphe],
     );
     return result.insertId;
   }
@@ -37,8 +37,8 @@ class HomepageRepository {
 
   async update(home: homes) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE home SET title = ? , paragraph = ? where id = ?",
-      [home.title, home.paragraph, home.id],
+      "UPDATE home SET title = ? , paragraphe = ? where id = ?",
+      [home.title, home.paragraphe, home.id],
     );
     return result.affectedRows;
   }
