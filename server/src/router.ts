@@ -23,6 +23,7 @@ router.delete("/home/:id", homepageActions.destroy);
 /* ************************************************************************* */
 import authActions from "./middlewares/auth/authActions";
 import offersActions from "./modules/offers/offersActions";
+import roleActions from "./modules/role/roleActions";
 import userActions from "./modules/user/userActions";
 
 import { validateUser } from "./Validation/userValidation";
@@ -35,8 +36,16 @@ router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 
-router.post("/signup", validateUser, hashPassword, userActions.add);
+/* ************************************************************************* */
 
+router.get("/api/roles", roleActions.browse);
+router.get("/api/roles/:id", roleActions.read);
+router.post("/api/roles", roleActions.add);
+router.put("/api/roles/:id", roleActions.edit);
+router.delete("/api/roles/:id", roleActions.destroy);
+
+/* ************************************************************************* */
+router.post("/signup", validateUser, hashPassword, userActions.add);
 router.post("/login", authActions.login);
 
 export default router;

@@ -5,6 +5,7 @@ import "./App.css";
 
 import App from "./App";
 import Connexion from "./pages/Connexion";
+import DashboardPage from "./pages/Dashboard/DashboardPage";
 import Homepage from "./pages/Homepage";
 import Inscription from "./pages/Inscription";
 import NotFound from "./pages/NotFound";
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Homepage /> },
       { path: "*", element: <NotFound /> },
       { path: "/offers", element: <Offers /> },
+      { path: "/dashboard/:roleId", element: <DashboardPage /> },
       { path: "/login", element: <Connexion /> },
       { path: "/signup", element: <Inscription /> },
     ],
