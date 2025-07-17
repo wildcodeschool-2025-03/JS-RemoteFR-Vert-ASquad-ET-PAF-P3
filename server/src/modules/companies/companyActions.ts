@@ -16,4 +16,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default add;
+export default { add };

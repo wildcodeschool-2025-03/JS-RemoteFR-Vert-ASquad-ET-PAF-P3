@@ -4,5 +4,4 @@ type Company = {
   siret: string;
   users_id: number;
 };
-
 export default Company;

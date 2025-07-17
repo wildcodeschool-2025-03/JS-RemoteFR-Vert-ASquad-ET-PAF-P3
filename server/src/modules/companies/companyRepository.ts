@@ -1,4 +1,4 @@
-import databaseClient, { type Result } from "../../../database/client";
+import databaseClient, { Rows, type Result } from "../../../database/client";
 import type companyType from "../../types/CompaniesType";
 
 class CompanyRepository {

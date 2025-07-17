@@ -22,6 +22,7 @@ router.delete("/home/:id", homepageActions.destroy);
 
 /* ************************************************************************* */
 import authActions from "./middlewares/auth/authActions";
+import companyActions from "./modules/companies/companyActions";
 import offersActions from "./modules/offers/offersActions";
 import userActions from "./modules/user/userActions";
 
@@ -38,5 +39,7 @@ router.delete("/offer/:id", offersActions.destroy);
 router.post("/signup", validateUser, hashPassword, userActions.add);
 
 router.post("/login", authActions.login);
+
+router.post("/companies", companyActions.add);
 
 export default router;
