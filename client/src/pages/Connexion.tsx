@@ -23,7 +23,9 @@ export default function Connexion() {
       });
 
       if (response.status === 200) {
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       } else {
         toast.error("Erreur : vérifiez vos coordonnées !");
       }
