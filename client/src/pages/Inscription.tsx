@@ -92,12 +92,12 @@ export default function Candidat() {
       </section>
       <section className="form_card_inscription">
         <h2>Inscription</h2>
-        <p>
-          Déjà inscris ?
+        <section className="login_message">
+          <p>Déjà inscris ?</p>
           <Link to="/login" className="link_connexion">
             Connecte-toi
           </Link>
-        </p>
+        </section>
         <form className="inscription_form" onSubmit={handleSubmit}>
           <section className="profil_role">
             <legend> Quel est votre profil ? </legend>

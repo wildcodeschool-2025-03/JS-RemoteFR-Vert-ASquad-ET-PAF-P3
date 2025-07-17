@@ -110,7 +110,6 @@
 
 @media (min-width: 640px) {
   .form_card_connexion {
-    position: relative;
     top: 5em;
     h2 {
       font-size: 2.5em;
@@ -120,10 +119,6 @@
       position: relative;
       top: -1.5em;
 
-      .link_inscription {
-        color: #ffffff;
-        text-decoration: none;
-      }
       .link_inscription:hover {
         color: #ff297b;
         font-size: 1.5em;
@@ -158,25 +153,15 @@
     }
 
     .button_connexion {
-      color: white;
-      background-color: #ca2061;
       font-size: 1.5em;
-      border-radius: 1.5em;
-      border: none;
-      margin-top: 1em;
     }
   }
 }
 
 @media (min-width: 1024px) {
   .form_card_connexion {
-    background-color: rgba(88, 85, 85, 0.7);
-    border-radius: 3em;
-    position: relative;
     left: 20em;
-    justify-items: center;
     color: rgb(255, 255, 255);
-    backdrop-filter: blur(4px);
     width: 50%;
     top: 0;
     h2 {
@@ -195,12 +180,7 @@
 
   .connexion_form {
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
     height: 50vh;
-    justify-content: center;
-
     input {
       padding-left: 2.5em;
       font-size: 1em;
@@ -225,12 +205,7 @@
     }
 
     .button_connexion {
-      color: white;
-      background-color: #ca2061;
       font-size: 1.5em;
-      border-radius: 1.5em;
-      border: none;
-      margin-top: 1em;
     }
   }
 }
