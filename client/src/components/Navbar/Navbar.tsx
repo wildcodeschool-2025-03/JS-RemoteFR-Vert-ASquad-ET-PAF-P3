@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="nav-actions">
-            <NavLink to={"/login"} className="btn-login">
+            <NavLink to="/login" className="btn-login">
               Se connecter
             </NavLink>
             <button
