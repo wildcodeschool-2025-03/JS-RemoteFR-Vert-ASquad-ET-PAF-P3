@@ -20,14 +20,12 @@ router.post("/home", homepageActions.add);
 router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
 
-
-
 /* ************************************************************************* */
 import authActions from "./modules/auth/authActions";
 import offersActions from "./modules/offers/offersActions";
 import userActions from "./modules/user/userActions";
 
-import  { validateUser }  from "./Validation/userValidation";
+import { validateUser } from "./Validation/userValidation";
 
 import hashPassword from "../src/modules/Utils/hashedPassword";
 
