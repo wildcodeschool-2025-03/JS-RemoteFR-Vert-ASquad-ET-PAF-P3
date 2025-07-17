@@ -3,22 +3,10 @@ import databaseClient, {
   type Rows,
 } from "../../../database/client";
 
-type Users = {
-  id: number;
-  email: string;
-  hashed_password: string;
-  firstname: string;
-  lastname: string;
-  address: string;
-  number: string;
-  picture_src: string;
-  picture_alt: string;
-  document: string;
-  role_id: number;
-};
+import type UsersType from "../../types/UserType";
 
 class UserRepository {
-  async create(users: Omit<Users, "id">) {
+  async create(users: Omit<UsersType, "id">) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO users (email,hashed_password, firstname, lastname,address, number, picture_src, picture_alt,document,role_id) values (?,?,?,?,?,?,?,?,?,?)",
       [
@@ -42,13 +30,13 @@ class UserRepository {
       "SELECT * FROM users WHERE id = ? ",
       [id],
     );
-    return rows[0] as Users | undefined;
+    return rows[0] as UsersType | undefined;
   }
 
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("SELECT * FROM users");
 
-    return rows as Users[];
+    return rows as UsersType[];
   }
 
   async readByEmailWithPassword(email: string) {
@@ -56,7 +44,7 @@ class UserRepository {
       "SELECT id,email,hashed_password FROM users WHERE email = ? ",
       [email],
     );
-    return rows[0] as Users;
+    return rows[0] as UsersType;
   }
 }
 

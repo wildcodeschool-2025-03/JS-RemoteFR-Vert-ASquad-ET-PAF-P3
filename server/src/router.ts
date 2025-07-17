@@ -27,7 +27,7 @@ import userActions from "./modules/user/userActions";
 
 import { validateUser } from "./Validation/userValidation";
 
-import hashPassword from "../src/modules/Utils/hashedPassword";
+import hashPassword from "./Utils/hashedPassword";
 
 router.get("/offers", offersActions.browse);
 router.get("/offers/:id", offersActions.read);
