@@ -6,37 +6,37 @@ CREATE TABLE home (
 insert into home (id, title, paragraph)
 values
 (1,"Cabinet de recrutement informatique", "Nous cultivons les liens que nous établissons,
- les faisant grandir sur le long terme. En tant que membre actif de l’écosystème tech local, 
- nous nous appuyons sur un réseau riche en expériences et en expertises. Cela nous permet de tisser des liens à la fois 
+ les faisant grandir sur le long terme. En tant que membre actif de l'écosystème tech local,
+ nous nous appuyons sur un réseau riche en expériences et en expertises. Cela nous permet de tisser des liens à la fois
  pertinents et vertueux."),
  (2," ", "Les liens les plus durables."),
  (3," ", "Externatic, plus que du recrutement");
 
 CREATE TABLE role (
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,  
-  label VARCHAR(50) NOT NULL
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  label VARCHAR(50) NOT NULL,
+  color VARCHAR(7) NOT NULL DEFAULT '#FFFFFF'
 );
 
-INSERT INTO role(id, label)
-VALUES
-(1,"candidat"),
-(2,"entreprise"),
-(3,"admin");
+INSERT INTO role (id, label, color) VALUES
+(1, 'candidate', '#CA2061'),
+(2, 'company', '#FF8639'),
+(3, 'admin', '#851342');
 
 CREATE TABLE users (
-  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,  
-  firstname VARCHAR(255)NOT NULL,
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  firstname VARCHAR(255) NOT NULL,
   lastname VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  hashed_password VARCHAR(255) NOT NULL, 
+  hashed_password VARCHAR(255) NOT NULL,
   number  VARCHAR(20),
   address TEXT,
-  picture_src VARCHAR(255) ,
-  picture_alt VARCHAR(255) ,
-  document VARCHAR(255)  ,
+  picture_src VARCHAR(255),
+  picture_alt VARCHAR(255),
+  document VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  role_id INT UNSIGNED NOT NULL,  
+  role_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 

@@ -46,6 +46,38 @@ class UserRepository {
     );
     return rows[0] as UsersType;
   }
+
+  async readAllWithCompanyAndRole() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT 
+        users.id,
+        users.firstname,
+        users.lastname,
+        users.email,
+        role.id AS role_id,
+        role.label AS role_label,
+        role.color AS role_color,
+        company.id AS company_id,
+        company.name AS company_name,
+        company.SIRET AS company_siret
+      FROM users
+      LEFT JOIN role ON users.role_id = role.id
+      LEFT JOIN company ON company.users_id = users.id
+      ORDER BY users.lastname, users.firstname`,
+    );
+    return rows as Array<{
+      id: number;
+      firstname: string;
+      lastname: string;
+      email: string;
+      role_id: number | null;
+      role_label: string | null;
+      role_color: string | null;
+      company_id: number | null;
+      company_name: string | null;
+      company_siret: string | null;
+    }>;
+  }
 }
 
 export default new UserRepository();

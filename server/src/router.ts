@@ -28,24 +28,36 @@ router.post("/home", homepageActions.add);
 router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
 
+import { verifyToken } from "../src/middlewares/cookies/VerifyToken";
+/* ************************************************************************* */
+import { verifyAdminRole } from "./middlewares/auth/verifyAdminRole";
+import roleActions from "./modules/role/roleActions";
+
 router.get("/offers", offersActions.browse);
 router.get("/offers/:id", offersActions.read);
 router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
+
+/* ************************************************************************* */
+
+router.get("/api/roles", roleActions.browse);
+router.get("/api/roles/:id", roleActions.read);
+router.post("/api/roles", roleActions.add);
+router.put("/api/roles/:id", roleActions.edit);
+router.delete("/api/roles/:id", roleActions.destroy);
+
+/* ************************************************************************* */
 router.post("/signup", validateUser, hashPassword, userActions.add);
+router.post("/login", authActions.login);
 
-router.post("/login", authActions.login, verifyCookie);
+/* ************************************************************************* */
 
-router.get("/companies", companyActions.browse);
-router.get("/companies", companyActions.read);
-router.post(
-  "/login/companies",
-  verifyCookie,
-  verifyCompanyRole,
-  validateCompany,
-  verifyUniqueCompany,
-  companyActions.add,
+router.get(
+  "/api/users/members",
+  verifyToken,
+  verifyAdminRole,
+  userActions.browseMembers,
 );
 
 export default router;
