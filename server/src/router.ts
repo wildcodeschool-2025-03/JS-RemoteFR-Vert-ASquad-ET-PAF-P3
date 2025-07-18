@@ -48,4 +48,6 @@ router.delete("/api/roles/:id", roleActions.destroy);
 router.post("/signup", validateUser, hashPassword, userActions.add);
 router.post("/login", authActions.login);
 
+router.get("/api/users/members", userActions.browseMembers);
+
 export default router;

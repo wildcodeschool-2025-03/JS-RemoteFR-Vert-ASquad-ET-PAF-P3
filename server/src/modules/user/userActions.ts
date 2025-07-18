@@ -45,4 +45,13 @@ const add: RequestHandler = async (req, res) => {
   }
 };
 
-export default { browse, read, add };
+const browseMembers: RequestHandler = async (req, res, next) => {
+  try {
+    const members = await userRepository.readAllWithCompanyAndRole();
+    res.json(members);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add, browseMembers };
