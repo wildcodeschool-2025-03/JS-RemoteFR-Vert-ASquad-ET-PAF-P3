@@ -16,6 +16,6 @@ export const verifyCookie: RequestHandler = async (req, res, next) => {
     ) as MyPayload;
     next();
   } catch (err) {
-    res.status(401).json({ message: "Cookie not valid ou expiré" });
+    res.status(401);
   }
 };

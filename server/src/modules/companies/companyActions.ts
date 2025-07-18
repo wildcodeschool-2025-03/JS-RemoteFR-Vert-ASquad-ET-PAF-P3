@@ -19,7 +19,7 @@ const add: RequestHandler = async (req, res, next) => {
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const company = await companyRepository.readAll();
-    res.json(company);
+    res.json(200);
   } catch (err) {
     next(err);
   }
@@ -33,7 +33,7 @@ const read: RequestHandler = async (req, res, next) => {
     if (company == null) {
       res.sendStatus(401);
     } else {
-      res.json(companies);
+      res.json(200);
     }
   } catch (err) {
     next(err);

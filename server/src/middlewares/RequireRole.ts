@@ -8,7 +8,7 @@ export const verifyCompanyRole: RequestHandler = async (req, res, next) => {
     const company = await userRepository.read(companyId);
 
     if (company?.role_id !== 2) {
-      res.status(403).json({ message: "Accès interdit" });
+      res.sendStatus(403);
       return;
     }
     next();

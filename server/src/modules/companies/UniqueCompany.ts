@@ -6,7 +6,7 @@ export const verifyUniqueCompany: RequestHandler = async (req, res, next) => {
     const { siret } = req.body;
 
     if (!siret) {
-      res.status(400).json({ message: "Le champ siret est requis" });
+      res.status(422).json({ message: "Le champ siret est requis" });
       return;
     }
     const existingCompany = await companyRepository.findbySiret(siret);

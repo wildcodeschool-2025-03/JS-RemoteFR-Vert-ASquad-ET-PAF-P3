@@ -10,7 +10,7 @@ const login: RequestHandler = async (req, res, next) => {
     const users = await userRepository.readByEmailWithPassword(req.body.email);
 
     if (!users) {
-      res.status(422).json({ message: "Utilisateur non trouvé" });
+      res.sendStatus(422);
       return;
     }
 
