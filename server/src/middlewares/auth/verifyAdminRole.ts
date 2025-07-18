@@ -3,10 +3,8 @@ import userRepository from "../../modules/user/userRepository";
 
 const verifyAdminRole: RequestHandler = async (req, res, next) => {
   try {
-    // Get user ID from the JWT payload (set by verifyToken middleware)
     const userId = Number(req.auth.sub);
 
-    // Get user from database to check role
     const user = await userRepository.read(userId);
 
     if (!user) {
@@ -14,7 +12,6 @@ const verifyAdminRole: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    // Check if user has admin role (id: 3)
     if (user.role_id !== 3) {
       res
         .status(403)
@@ -22,7 +19,6 @@ const verifyAdminRole: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    // User is admin, continue
     next();
   } catch (err) {
     res
