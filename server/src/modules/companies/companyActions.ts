@@ -4,7 +4,7 @@ import companyRepository from "./companyRepository";
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const company = await companyRepository.readAll();
-    res.json(200).json(company);
+    res.status(200).json(company);
   } catch (err) {
     next(err);
   }
