@@ -4,7 +4,7 @@ import userRepository from "./userRepository";
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const users = await userRepository.readAll();
-    res.json(users);
+    res.status(200).json(users);
   } catch (err) {
     next(err);
   }
@@ -48,7 +48,19 @@ const add: RequestHandler = async (req, res) => {
 const browseMembers: RequestHandler = async (req, res, next) => {
   try {
     const members = await userRepository.readAllWithCompanyAndRole();
-    res.status(200).json(members);
+
+    // Format the data to handle null values
+    const formattedMembers = members.map((member) => ({
+      id: member.id,
+      firstname: member.firstname,
+      lastname: member.lastname,
+      email: member.email,
+      role_label: member.role_label || "Non défini",
+      company_name: member.company_name || "Non renseigné",
+      company_siret: member.company_siret || "Non renseigné",
+    }));
+
+    res.status(200).json(formattedMembers);
   } catch (err) {
     next(err);
   }
