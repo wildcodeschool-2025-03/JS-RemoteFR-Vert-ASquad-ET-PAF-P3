@@ -8,22 +8,18 @@ const verifyAdminRole: RequestHandler = async (req, res, next) => {
     const user = await userRepository.read(userId);
 
     if (!user) {
-      res.status(401).json({ message: "Utilisateur non trouvé" });
+      res.sendStatus(401);
       return;
     }
 
     if (user.role_id !== 3) {
-      res
-        .status(403)
-        .json({ message: "Accès refusé. Droits administrateur requis." });
+      res.sendStatus(403);
       return;
     }
 
     next();
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Erreur lors de la vérification des droits" });
+    res.sendStatus(500);
   }
 };
 
