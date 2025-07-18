@@ -20,6 +20,7 @@ router.post("/home", homepageActions.add);
 router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
 
+import { verifyToken } from "./middlewares/VerifyToken";
 /* ************************************************************************* */
 import authActions from "./middlewares/auth/authActions";
 import offersActions from "./modules/offers/offersActions";
@@ -47,5 +48,9 @@ router.delete("/api/roles/:id", roleActions.destroy);
 /* ************************************************************************* */
 router.post("/signup", validateUser, hashPassword, userActions.add);
 router.post("/login", authActions.login);
+
+/* ************************************************************************* */
+
+router.get("/api/users/members", verifyToken, userActions.browseMembers);
 
 export default router;

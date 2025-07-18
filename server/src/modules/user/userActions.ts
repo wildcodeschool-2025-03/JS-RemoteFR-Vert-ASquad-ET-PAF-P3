@@ -17,7 +17,7 @@ const read: RequestHandler = async (req, res, next) => {
     if (user == null) {
       res.sendStatus(401);
     } else {
-      res.json(user);
+      res.status(200).json(user);
     }
   } catch (err) {
     next(err);
@@ -45,4 +45,13 @@ const add: RequestHandler = async (req, res) => {
   }
 };
 
-export default { browse, read, add };
+const browseMembers: RequestHandler = async (req, res, next) => {
+  try {
+    const members = await userRepository.readAllWithCompanyAndRole();
+    res.status(200).json(members);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add, browseMembers };
