@@ -16,4 +16,28 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add };
+const browse: RequestHandler = async (req, res, next) => {
+  try {
+    const company = await companyRepository.readAll();
+    res.json(company);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const companies = Number(req.params.id);
+    const company = await companyRepository.readAll();
+
+    if (company == null) {
+      res.sendStatus(401);
+    } else {
+      res.json(companies);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add };
