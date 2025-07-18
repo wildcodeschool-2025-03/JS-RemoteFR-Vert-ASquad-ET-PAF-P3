@@ -2,17 +2,25 @@ import express from "express";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-
-// Define item-related routes
+import validateCompany from "../src/Validation/companyValidation";
+import companyActions from "../src/modules/companies/companyActions";
+import hashPassword from "./Utils/hashedPassword";
+import { verifyCompanyRole } from "./middlewares/RequireRole";
+import authActions from "./middlewares/auth/authActions";
+import { verifyCookie } from "./middlewares/cookies/VerifyCookie";
+import { verifyUniqueCompany } from "./modules/companies/UniqueCompany";
 import itemActions from "./modules/item/itemActions";
+import userActions from "./modules/user/userActions";
+
+import { validateUser } from "./Validation/userValidation";
+import homepageActions from "./modules/homepage/homepageActions";
+import offersActions from "./modules/offers/offersActions";
+
+/* ************************************************************************* */
 
 router.get("/api/items", itemActions.browse);
 router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
-
-/* ************************************************************************* */
-import homepageActions from "./modules/homepage/homepageActions";
 
 router.get("/home", homepageActions.browse);
 router.get("/home/:id", homepageActions.read);
@@ -20,17 +28,10 @@ router.post("/home", homepageActions.add);
 router.put("/home/:id", homepageActions.edit);
 router.delete("/home/:id", homepageActions.destroy);
 
-import { verifyToken } from "./middlewares/VerifyToken";
+import { verifyToken } from "../src/middlewares/cookies/VerifyToken";
 /* ************************************************************************* */
-import authActions from "./middlewares/auth/authActions";
 import { verifyAdminRole } from "./middlewares/auth/verifyAdminRole";
-import offersActions from "./modules/offers/offersActions";
 import roleActions from "./modules/role/roleActions";
-import userActions from "./modules/user/userActions";
-
-import { validateUser } from "./Validation/userValidation";
-
-import hashPassword from "./Utils/hashedPassword";
 
 router.get("/offers", offersActions.browse);
 router.get("/offers/:id", offersActions.read);
@@ -57,6 +58,15 @@ router.get(
   verifyToken,
   verifyAdminRole,
   userActions.browseMembers,
+);
+
+router.post(
+  "/login/companies",
+  verifyCookie,
+  verifyCompanyRole,
+  validateCompany,
+  verifyUniqueCompany,
+  companyActions.add,
 );
 
 export default router;

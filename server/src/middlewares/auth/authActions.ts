@@ -9,7 +9,7 @@ const login: RequestHandler = async (req, res, next) => {
   try {
     const users = await userRepository.readByEmailWithPassword(req.body.email);
 
-    if (users == null) {
+    if (!users) {
       res.sendStatus(422);
       return;
     }
@@ -23,6 +23,7 @@ const login: RequestHandler = async (req, res, next) => {
       const { hashed_password, ...userWithoutHashedPassword } = users;
       const myPayload: JwtPayload = {
         sub: users.id.toString(),
+        role: users.role_id,
       };
 
       const token = jwt.sign(myPayload, process.env.APP_SECRET as string, {
