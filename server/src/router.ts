@@ -60,4 +60,13 @@ router.get(
   userActions.browseMembers,
 );
 
+router.post(
+  "/login/companies",
+  verifyCookie,
+  verifyCompanyRole,
+  validateCompany,
+  verifyUniqueCompany,
+  companyActions.add,
+);
+
 export default router;
