@@ -13,6 +13,6 @@ export const verifyCompanyRole: RequestHandler = async (req, res, next) => {
     }
     next();
   } catch (err) {
-    res.status(401).json({ message: "Token invalide ou expiré" });
+    res.sendStatus(500);
   }
 };
