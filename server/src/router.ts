@@ -23,6 +23,7 @@ router.delete("/home/:id", homepageActions.destroy);
 import { verifyToken } from "./middlewares/VerifyToken";
 /* ************************************************************************* */
 import authActions from "./middlewares/auth/authActions";
+import { verifyAdminRole } from "./middlewares/auth/verifyAdminRole";
 import offersActions from "./modules/offers/offersActions";
 import roleActions from "./modules/role/roleActions";
 import userActions from "./modules/user/userActions";
@@ -51,6 +52,11 @@ router.post("/login", authActions.login);
 
 /* ************************************************************************* */
 
-router.get("/api/users/members", verifyToken, userActions.browseMembers);
+router.get(
+  "/api/users/members",
+  verifyToken,
+  verifyAdminRole,
+  userActions.browseMembers,
+);
 
 export default router;
