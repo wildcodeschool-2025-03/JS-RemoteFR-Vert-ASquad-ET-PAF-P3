@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import "./App.css";
 
 import App from "./App";
+import AboutPage from "./pages/AboutPage";
 import Connexion from "./pages/Connexion";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import Homepage from "./pages/Homepage";
@@ -17,12 +18,13 @@ const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      { path: "/", element: <Homepage /> },
       { path: "*", element: <NotFound /> },
+      { path: "/", element: <Homepage /> },
+      { path: "/about", element: <AboutPage /> },
       { path: "/offers", element: <Offers /> },
-      { path: "/dashboard/:roleId", element: <DashboardPage /> },
       { path: "/login", element: <Connexion /> },
       { path: "/signup", element: <Inscription /> },
+      { path: "/dashboard/:roleId", element: <DashboardPage /> },
     ],
   },
 ]);
