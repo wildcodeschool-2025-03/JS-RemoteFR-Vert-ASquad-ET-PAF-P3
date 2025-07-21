@@ -40,8 +40,8 @@ class offersRepository {
       city.departementId, 
       companies.id AS company_id,companies.name AS company_name,companies.siret AS company_siret
     FROM offer
-     JOIN city ON offer.city_id = city_id
-     JOIN companies ON offer.company_id = company_id`,
+     INNER JOIN city ON offer.city_id = city_id
+     INNER JOIN companies ON offer.company_id = company_id`,
     );
     return rows as Offer[];
   }
