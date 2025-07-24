@@ -1,0 +1,211 @@
+.connexion_page {
+  position: fixed;
+  background-image: url("../images/developer-looking-at-code-1.png");
+  background-size: cover;
+  background-position: 30% center;
+  background-attachment: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: -2;
+}
+
+.filter_connexion {
+  background-color: rgba(202, 32, 97, 0.3);
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.form_card_connexion {
+  background-color: rgba(88, 85, 85, 0.7);
+  padding: 2em;
+  z-index: 1;
+  margin: 1em;
+  border-radius: 3em;
+  position: relative;
+  justify-items: center;
+  color: rgb(255, 255, 255);
+  backdrop-filter: blur(4px);
+
+  h2 {
+    font-size: 1.5em;
+    padding: 1em;
+  }
+
+  .inscription_message {
+    text-align: center;
+    font-size: 1em;
+  }
+  .link_inscription {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .link_inscription:hover {
+    color: #ff297b;
+    font-size: 1.2em;
+  }
+}
+
+.connexion_form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 45vh;
+  justify-content: center;
+  margin: 0.5em;
+
+  input {
+    padding: 0.5em;
+    padding-left: 2.5em;
+    font-size: 0.8em;
+    border: none;
+    border-bottom: 2px solid #ffffff;
+    background-color: transparent;
+    outline: none;
+    color: white;
+  }
+
+  ::placeholder {
+    color: white;
+    font-size: 1.2em;
+  }
+
+  input:hover {
+    border-bottom: 2px solid #ca2061;
+  }
+  label {
+    font-size: 1em;
+    padding-top: 1em;
+  }
+
+  .lucide.lucide-mail {
+    position: relative;
+    bottom: -1.5em;
+    padding: 0.2em;
+  }
+
+  .lucide.lucide-lock {
+    position: relative;
+    bottom: -1.5em;
+    padding: 0.2em;
+  }
+
+  .button_connexion {
+    color: white;
+    background-color: #ca2061;
+    font-size: 1em;
+    border-radius: 1.5em;
+    border: none;
+    margin-top: 1em;
+  }
+}
+
+@media (min-width: 640px) {
+  .form_card_connexion {
+    top: 5em;
+    h2 {
+      font-size: 2.5em;
+    }
+    .inscription_message {
+      font-size: 1.5em;
+      position: relative;
+      top: -1.5em;
+
+      .link_inscription:hover {
+        color: #ff297b;
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .connexion_form {
+    input {
+      padding-left: 2.5em;
+      font-size: 1em;
+    }
+
+    ::placeholder {
+      color: white;
+      font-size: 1.5em;
+    }
+
+    label {
+      font-size: 1.5em;
+      padding-top: 2em;
+    }
+
+    .lucide.lucide-mail {
+      position: relative;
+      bottom: -1.6em;
+    }
+
+    .lucide.lucide-lock {
+      position: relative;
+      bottom: -1.6em;
+    }
+
+    .button_connexion {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .form_card_connexion {
+    left: 20em;
+    color: rgb(255, 255, 255);
+    width: 50%;
+    top: 0;
+    h2 {
+      font-size: 2.5em;
+    }
+
+    .inscription_message {
+      font-size: 1.5em;
+    }
+
+    .link_inscription:hover {
+      color: #ff297b;
+      font-size: 1.2em;
+    }
+  }
+
+  .connexion_form {
+    margin: 0;
+    height: 50vh;
+    input {
+      padding-left: 2.5em;
+      font-size: 1em;
+    }
+
+    ::placeholder {
+      color: white;
+      font-size: 1.5em;
+    }
+
+    label {
+      font-size: 1.5em;
+      padding-top: 0.5em;
+    }
+
+    .lucide.lucide-mail {
+      position: relative;
+    }
+
+    .lucide.lucide-lock {
+      position: relative;
+    }
+
+    .button_connexion {
+      font-size: 1.5em;
+    }
+  }
+}

@@ -1,0 +1,134 @@
+/* AboutMissions section styles */
+.about-missions {
+  background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.795) 60%,
+      rgba(202, 32, 97, 0.07) 100%
+    ), url("/assets/images/about-wp3.jpg") center / cover no-repeat;
+}
+
+.about-missions-content {
+  width: 100%;
+  max-width: 100vw;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.about-missions-content h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #333;
+  line-height: 1.15;
+}
+
+.about-missions-content p {
+  font-size: 1.08rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.about-missions-cards {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.about-mission-card {
+  background: #fff;
+  color: #ca2061;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 1.2rem;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
+  width: 100%;
+  text-align: center;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-mission-card h3 {
+  font-size: 1.1rem;
+  color: #851342;
+  margin-bottom: 0.2rem;
+}
+
+.about-bg-missions {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.795) 60%,
+      rgba(202, 32, 97, 0.07) 100%
+    ), url("/assets/images/about-wp3.jpg") center / cover no-repeat;
+}
+
+.about-bg-missions::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("/assets/images/noise.png");
+  opacity: 0.1;
+  background-size: cover;
+}
+
+/* Desktop styles for missions */
+@media (min-width: 1024px) {
+  .about-missions-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 2.5rem;
+  }
+
+  .about-missions-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-missions-content p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+  }
+
+  .about-missions-cards {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .about-mission-card {
+    padding: 1.5rem;
+    font-size: 1.05rem;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .about-mission-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+}
