@@ -1,267 +1,265 @@
 /* ===== BASE BUTTON STYLES ===== */
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    outline: none;
-    position: relative;
-    font-family: inherit;
-    line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+  font-family: inherit;
+  line-height: 1;
 }
 
 .btn:focus-visible {
-    outline: 2px solid #9d1a4f;
-    outline-offset: 2px;
+  outline: 2px solid #9d1a4f;
+  outline-offset: 2px;
 }
 
 .btn-disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .btn-loading {
-    cursor: wait;
+  cursor: wait;
 }
 
 .btn-full-width {
-    width: 100%;
+  width: 100%;
 }
 
 /* ===== LOADER ===== */
 .btn-loader {
-    animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
 
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .btn-content-loading {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 /* ===== SIZES ===== */
 .btn-small {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
 }
 
 .btn-medium {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
 }
 
 .btn-large {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
 }
 
 /* ===== PRIMARY VARIANT ===== */
 .btn-primary {
-    background: #9d1a4f;
-    color: white;
+  background: #9d1a4f;
+  color: white;
 }
 
 .btn-primary:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #7c1d3a;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(157, 26, 79, 0.3);
+  background: #7c1d3a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(157, 26, 79, 0.3);
 }
 
 /* ===== SECONDARY VARIANT ===== */
 .btn-secondary {
-    background: #f3f4f6;
-    color: #6b7280;
-    border: 2px solid #e5e7eb;
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
 }
 
 .btn-secondary:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #e5e7eb;
-    color: #374151;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #e5e7eb;
+  color: #374151;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== DANGER VARIANT ===== */
 .btn-danger {
-    background: #ef4444;
-    color: white;
+  background: #ef4444;
+  color: white;
 }
 
 .btn-danger:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #dc2626;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
 /* ===== CANCEL VARIANT ===== */
 .btn-cancel {
-    background: #f3f4f6;
-    color: #6b7280;
+  background: #f3f4f6;
+  color: #6b7280;
 }
 
 .btn-cancel:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #e5e7eb;
-    color: #374151;
+  background: #e5e7eb;
+  color: #374151;
 }
 
 /* ===== GHOST VARIANT ===== */
 .btn-ghost {
-    background: transparent;
-    color: #6b7280;
-    border: 1px solid transparent;
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid transparent;
 }
 
 .btn-ghost:hover:not(.btn-disabled):not(.btn-loading) {
-    background: rgba(107, 114, 128, 0.1);
-    color: #374151;
+  background: rgba(107, 114, 128, 0.1);
+  color: #374151;
 }
 
 /* ===== ABOUT VARIANTS ===== */
 .btn-about-main {
-    background: linear-gradient(90deg, #ca2061 0%, #851342 100%);
-    color: #fff;
-    font-weight: 600;
-    border-radius: 1.5rem;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
+  background: linear-gradient(90deg, #ca2061 0%, #851342 100%);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 1.5rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(202, 32, 97, 0.07);
 }
 
 .btn-about-main:hover:not(.btn-disabled):not(.btn-loading) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(202, 32, 97, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(202, 32, 97, 0.15);
 }
 
 .btn-about-secondary {
-    background: #fff;
-    color: #ca2061;
-    border: 2px solid #ca2061;
-    border-radius: 1.5rem;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
+  background: #fff;
+  color: #ca2061;
+  border: 2px solid #ca2061;
+  border-radius: 1.5rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
 }
 
 .btn-about-secondary:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #ca2061;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(202, 32, 97, 0.15);
+  background: #ca2061;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(202, 32, 97, 0.15);
 }
 
 /* ===== ICON VARIANTS ===== */
 .btn-icon-edit,
 .btn-icon-delete,
 .btn-icon-close {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 8px;
 }
 
 .btn-icon-edit {
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
 }
 
 .btn-icon-edit:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #10b981;
-    color: #ffffff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+  background: #10b981;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
 }
 
 .btn-icon-delete {
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
 }
 
 .btn-icon-delete:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #ef4444;
-    color: #ffffff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+  background: #ef4444;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
 }
 
 .btn-icon-close {
-    background: rgba(107, 114, 128, 0.1);
-    color: #6b7280;
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
 }
 
 .btn-icon-close:hover:not(.btn-disabled):not(.btn-loading) {
-    background: #6b7280;
-    color: #ffffff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
+  background: #6b7280;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
 }
 
 /* ===== THEME VARIANT ===== */
 .btn-theme {
-    background: transparent;
-    border: none;
-    padding: 8px;
-    border-radius: 50%;
-    color: #374151;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  color: #374151;
 }
 
 .btn-theme:hover:not(.btn-disabled):not(.btn-loading) {
-    background: rgba(107, 114, 128, 0.1);
-    color: #111827;
+  background: rgba(107, 114, 128, 0.1);
+  color: #111827;
 }
 
 /* ===== MENU VARIANT ===== */
 .btn-menu {
-    background: transparent;
-    border: none;
-    padding: 8px;
-    color: #374151;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  color: #374151;
 }
 
 .btn-menu:hover:not(.btn-disabled):not(.btn-loading) {
-    background: rgba(107, 114, 128, 0.1);
-    color: #111827;
+  background: rgba(107, 114, 128, 0.1);
+  color: #111827;
 }
 
 /* ===== MODAL BUTTON STYLES ===== */
-/* When buttons are inside .modal-footer, they share the available space */
 .modal-footer .btn {
-    flex: 1;
+  flex: 1;
 }
 
 /* On mobile, modal buttons don't flex */
 @media (max-width: 768px) {
-    .modal-footer .btn {
-        flex: none;
-    }
+  .modal-footer .btn {
+    flex: none;
+  }
 }
 
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
 @media (max-width: 768px) {
+  .btn-about-main,
+  .btn-about-secondary {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
 
-    .btn-about-main,
-    .btn-about-secondary {
-        padding: 0.875rem 2rem;
-        font-size: 1rem;
-    }
-
-    .btn-large {
-        padding: 0.875rem 1.5rem;
-        font-size: 1rem;
-    }
+  .btn-large {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
 }
