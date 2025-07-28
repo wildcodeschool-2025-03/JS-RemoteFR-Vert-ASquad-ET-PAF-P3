@@ -58,7 +58,7 @@ const companyBaseConfig: Omit<RoleConfig, "color"> = {
   navItems: [
     {
       id: "dashboard",
-      path: "/dashboard",
+      path: "/dashboard/recruteur",
       icon: <LayoutDashboard size={18} />,
       label: "Tableau de bord",
     },
@@ -70,7 +70,7 @@ const companyBaseConfig: Omit<RoleConfig, "color"> = {
     },
     {
       id: "offers",
-      path: "/offers",
+      path: "/recruteur/offers",
       icon: <Briefcase size={18} />,
       label: "Offres",
     },
