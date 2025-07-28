@@ -1,0 +1,155 @@
+/* ===== PAGE HEADER ===== */
+.page-header {
+  padding: 1rem 0.125rem 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.page-header-centered {
+  justify-content: center;
+}
+
+.page-header-with-action {
+  justify-content: space-between;
+}
+
+/* ===== PAGE BADGE ===== */
+.page-badge {
+  display: inline-block;
+  background: #9d1a4f;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(157, 26, 79, 0.3);
+}
+
+.page-badge h1 {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ===== PAGE TITLE (without badge) ===== */
+.page-title {
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ===== ACTION BUTTON ===== */
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 16px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn-primary {
+  background: rgba(255, 255, 255, 0.9);
+  color: #9d1a4f;
+  border: 2px solid rgba(157, 26, 79, 0.2);
+}
+
+.action-btn-primary:hover {
+  background: #9d1a4f;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(157, 26, 79, 0.3);
+}
+
+.action-btn-secondary {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+}
+
+.action-btn-secondary:hover {
+  background: #e5e7eb;
+  color: #374151;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 361px) {
+  .page-header {
+    padding: 1rem 0.25rem 0.75rem;
+  }
+
+  .page-badge {
+    padding: 0.5rem 1.25rem;
+  }
+
+  .page-badge h1 {
+    font-size: 0.9rem;
+  }
+
+  .action-btn {
+    font-size: 1.1rem;
+    padding: 0.875rem 1.75rem;
+  }
+}
+
+@media (min-width: 481px) {
+  .page-header {
+    padding: 1.5rem 0.5rem 1rem;
+  }
+
+  .page-badge {
+    padding: 0.625rem 1.5rem;
+  }
+
+  .page-badge h1 {
+    font-size: 0.95rem;
+  }
+
+  .action-btn {
+    font-size: 1.15rem;
+    padding: 0.875rem 1.75rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .page-header {
+    padding: 1.75rem 1.5rem 1rem;
+    width: calc(100% - 3rem);
+  }
+
+  .page-badge {
+    padding: 0.75rem 1.75rem;
+  }
+
+  .page-badge h1 {
+    font-size: 1rem;
+  }
+
+  .action-btn {
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .page-header {
+    padding: 2rem 2rem 1rem;
+    max-width: 1200px;
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+  }
+
+  .page-badge {
+    padding: 0.75rem 2rem;
+  }
+}

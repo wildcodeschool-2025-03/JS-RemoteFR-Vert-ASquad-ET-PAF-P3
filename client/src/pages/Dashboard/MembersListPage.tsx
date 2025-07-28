@@ -1,167 +1,110 @@
-import { Edit, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Edit } from "lucide-react";
+import { useState } from "react";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
-import "../../assets/styles/MembersList.css";
-
-interface Member {
-  id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  role_label: string;
-  company_name: string;
-  company_siret: string;
-}
+import MemberRoleModal from "../../components/Members/MemberRoleModal";
+import PageHeader from "../../components/UI/Layout/PageHeader";
+import DataTable from "../../components/UI/Table/DataTable";
+import type { Column } from "../../components/UI/Table/DataTable";
+import { useMembersData } from "../../hooks/useMembersData";
+import { useRolesData } from "../../hooks/useRolesData";
+import type { Member } from "../../types/Member";
+import "../../assets/styles/common.css";
 
 const MembersListPage = () => {
-  const [members, setMembers] = useState<Member[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Data hooks
+  const { roles } = useRolesData();
+  const { members, loading, error, updateMemberRole } = useMembersData(roles);
 
-  useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/users/members`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-        );
+  const openRoleModal = (member: Member) => {
+    setSelectedMember(member);
+    setIsModalOpen(true);
+  };
 
-        if (!response.ok) {
-          throw new Error(`Erreur ${response.status}: ${response.statusText}`);
-        }
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedMember(null);
+  };
 
-        const data = await response.json();
-        setMembers(data);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Erreur lors du chargement",
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMembers();
-  }, []);
-
-  if (loading) {
-    return (
-      <DashboardLayout userRole={3} activeItem="members">
-        <div className="members-page-active" />
-        <div className="members-loading">
-          <div className="loading-spinner" />
-          <p>Chargement des membres...</p>
-        </div>
-      </DashboardLayout>
-    );
-  }
-
-  if (error) {
-    return (
-      <DashboardLayout userRole={3} activeItem="members">
-        <div className="members-page-active" />
-        <div className="members-page-container">
-          <div className="members-error">
-            <h2>Erreur de chargement</h2>
-            <p>{error}</p>
-          </div>
-        </div>
-      </DashboardLayout>
-    );
-  }
-
-  if (members.length === 0) {
-    return (
-      <DashboardLayout userRole={3} activeItem="members">
-        <div className="members-page-active" />
-        <div className="members-page-container">
-          <div className="members-empty">
-            <h2>Aucun membre trouvé</h2>
-            <p>Il n'y a actuellement aucun membre dans la base de données.</p>
-          </div>
-        </div>
-      </DashboardLayout>
-    );
-  }
+  // Define table columns
+  const columns: Column<Member>[] = [
+    {
+      key: "id",
+      label: "ID",
+      width: "10%",
+    },
+    {
+      key: "firstname",
+      label: "Prénom",
+      width: "15%",
+    },
+    {
+      key: "lastname",
+      label: "Nom",
+      width: "15%",
+    },
+    {
+      key: "email",
+      label: "Email",
+      width: "20%",
+    },
+    {
+      key: "role_label",
+      label: "Rôle",
+      width: "15%",
+    },
+    {
+      key: "company_name",
+      label: "Entreprise",
+      width: "15%",
+    },
+    {
+      key: "company_siret",
+      label: "SIRET",
+      width: "10%",
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      width: "10%",
+      align: "center",
+      render: (_, member) => (
+        <button
+          type="button"
+          className="action-btn edit"
+          onClick={() => openRoleModal(member)}
+          title="Modifier le rôle"
+        >
+          <Edit size={16} />
+        </button>
+      ),
+    },
+  ];
 
   return (
     <DashboardLayout userRole={3} activeItem="members">
-      <div className="members-page-active" />
-      <div className="members-page-container">
-        <div className="members-header">
-          <div className="members-badge">
-            <h1>Membres</h1>
-          </div>
-        </div>
+      <div className="page-container">
+        <PageHeader title="Membres" />
 
-        <div className="members-table-wrapper">
-          <div className="members-table-container">
-            <table className="members-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Noms</th>
-                  <th>Email</th>
-                  <th>Rôles</th>
-                  <th>Entreprise</th>
-                  <th>SIRET</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {members.map((member) => (
-                  <tr key={member.id}>
-                    <td>{member.id}</td>
-                    <td>
-                      {member.firstname} {member.lastname}
-                    </td>
-                    <td>{member.email}</td>
-                    <td>{member.role_label}</td>
-                    <td>
-                      {member.company_name === "Non renseigné"
-                        ? "—"
-                        : member.company_name}
-                    </td>
-                    <td>
-                      {member.company_siret === "Non renseigné"
-                        ? "—"
-                        : member.company_siret}
-                    </td>
-                    <td>
-                      <div className="actions-cell">
-                        <button
-                          type="button"
-                          className="action-btn edit"
-                          onClick={() => console.log("Modifier", member.id)}
-                          title="Modifier"
-                        >
-                          <Edit size={16} />
-                        </button>
-                        <button
-                          type="button"
-                          className="action-btn delete"
-                          onClick={() => console.log("Supprimer", member.id)}
-                          title="Supprimer"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <DataTable<Member>
+          data={members}
+          columns={columns}
+          loading={loading}
+          error={error}
+          emptyMessage="Aucun membre trouvé"
+          getRowKey={(member) => member.id}
+        />
+
+        <MemberRoleModal
+          isOpen={isModalOpen}
+          member={selectedMember}
+          roles={roles}
+          onClose={closeModal}
+          onUpdate={updateMemberRole}
+        />
       </div>
     </DashboardLayout>
   );
