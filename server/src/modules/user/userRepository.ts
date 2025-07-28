@@ -41,7 +41,7 @@ class UserRepository {
 
   async readByEmailWithPassword(email: string) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT id,email,hashed_password FROM users WHERE email = ? ",
+      "SELECT id,email,hashed_password,role_id FROM users WHERE email = ? ",
       [email],
     );
     return rows[0] as UsersType;
