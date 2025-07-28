@@ -1,34 +1,23 @@
-import { useContext } from "react";
-import { useParams } from "react-router";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useRoles } from "../../hooks/useRoles";
 
-const DashboardPageCandidat = () => {
-  const { roleId } = useParams<{ roleId: string }>();
+const DashboardPageCompany = () => {
+  const { user } = useAuth();
   const { getRoleById, loading } = useRoles();
 
-  const auth = useContext(AuthContext);
-  if (!auth) return <div>Chargement...</div>;
+  if (loading) return <div>Chargement...</div>;
+  if (!user) return <div>Utilisateur non connecté</div>;
 
-  const currentRoleId = roleId ? Number.parseInt(roleId, 10) : 1;
-  const currentRole = getRoleById(currentRoleId);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!currentRole) {
-    return <div>Role not found</div>;
-  }
+  const currentRole = getRoleById(user.role_id);
+  if (!currentRole) return <div>Rôle non trouvé</div>;
 
   return (
-    <DashboardLayout userRole={currentRoleId} activeItem="dashboard">
+    <DashboardLayout userRole={user.role_id} activeItem="dashboard">
       <h1>Dashboard {currentRole.label}</h1>
       <p>Interface dédiée au rôle {currentRole.label}</p>
-      <p>Bienvenue dashboard candidat</p>
     </DashboardLayout>
   );
 };
 
-export default DashboardPageCandidat;
+export default DashboardPageCompany;
