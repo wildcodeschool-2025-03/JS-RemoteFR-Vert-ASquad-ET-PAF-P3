@@ -2,6 +2,7 @@ import { Edit } from "lucide-react";
 import { useState } from "react";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import MemberRoleModal from "../../components/Members/MemberRoleModal";
+import Button from "../../components/UI/Button/Button";
 import PageHeader from "../../components/UI/Layout/PageHeader";
 import DataTable from "../../components/UI/Table/DataTable";
 import type { Column } from "../../components/UI/Table/DataTable";
@@ -72,14 +73,13 @@ const MembersListPage = () => {
       width: "10%",
       align: "center",
       render: (_, member) => (
-        <button
-          type="button"
-          className="action-btn edit"
+        <Button
+          variant="icon-edit"
           onClick={() => openRoleModal(member)}
-          title="Modifier le rôle"
+          aria-label="Modifier le rôle"
         >
           <Edit size={16} />
-        </button>
+        </Button>
       ),
     },
   ];
