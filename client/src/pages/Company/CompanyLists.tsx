@@ -8,7 +8,7 @@ export default function CompanyLists() {
   const [candidatsLists, setCandidatsLists] = useState<Member[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/users/members`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/users?type=members`)
       .then((response) => response.json())
       .then((data: Member[]) => {
         setCandidatsLists(data);

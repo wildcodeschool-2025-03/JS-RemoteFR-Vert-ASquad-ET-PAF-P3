@@ -52,8 +52,8 @@ router.post("/signup", validateUser, hashPassword, userActions.add);
 router.post("/login", authActions.login);
 
 /* ************************************************************************* */
-router.get("/api/users/members", userActions.browse);
-router.get("/api/users/members", userActions.read);
+router.get("/api/users", userActions.browse);
+router.get("/api/users", userActions.readAllmembers);
 
 router.get(
   "/api/users/members",

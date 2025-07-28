@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import type User from "../../types/UserType";
 import userRepository from "./userRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -86,4 +87,22 @@ const browseAllCandidats: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-export default { browse, read, add, browseMembers };
+
+const readAllmembers: RequestHandler = async (req, res, next) => {
+  try {
+    const { type } = req.query;
+
+    let users: User[] = [];
+    if (type === "members") {
+      users = await userRepository.readByUserbytype("members");
+    } else {
+      users = await userRepository.readAll();
+    }
+
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add, browseMembers, readAllmembers };

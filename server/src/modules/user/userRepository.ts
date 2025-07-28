@@ -47,6 +47,14 @@ class UserRepository {
     return rows[0] as UsersType;
   }
 
+  async readByUserbytype(type: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM users WHERE type = ? ",
+      [type],
+    );
+    return rows as UsersType[];
+  }
+
   async readAllWithCompanyAndRole() {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT 
