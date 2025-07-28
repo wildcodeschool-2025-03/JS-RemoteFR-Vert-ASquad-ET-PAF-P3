@@ -26,7 +26,6 @@ export const useRolesData = (): UseRolesDataReturn => {
           ? err.message
           : "Erreur lors du chargement des rôles",
       );
-      console.error("Erreur lors du chargement des rôles:", err);
     } finally {
       setLoading(false);
     }
@@ -49,7 +48,6 @@ export const useRolesData = (): UseRolesDataReturn => {
             ? err.message
             : "Erreur lors du chargement des rôles",
         );
-        console.error("Erreur lors du chargement des rôles:", err);
       } finally {
         setLoading(false);
       }

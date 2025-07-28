@@ -117,7 +117,6 @@ const RolesListPage = () => {
 
       closeModal();
     } catch (err) {
-      console.error("Erreur lors de la sauvegarde:", err);
       alert("Erreur lors de la sauvegarde du rôle");
     } finally {
       setSubmitting(false);
@@ -145,7 +144,6 @@ const RolesListPage = () => {
       );
       closeDeleteModal();
     } catch (err) {
-      console.error("Erreur lors de la suppression:", err);
       alert("Erreur lors de la suppression du rôle");
     } finally {
       setDeleting(false);
