@@ -58,37 +58,37 @@ const companyBaseConfig: Omit<RoleConfig, "color"> = {
   navItems: [
     {
       id: "dashboard",
-      path: "/dashboard",
+      path: "/dashboard/recruteur",
       icon: <LayoutDashboard size={18} />,
       label: "Tableau de bord",
     },
     {
       id: "profile",
-      path: "/profile",
+      path: "/recruteur/profile",
       icon: <Building2 size={18} />,
       label: "Profil",
     },
     {
       id: "offers",
-      path: "/offers",
+      path: "/recruteur/offers",
       icon: <Briefcase size={18} />,
       label: "Offres",
     },
     {
       id: "documents",
-      path: "/documents",
+      path: "/recruteur/documents",
       icon: <FolderOpen size={18} />,
       label: "Dossiers",
     },
     {
       id: "messagerie",
-      path: "/messagerie",
+      path: "/recruteur/messagerie",
       icon: <Mail size={18} />,
       label: "Messages",
     },
     {
       id: "trombinoscope",
-      path: "/trombinoscope",
+      path: "/recruteur/trombinoscope",
       icon: <UsersRound size={18} />,
       label: "Trombinoscope",
     },

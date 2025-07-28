@@ -66,4 +66,24 @@ const browseMembers: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseAllCandidats: RequestHandler = async (req, res, next) => {
+  try {
+    const members = await userRepository.readAllWithCompanyAndRole();
+
+    // Format the data to handle null values
+    const formattedMembers = members.map((member) => ({
+      id: member.id,
+      firstname: member.firstname,
+      lastname: member.lastname,
+      email: member.email,
+      role_label: member.role_label || "Non défini",
+      company_name: member.company_name || "Non renseigné",
+      company_siret: member.company_siret || "Non renseigné",
+    }));
+
+    res.status(200).json(formattedMembers);
+  } catch (err) {
+    next(err);
+  }
+};
 export default { browse, read, add, browseMembers };
