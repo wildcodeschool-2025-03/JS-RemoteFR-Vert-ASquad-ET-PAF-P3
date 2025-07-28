@@ -1,7 +1,8 @@
 import { useState } from "react";
 import type { Member } from "../../types/Member";
 import type { Role } from "../../types/Role";
-import FormField from "../UI/Form/FormField";
+import Button from "../UI/Button/Button";
+import SelectInput from "../UI/Form/SelectInput";
 import Modal from "../UI/Modal/Modal";
 import "../../assets/styles/MemberRoleModal.css";
 
@@ -36,7 +37,6 @@ const MemberRoleModal = ({
       await onUpdate(member.id, Number(selectedRoleId));
       handleClose();
     } catch (error) {
-      console.error("Erreur lors de la mise à jour:", error);
       alert("Erreur lors de la mise à jour du rôle");
     } finally {
       setUpdating(false);
@@ -50,22 +50,17 @@ const MemberRoleModal = ({
 
   const modalFooter = (
     <>
-      <button
-        type="button"
-        className="modal-btn modal-btn-cancel"
-        onClick={handleClose}
-        disabled={updating}
-      >
+      <Button variant="cancel" onClick={handleClose} disabled={updating}>
         Annuler
-      </button>
-      <button
-        type="button"
-        className="modal-btn modal-btn-primary"
+      </Button>
+      <Button
+        variant="primary"
         onClick={handleUpdate}
-        disabled={!selectedRoleId || updating}
+        disabled={!selectedRoleId}
+        loading={updating}
       >
-        {updating ? "Mise à jour..." : "Confirmer"}
-      </button>
+        Confirmer
+      </Button>
     </>
   );
 
@@ -88,9 +83,8 @@ const MemberRoleModal = ({
             </div>
           </div>
 
-          <FormField
+          <SelectInput
             label="Nouveau rôle"
-            type="select"
             value={selectedRoleId}
             onChange={setSelectedRoleId}
             placeholder="Sélectionner un rôle"
