@@ -12,6 +12,8 @@ import Inscription from "./pages/Inscription";
 import NotFound from "./pages/NotFound";
 import Offers from "./pages/Offers";
 
+import { AuthProvider } from "./context/AuthContext";
+
 /* ************************************************************************* */
 
 const router = createBrowserRouter([
@@ -38,6 +40,8 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );

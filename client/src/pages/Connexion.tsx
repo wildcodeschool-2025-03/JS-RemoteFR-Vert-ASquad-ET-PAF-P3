@@ -3,11 +3,12 @@ import "../assets/styles/connexion.css";
 import { Lock, Mail } from "lucide-react";
 import { type FormEventHandler, useRef } from "react";
 import { Bounce, ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
 
 export default function Connexion() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-
+  const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit: FormEventHandler = async (event) => {
@@ -23,8 +24,12 @@ export default function Connexion() {
       });
 
       if (response.status === 200) {
+        const userData = await response.json();
+        toast.success("Connexion réussie !");
+        setUser(userData);
+
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/dashboard/roleid");
         }, 2000);
       } else {
         toast.error("Erreur : vérifiez vos coordonnées !");
