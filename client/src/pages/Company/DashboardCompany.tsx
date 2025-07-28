@@ -4,7 +4,7 @@ import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import { AuthContext } from "../../context/AuthContext";
 import { useRoles } from "../../hooks/useRoles";
 
-const DashboardPage = () => {
+const DashboardPageCompany = () => {
   const { roleId } = useParams<{ roleId: string }>();
   const { getRoleById, loading } = useRoles();
 
@@ -26,8 +26,9 @@ const DashboardPage = () => {
     <DashboardLayout userRole={currentRoleId} activeItem="dashboard">
       <h1>Dashboard {currentRole.label}</h1>
       <p>Interface dédiée au rôle {currentRole.label}</p>
+      <p>Bienvenue dashboard company</p>
     </DashboardLayout>
   );
 };
 
-export default DashboardPage;
+export default DashboardPageCompany;

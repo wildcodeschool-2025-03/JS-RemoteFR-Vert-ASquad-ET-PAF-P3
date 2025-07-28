@@ -1,15 +1,36 @@
 import { Link, useNavigate } from "react-router";
 import "../assets/styles/connexion.css";
 import { Lock, Mail } from "lucide-react";
-import { type FormEventHandler, useRef } from "react";
+import { type FormEventHandler, useEffect, useRef } from "react";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 
 export default function Connexion() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { setUser } = useAuth();
   const navigate = useNavigate();
+  const { user, setUser } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      switch (user?.role_id) {
+        case 3:
+          navigate("/dashboard/admin");
+          break;
+
+        case 2:
+          navigate("/dashboard/recruteur");
+          break;
+
+        case 1:
+          navigate("/dashboard/candidat");
+          break;
+
+        default:
+          navigate("/dashboard");
+      }
+    }
+  }, [user, navigate]);
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
@@ -24,13 +45,9 @@ export default function Connexion() {
       });
 
       if (response.status === 200) {
-        const userData = await response.json();
+        const { user } = await response.json();
         toast.success("Connexion réussie !");
-        setUser(userData);
-
-        setTimeout(() => {
-          navigate("/dashboard/roleid");
-        }, 2000);
+        setUser(user);
       } else {
         toast.error("Erreur : vérifiez vos coordonnées !");
       }
@@ -38,6 +55,8 @@ export default function Connexion() {
       toast.error("Erreur: ne vous inquiétez la page va se rafraichir");
     }
   };
+  console.log("user after login:", user);
+
   return (
     <>
       <ToastContainer
