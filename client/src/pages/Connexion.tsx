@@ -55,7 +55,6 @@ export default function Connexion() {
       toast.error("Erreur: ne vous inquiétez la page va se rafraichir");
     }
   };
-  console.log("user after login:", user);
 
   return (
     <>
