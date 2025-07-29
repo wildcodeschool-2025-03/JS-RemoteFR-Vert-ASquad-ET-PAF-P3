@@ -38,6 +38,8 @@ router.get("/offers/:id", offersActions.read);
 router.post("/offers", offersActions.add);
 router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
+router.get("/offers/:id", offersActions.readOfferById);
+
 
 /* ************************************************************************* */
 

@@ -27,6 +27,22 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readOfferById: RequestHandler = async (req, res, next) => {
+  try {
+    const companyId = Number(req.params.id);
+
+    if (Number.isNaN(companyId)) {
+      res.status(400).json({ error: "Invalid company ID" });
+      return;
+    }
+
+    const offers = await offersRepository.findAllOfferById(companyId);
+    res.status(200).json(offers);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newOffer = {
@@ -82,4 +98,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, edit, destroy };
+export default { browse, read, add, edit, destroy, readOfferById };

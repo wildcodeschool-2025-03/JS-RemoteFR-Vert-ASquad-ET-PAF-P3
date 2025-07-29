@@ -34,6 +34,12 @@ class offersRepository {
     return rows as OfferJoin[];
   }
 
+  async findAllOfferById(company_id:number){
+    const [rows]= await databaseClient.query<Rows>("SELECT * FROM offer WHERE company_id = ?",
+      [company_id],
+    )
+    return rows as Offer[];
+  }
   async update(offer: Offer) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE offer SET jobTitle = ?, metier = ?, contractType = ?, description = ?, salary = ?, requirements = ?, city_id = ?, company_id = ? where id = ?",
