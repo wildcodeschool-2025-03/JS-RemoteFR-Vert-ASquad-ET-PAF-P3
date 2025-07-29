@@ -4,6 +4,7 @@ import { useState } from "react";
 import logo from "../../assets/images/EXTERNATIC-logo.png";
 import "../../assets/styles/Navbar.css";
 import { NavLink, useNavigate } from "react-router";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,6 +20,7 @@ const Navbar: React.FC = () => {
   ];
   const navigate = useNavigate();
 
+  const { user, setUser } = useAuth();
   return (
     <>
       <nav className="navbar">
@@ -40,8 +42,24 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="nav-actions">
-            <NavLink to="/login" className="btn-login">
-              Se connecter
+            <NavLink to="/login">
+              {!user ? (
+                <button
+                  type="button"
+                  onClick={() => navigate("/login")}
+                  className="btn-login"
+                >
+                  Se connecter
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setUser(null)}
+                  className="btn-login"
+                >
+                  Déconnexion
+                </button>
+              )}
             </NavLink>
             <button
               type="button"
@@ -103,16 +121,30 @@ const Navbar: React.FC = () => {
               </div>
 
               <div className="mobile-menu-actions">
-                <button
-                  type="button"
-                  className="mobile-btn-login"
-                  onClick={() => {
-                    navigate("/login");
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  Se connecter
-                </button>
+                {!user ? (
+                  <button
+                    type="button"
+                    className="mobile-btn-login"
+                    onClick={() => {
+                      navigate("/login");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Se connecter
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigate("/");
+                      setUser(null);
+                      setIsMenuOpen(false);
+                    }}
+                    className="mobile-btn-login"
+                  >
+                    Déconnexion
+                  </button>
+                )}
               </div>
             </div>
           </div>
