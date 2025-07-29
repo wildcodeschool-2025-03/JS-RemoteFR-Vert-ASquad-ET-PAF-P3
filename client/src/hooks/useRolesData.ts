@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getAllRoles } from "../services/roleService";
 import type { Role } from "../types/Role";
 
@@ -14,7 +14,7 @@ export const useRolesData = (): UseRolesDataReturn => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchRoles = async () => {
+  const fetchRoles = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -29,32 +29,15 @@ export const useRolesData = (): UseRolesDataReturn => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const refreshRoles = async () => {
+  const refreshRoles = useCallback(async () => {
     await fetchRoles();
-  };
+  }, [fetchRoles]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const rolesData = await getAllRoles();
-        setRoles(rolesData);
-      } catch (err) {
-        setError(
-          err instanceof Error
-            ? err.message
-            : "Erreur lors du chargement des rôles",
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    fetchRoles();
+  }, [fetchRoles]);
 
   return {
     roles,
