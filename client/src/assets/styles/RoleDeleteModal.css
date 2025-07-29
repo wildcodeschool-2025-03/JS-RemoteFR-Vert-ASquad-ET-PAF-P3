@@ -12,7 +12,7 @@
   margin: 0;
 }
 
-/* ===== ROLE PREVIEW ===== */
+/* ===== DELETE MODAL SPECIFIC ===== */
 .role-preview {
   padding: 1rem;
   background: #fef2f2;
@@ -20,26 +20,10 @@
   border-radius: 8px;
 }
 
-.role-preview span {
-  display: block;
-  font-weight: 600;
-  color: #6b7280;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
-}
-
 .role-info {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-.color-preview {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid #e5e7eb;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .role-name {
@@ -54,19 +38,13 @@
   margin: 0;
 }
 
-.warning-text {
-  color: #ef4444;
-  font-weight: 500;
-  margin-top: 0.5rem;
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .role-delete-modal-content {
     gap: 1rem;
   }
 
-  .role-preview {
+  .role-delete-modal-content .role-preview {
     padding: 0.75rem;
   }
 }
