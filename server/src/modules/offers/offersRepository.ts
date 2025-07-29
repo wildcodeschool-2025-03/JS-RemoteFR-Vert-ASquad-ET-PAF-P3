@@ -15,7 +15,7 @@ class offersRepository {
         offer.requirements,
         offer.city_id,
         offer.company_id,
-      ]
+      ],
     );
     return result.insertId;
   }
@@ -28,8 +28,8 @@ class offersRepository {
       city.departementId, 
       companies.id AS company_id,companies.name AS company_name,companies.siret AS company_siret
     FROM offer
-     INNER JOIN city ON offer.city_id = city_id
-     INNER JOIN companies ON offer.company_id = company_id`
+     INNER JOIN city ON offer.city_id = city_id,
+     INNER JOIN companies ON offer.company_id = company_id`,
     );
     return rows as OfferJoin[];
   }
@@ -37,10 +37,11 @@ class offersRepository {
   async findAllOfferById(company_id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM offer WHERE company_id = ?",
-      [company_id]
+      [company_id],
     );
     return rows as Offer[];
   }
+
   async update(offer: Offer) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE offer SET jobTitle = ?, metier = ?, contractType = ?, description = ?, salary = ?, requirements = ?, city_id = ?, company_id = ? where id = ?",
@@ -54,7 +55,7 @@ class offersRepository {
         offer.city_id,
         offer.company_id,
         offer.id,
-      ]
+      ],
     );
     return result.affectedRows;
   }
@@ -64,7 +65,7 @@ class offersRepository {
   async delete(offerId: number) {
     const [result] = await databaseClient.query<Result>(
       "DELETE from offer where id = ?",
-      [offerId]
+      [offerId],
     );
     return result.affectedRows;
   }
