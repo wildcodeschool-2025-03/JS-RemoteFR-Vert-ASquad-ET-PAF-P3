@@ -2,7 +2,7 @@ import type { Offer, OfferJoin } from "../../../../client/src/types/OffersType";
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
-class offersRepository {
+class OffersRepository {
   async create(offer: Omit<Offer, "id">) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO offer (jobTitle, metier, contractType, description, salary, requirements, city_id,company_id) values (?,?,?,?,?,?,?,?)",
@@ -28,7 +28,7 @@ class offersRepository {
       city.departementId, 
       companies.id AS company_id,companies.name AS company_name,companies.siret AS company_siret
     FROM offer
-     INNER JOIN city ON offer.city_id = city_id,
+     INNER JOIN city ON offer.city_id = city_id
      INNER JOIN companies ON offer.company_id = company_id`,
     );
     return rows as OfferJoin[];
@@ -71,4 +71,4 @@ class offersRepository {
   }
 }
 
-export default new offersRepository();
+export default new OffersRepository();
