@@ -40,7 +40,6 @@ router.put("/offer/:id", offersActions.edit);
 router.delete("/offer/:id", offersActions.destroy);
 router.get("/offers/:id", offersActions.readOfferById);
 
-
 /* ************************************************************************* */
 
 router.get("/api/roles", roleActions.browse);
