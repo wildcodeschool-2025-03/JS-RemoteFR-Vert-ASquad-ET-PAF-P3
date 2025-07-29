@@ -14,13 +14,10 @@ import "../../../assets/styles/common.css";
 interface ExtendedRole extends Role, Record<string, unknown> {}
 
 const RolesListPage = () => {
-  // Data & Logic management
   const { roles, loading, error, formState, deleteState } = useRolesList();
 
-  // PageHeader modal integration
   const { getActionButton } = usePageModal();
 
-  // Define table columns
   const columns: Column<ExtendedRole>[] = [
     {
       key: "id",
