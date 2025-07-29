@@ -64,7 +64,7 @@ const companyBaseConfig: Omit<RoleConfig, "color"> = {
     },
     {
       id: "profile",
-      path: "/profile",
+      path: "/recruteur/profile",
       icon: <Building2 size={18} />,
       label: "Profil",
     },
@@ -76,19 +76,19 @@ const companyBaseConfig: Omit<RoleConfig, "color"> = {
     },
     {
       id: "documents",
-      path: "/documents",
+      path: "/recruteur/documents",
       icon: <FolderOpen size={18} />,
       label: "Dossiers",
     },
     {
       id: "messagerie",
-      path: "/messagerie",
+      path: "/recruteur/messagerie",
       icon: <Mail size={18} />,
       label: "Messages",
     },
     {
       id: "trombinoscope",
-      path: "/trombinoscope",
+      path: "/recruteur/trombinoscope",
       icon: <UsersRound size={18} />,
       label: "Trombinoscope",
     },

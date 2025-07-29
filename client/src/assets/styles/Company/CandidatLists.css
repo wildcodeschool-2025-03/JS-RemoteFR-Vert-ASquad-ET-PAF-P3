@@ -1,0 +1,50 @@
+.container_candidatsLists {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.Company_candidatsLists {
+  display: grid;
+  gap: 2em;
+  padding: 2em;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.candidats_infos {
+  background-color: #f0f8ff;
+  border-radius: 1em;
+  padding: 1.5em;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  position: relative;
+}
+
+.creation_date_account {
+  text-align: right;
+  margin-top: auto;
+  font-size: 0.9rem;
+  color: #2b2a2a;
+  padding: 1em;
+}
+.more_info_candidat {
+  border: none;
+  width: 10em;
+}
+
+.candidats_infos:hover {
+  transform: translateY(-5px);
+  background-color: #9d1a4f;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .container_candidatsLists {
+    grid-template-columns: 1fr;
+  }
+}

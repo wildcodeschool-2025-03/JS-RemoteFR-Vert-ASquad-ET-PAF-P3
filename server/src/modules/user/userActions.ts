@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import type User from "../../types/UserType";
 import userRepository from "./userRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -66,4 +67,42 @@ const browseMembers: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, browseMembers };
+const browseAllCandidats: RequestHandler = async (req, res, next) => {
+  try {
+    const members = await userRepository.readAllWithCompanyAndRole();
+
+    // Format the data to handle null values
+    const formattedMembers = members.map((member) => ({
+      id: member.id,
+      firstname: member.firstname,
+      lastname: member.lastname,
+      email: member.email,
+      role_label: member.role_label || "Non défini",
+      company_name: member.company_name || "Non renseigné",
+      company_siret: member.company_siret || "Non renseigné",
+    }));
+
+    res.status(200).json(formattedMembers);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readAllmembers: RequestHandler = async (req, res, next) => {
+  try {
+    const { type } = req.query;
+
+    let users: User[] = [];
+    if (type === "members") {
+      users = await userRepository.readByUserbytype("members");
+    } else {
+      users = await userRepository.readAll();
+    }
+
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add, browseMembers, readAllmembers };

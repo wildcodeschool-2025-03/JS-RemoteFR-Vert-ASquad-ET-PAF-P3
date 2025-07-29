@@ -14,7 +14,9 @@ import Offers from "./pages/Offers";
 
 import { AuthProvider } from "./context/AuthContext";
 import DashboardPageCandidat from "./pages/Candidat/DashboardCandidat";
+
 import Company_offers from "./pages/Company/Company-offres";
+import CompanyLists from "./pages/Company/CompanyLists";
 import DashboardPageCompany from "./pages/Company/DashboardCompany";
 
 /* ************************************************************************* */
@@ -30,9 +32,10 @@ const router = createBrowserRouter([
       { path: "/login", element: <Connexion /> },
       { path: "/signup", element: <Inscription /> },
       { path: "/dashboard", element: <DashboardPage /> },
-      { path: "/dashboard/admin", element: <DashboardPage /> },
       { path: "/dashboard/candidat", element: <DashboardPageCandidat /> },
       { path: "/dashboard/recruteur", element: <DashboardPageCompany /> },
+      { path: "/dashboard/admin", element: <DashboardPage /> },
+      { path: "/recruteur/trombinoscope", element: <CompanyLists /> },
       { path: "/recruteur/offers", element: <Company_offers /> },
     ],
   },
