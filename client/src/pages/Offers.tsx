@@ -12,12 +12,22 @@ export default function Offers() {
   const [location, setLocation] = useState("");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/offers`)
-      .then((response) => response.json())
-      .then((data: OfferJoin[]) => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/offers`);
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des offres");
+        }
+        const data: OfferJoin[] = await response.json();
         setOptions(data);
         setfilter(data);
-      });
+      } catch (error) {
+        alert("Aucune offres disponibles");
+        console.error(error);
+      }
+    };
+
+    fetchOffers();
   }, []);
 
   const metiers = [...new Set(options.map((o) => o.metier))];

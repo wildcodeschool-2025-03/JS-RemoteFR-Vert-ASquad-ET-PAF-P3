@@ -4,15 +4,24 @@ import type { Offer } from "../../types/about";
 
 import "../../assets/styles/CompanyOffer.css";
 
-const Company_offers = () => {
+const CompanyOffers = () => {
   const [offers, setOffers] = useState<Offer[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/offers`)
-      .then((response) => response.json())
-      .then((data: Offer[]) => {
+    const fetchCompaniesOffers = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/offers`);
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des offres");
+        }
+        const data: Offer[] = await response.json();
         setOffers(data);
-      });
+      } catch (error) {
+        alert("Aucune offres disponibles");
+      }
+    };
+
+    fetchCompaniesOffers();
   }, []);
 
   return (
@@ -30,4 +39,4 @@ const Company_offers = () => {
   );
 };
 
-export default Company_offers;
+export default CompanyOffers;
