@@ -1,0 +1,35 @@
+/* ===== ROLE FORM MODAL ===== */
+.role-form-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ===== MODAL SPECIFIC ===== */
+.color-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.color-input-container {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .role-form-modal-content {
+    gap: 1rem;
+  }
+
+  .color-input-container {
+    gap: 0.5rem;
+  }
+
+  .color-input {
+    width: 50px;
+    height: 35px;
+  }
+}

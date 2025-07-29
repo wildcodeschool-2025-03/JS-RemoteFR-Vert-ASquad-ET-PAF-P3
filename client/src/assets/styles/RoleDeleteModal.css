@@ -1,0 +1,50 @@
+/* ===== ROLE DELETE MODAL ===== */
+.role-delete-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.delete-warning {
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===== DELETE MODAL SPECIFIC ===== */
+.role-preview {
+  padding: 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
+
+.role-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.role-name {
+  font-weight: 600;
+  color: #374151;
+}
+
+.delete-note {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .role-delete-modal-content {
+    gap: 1rem;
+  }
+
+  .role-delete-modal-content .role-preview {
+    padding: 0.75rem;
+  }
+}
