@@ -1,0 +1,35 @@
+.container_offers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2em;
+}
+.company_offers {
+  display: grid;
+  padding: 2em;
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f0f8ff;
+  border-radius: 1em;
+  padding: 1.5em;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  position: relative;
+}
+
+.company_offers:hover {
+  transform: translateY(-5px);
+  background-color: #9d1a4f;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .container_offers {
+    grid-template-columns: 1fr;
+  }
+}

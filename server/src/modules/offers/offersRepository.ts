@@ -1,23 +1,11 @@
+import type { Offer, OfferJoin } from "../../../../client/src/types/OffersType";
 import databaseClient from "../../../database/client";
-
 import type { Result, Rows } from "../../../database/client";
 
-type Offer = {
-  id: number;
-  jobTitle: string;
-  metier: string;
-  contractType: string;
-  description: string;
-  salary: string;
-  requirements: string;
-  city_id: number;
-  company_id: number;
-};
-
-class offersRepository {
+class OffersRepository {
   async create(offer: Omit<Offer, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into offer (jobTitle, metier, contractType, description, salary, requirements, city_id,company_id) values (?, ?,?,?,?,?,?,?)",
+      "INSERT INTO offer (jobTitle, metier, contractType, description, salary, requirements, city_id,company_id) values (?,?,?,?,?,?,?,?)",
       [
         offer.jobTitle,
         offer.metier,
@@ -43,8 +31,17 @@ class offersRepository {
      INNER JOIN city ON offer.city_id = city_id
      INNER JOIN companies ON offer.company_id = company_id`,
     );
+    return rows as OfferJoin[];
+  }
+
+  async findAllOfferById(company_id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM offer WHERE company_id = ?",
+      [company_id],
+    );
     return rows as Offer[];
   }
+
   async update(offer: Offer) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE offer SET jobTitle = ?, metier = ?, contractType = ?, description = ?, salary = ?, requirements = ?, city_id = ?, company_id = ? where id = ?",
@@ -57,6 +54,7 @@ class offersRepository {
         offer.requirements,
         offer.city_id,
         offer.company_id,
+        offer.id,
       ],
     );
     return result.affectedRows;
@@ -73,4 +71,4 @@ class offersRepository {
   }
 }
 
-export default new offersRepository();
+export default new OffersRepository();

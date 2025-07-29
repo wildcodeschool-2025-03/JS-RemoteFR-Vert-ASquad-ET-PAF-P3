@@ -1,39 +1,34 @@
 import { ListFilter, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import "../assets/styles/Offers.css";
-
-type Offer = {
-  offer_id: number;
-  jobTitle: string;
-  metier: string;
-  contractType: string;
-  description: string;
-  salary: string;
-  requirements: string;
-  city_id: number;
-  company_id: number;
-  city_name: string;
-  company_siret: string;
-  departementId: number;
-};
+import type { OfferJoin } from "../types/OffersType";
 
 export default function Offers() {
-  const [options, setOptions] = useState<Offer[]>([]);
-  const [filter, setfilter] = useState<Offer[]>([]);
+  const [options, setOptions] = useState<OfferJoin[]>([]);
+  const [filter, setfilter] = useState<OfferJoin[]>([]);
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("");
   const [salary, setSalary] = useState("");
   const [location, setLocation] = useState("");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/offers`)
-      .then((response) => response.json())
-      .then((data: Offer[]) => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/offers`);
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des offres");
+        }
+        const data: OfferJoin[] = await response.json();
         setOptions(data);
         setfilter(data);
-      });
+      } catch (error) {
+        alert("Aucune offres disponibles");
+        console.error(error);
+      }
+    };
+
+    fetchOffers();
   }, []);
-  console.log(options);
 
   const metiers = [...new Set(options.map((o) => o.metier))];
   const salaries = [...new Set(options.map((s) => s.salary))];
