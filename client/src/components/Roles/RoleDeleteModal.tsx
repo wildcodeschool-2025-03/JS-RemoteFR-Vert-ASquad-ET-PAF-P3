@@ -1,3 +1,4 @@
+import { useRoleDeleteModal } from "../../hooks/useRoleDeleteModal";
 import type { Role } from "../../types/Role";
 import Button from "../UI/Button/Button";
 import Modal from "../UI/Modal/Modal";
@@ -6,24 +7,28 @@ import "../../assets/styles/RoleDeleteModal.css";
 interface RoleDeleteModalProps {
   isOpen: boolean;
   role: Role | null;
-  deleting: boolean;
   onClose: () => void;
-  onConfirm: () => Promise<void>;
+  onConfirm: (roleId: number) => Promise<void>;
 }
 
 const RoleDeleteModal = ({
   isOpen,
   role,
-  deleting,
   onClose,
   onConfirm,
 }: RoleDeleteModalProps) => {
+  const { deleting, handleConfirm } = useRoleDeleteModal({
+    role,
+    onConfirm,
+    onClose,
+  });
+
   const modalFooter = (
     <>
       <Button variant="cancel" onClick={onClose} disabled={deleting}>
         Annuler
       </Button>
-      <Button variant="danger" onClick={onConfirm} loading={deleting}>
+      <Button variant="danger" onClick={handleConfirm} loading={deleting}>
         Supprimer
       </Button>
     </>

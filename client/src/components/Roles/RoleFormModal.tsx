@@ -1,4 +1,5 @@
-import type { Role } from "../../types/Role";
+import { useRoleFormModal } from "../../hooks/useRoleFormModal";
+import type { CreateRoleData, Role, UpdateRoleData } from "../../types/Role";
 import Button from "../UI/Button/Button";
 import TextInput from "../UI/Form/TextInput";
 import Modal from "../UI/Modal/Modal";
@@ -7,27 +8,28 @@ import "../../assets/styles/RoleFormModal.css";
 interface RoleFormModalProps {
   isOpen: boolean;
   mode: "create" | "edit";
-  role: Role | null;
-  roleLabel: string;
-  roleColor: string;
-  submitting: boolean;
+  role?: Role | null;
   onClose: () => void;
-  onSubmit: () => Promise<void>;
-  onLabelChange: (label: string) => void;
-  onColorChange: (color: string) => void;
+  onSubmit: (data: CreateRoleData | UpdateRoleData) => Promise<void>;
 }
 
 const RoleFormModal = ({
   isOpen,
   mode,
-  roleLabel,
-  roleColor,
-  submitting,
+  role,
   onClose,
   onSubmit,
-  onLabelChange,
-  onColorChange,
 }: RoleFormModalProps) => {
+  const {
+    roleLabel,
+    roleColor,
+    submitting,
+    isFormValid,
+    setRoleLabel,
+    setRoleColor,
+    handleSubmit,
+  } = useRoleFormModal({ isOpen, mode, role, onSubmit, onClose });
+
   const title = mode === "create" ? "Créer un rôle" : "Modifier le rôle";
 
   const modalFooter = (
@@ -37,8 +39,8 @@ const RoleFormModal = ({
       </Button>
       <Button
         variant="primary"
-        onClick={onSubmit}
-        disabled={!roleLabel.trim()}
+        onClick={handleSubmit}
+        disabled={!isFormValid}
         loading={submitting}
       >
         {mode === "create" ? "Créer" : "Modifier"}
@@ -52,7 +54,7 @@ const RoleFormModal = ({
         <TextInput
           label="Nom du rôle"
           value={roleLabel}
-          onChange={onLabelChange}
+          onChange={setRoleLabel}
           placeholder="Entrez le nom du rôle"
           required
         />
@@ -66,13 +68,13 @@ const RoleFormModal = ({
               id="role-color"
               type="color"
               value={roleColor}
-              onChange={(e) => onColorChange(e.target.value)}
+              onChange={(e) => setRoleColor(e.target.value)}
               className="color-input"
             />
             <input
               type="text"
               value={roleColor}
-              onChange={(e) => onColorChange(e.target.value)}
+              onChange={(e) => setRoleColor(e.target.value)}
               placeholder="#6B7280"
               className="color-text-input"
             />

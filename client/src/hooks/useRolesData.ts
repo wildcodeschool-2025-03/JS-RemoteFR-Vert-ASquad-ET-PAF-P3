@@ -7,6 +7,9 @@ interface UseRolesDataReturn {
   loading: boolean;
   error: string | null;
   refreshRoles: () => Promise<void>;
+  addRole: (role: Role) => void;
+  updateRole: (roleId: number, updates: Partial<Role>) => void;
+  removeRole: (roleId: number) => void;
 }
 
 export const useRolesData = (): UseRolesDataReturn => {
@@ -35,6 +38,23 @@ export const useRolesData = (): UseRolesDataReturn => {
     await fetchRoles();
   }, [fetchRoles]);
 
+  // Local state management
+  const addRole = useCallback((role: Role) => {
+    setRoles((prevRoles) => [...prevRoles, role]);
+  }, []);
+
+  const updateRole = useCallback((roleId: number, updates: Partial<Role>) => {
+    setRoles((prevRoles) =>
+      prevRoles.map((role) =>
+        role.id === roleId ? { ...role, ...updates } : role,
+      ),
+    );
+  }, []);
+
+  const removeRole = useCallback((roleId: number) => {
+    setRoles((prevRoles) => prevRoles.filter((role) => role.id !== roleId));
+  }, []);
+
   useEffect(() => {
     fetchRoles();
   }, [fetchRoles]);
@@ -44,5 +64,8 @@ export const useRolesData = (): UseRolesDataReturn => {
     loading,
     error,
     refreshRoles,
+    addRole,
+    updateRole,
+    removeRole,
   };
 };

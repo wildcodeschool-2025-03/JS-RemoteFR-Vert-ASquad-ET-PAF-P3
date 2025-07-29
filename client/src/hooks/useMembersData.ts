@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Member } from "../types/Member";
 import type { Role } from "../types/Role";
 
@@ -45,7 +45,7 @@ export const useMembersData = (roles?: Role[]): UseMembersDataReturn => {
     }
   };
 
-  const fetchMembers = async () => {
+  const fetchMembers = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -74,46 +74,15 @@ export const useMembersData = (roles?: Role[]): UseMembersDataReturn => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const refreshMembers = async () => {
+  const refreshMembers = useCallback(async () => {
     await fetchMembers();
-  };
+  }, [fetchMembers]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/users/members`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-        );
-
-        if (!response.ok) {
-          throw new Error(`Erreur ${response.status}: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        setMembers(data);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Erreur lors du chargement",
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    fetchMembers();
+  }, [fetchMembers]);
 
   return {
     members,
