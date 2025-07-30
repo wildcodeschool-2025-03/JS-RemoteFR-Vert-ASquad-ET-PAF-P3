@@ -1,0 +1,72 @@
+.add-offer-container {
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.add_button {
+  background-color: #ca2061;
+  color: white;
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add_button:hover {
+  background-color: #a01a4d;
+}
+
+.form_add_offer {
+  margin-top: 2rem;
+  background-color: #f5f8ff;
+  padding: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  border-radius: 1.5em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form_add_offer input,
+.form_add_offer select {
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 0.75em;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form_add_offer input:focus,
+.form_add_offer select:focus {
+  outline: none;
+  border-color: #ca2061;
+  box-shadow: 0 0 0 2px rgba(202, 32, 97, 0.2);
+}
+
+.form_add_offer button[type="submit"] {
+  grid-column: 1 / -1;
+  background-color: #ca2061;
+  color: white;
+  padding: 0.75em;
+  border: none;
+  border-radius: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form_add_offer button[type="submit"]:hover {
+  background-color: #a01a4d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form_add_offer {
+    grid-template-columns: 1fr;
+  }
+}

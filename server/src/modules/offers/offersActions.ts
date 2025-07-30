@@ -57,7 +57,8 @@ const add: RequestHandler = async (req, res, next) => {
     };
 
     const insertId = await offersRepository.create(newOffer);
-    res.status(201).json({ insertId });
+
+    res.status(201).json(insertId);
   } catch (err) {
     next(err);
   }

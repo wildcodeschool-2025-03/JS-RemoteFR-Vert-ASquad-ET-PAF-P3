@@ -23,13 +23,14 @@ class OffersRepository {
   async read() {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT 
-      offer.*, 
-      city.id AS city_id,city.name AS city_name, 
-      city.departementId, 
-      companies.id AS company_id,companies.name AS company_name,companies.siret AS company_siret
-    FROM offer
-     INNER JOIN city ON offer.city_id = city_id
-     INNER JOIN companies ON offer.company_id = company_id`,
+  offer.*, 
+  city.id AS city_id, city.name AS city_name, 
+  city.departementId, 
+  companies.id AS company_id, companies.name AS company_name, companies.siret AS company_siret
+FROM offer
+INNER JOIN city ON offer.city_id = city.id
+INNER JOIN companies ON offer.company_id = companies.id
+`,
     );
     return rows as OfferJoin[];
   }
