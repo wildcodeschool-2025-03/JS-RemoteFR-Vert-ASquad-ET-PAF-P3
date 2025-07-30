@@ -1,5 +1,4 @@
 import { useAuth } from "../context/AuthContext";
-import { useCandidateStats } from "./useCandidateStats";
 
 interface UseCandidateDashboardReturn {
   // User data
