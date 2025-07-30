@@ -31,6 +31,7 @@ router.delete("/home/:id", homepageActions.destroy);
 import { verifyToken } from "../src/middlewares/cookies/VerifyToken";
 /* ************************************************************************* */
 import { verifyAdminRole } from "./middlewares/auth/verifyAdminRole";
+import CitiesActions from "./modules/Cities/CitiesActions";
 import roleActions from "./modules/role/roleActions";
 
 router.get("/offers", offersActions.browse);
@@ -55,6 +56,9 @@ router.post("/login", authActions.login);
 /* ************************************************************************* */
 router.get("/api/users", userActions.browse);
 router.get("/api/users", userActions.readAllmembers);
+
+router.get("/cities", CitiesActions.browse);
+router.get("/companies", companyActions.browse);
 
 router.get(
   "/api/users/members",
