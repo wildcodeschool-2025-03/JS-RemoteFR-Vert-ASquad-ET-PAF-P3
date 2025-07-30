@@ -13,7 +13,7 @@ const browse: RequestHandler = async (req, res, next) => {
 const read: RequestHandler = async (req, res, next) => {
   try {
     const companies = Number(req.params.id);
-    const company = await companyRepository.readAll();
+    const company = await companyRepository.read(companies);
 
     if (company == null) {
       res.sendStatus(401);

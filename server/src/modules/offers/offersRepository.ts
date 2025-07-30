@@ -1,3 +1,4 @@
+import { O } from "@faker-js/faker/dist/airline-BUL6NtOJ";
 import type { Offer, OfferJoin } from "../../../../client/src/types/OffersType";
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
@@ -5,7 +6,7 @@ import type { Result, Rows } from "../../../database/client";
 class OffersRepository {
   async create(offer: Omit<Offer, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO offer (jobTitle, metier, contractType, description, salary, requirements, city_id,company_id) values (?,?,?,?,?,?,?,?)",
+      "INSERT INTO offer (jobTitle, metier, contractType, description, salary, requirements,company_id,city_id) values (?,?,?,?,?,?,?,?)",
       [
         offer.jobTitle,
         offer.metier,
