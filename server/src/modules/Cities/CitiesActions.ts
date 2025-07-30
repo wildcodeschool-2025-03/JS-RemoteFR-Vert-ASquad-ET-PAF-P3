@@ -4,7 +4,7 @@ import CitiesRepository from "./CitiesRespository";
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const cities = await CitiesRepository.readAll();
-    res.json(cities);
+    res.status(200).json(cities);
   } catch (err) {
     next(err);
   }

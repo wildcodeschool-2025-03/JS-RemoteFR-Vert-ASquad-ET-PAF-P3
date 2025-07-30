@@ -1,4 +1,4 @@
-import { type FormEventHandler, useCallback, useEffect, useState } from "react";
+import { type FormEventHandler, useState } from "react";
 import type { cityType } from "../../types/CitiesType";
 import "../../assets/styles/Company/CompanyAdd.css";
 import type Company from "../../../../server/src/types/CompaniesType";
@@ -20,27 +20,22 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
     city_id: "",
   });
 
-  useEffect(() => {
-    fetch(`${API_URL}/cities`)
-      .then((res) => res.json())
-      .then((data) => setCities(data))
-      .catch(console.error);
-  }, []);
-  useEffect(() => {
-    fetch(`${API_URL}/companies`)
-      .then((res) => res.json())
-      .then((data) => setCompanies(data))
-      .catch(console.error);
-  }, []);
-
-  const fetchCompaniesOffers = useCallback(async () => {
-    const res = await fetch(`${API_URL}/offers`);
-    await res.json();
-  }, []);
-
-  useEffect(() => {
-    fetchCompaniesOffers();
-  }, [fetchCompaniesOffers]);
+  const fetchCompaniesOffers = async () => {
+    try{
+      const [citiesRes, companiesRes] = await Promise.all([
+      fetch(`${API_URL}/cities`),
+      fetch(`${API_URL}/companies`),
+    ]);
+    const [cities, companies] = await Promise.all([
+      citiesRes.json(),
+      companiesRes.json(),
+    ]); setCities(cities);
+    setCompanies(companies);
+  }catch(error){
+console.error
+  }
+  fetchCompaniesOffers();
+  []};
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -106,6 +101,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
         <form onSubmit={handleSubmit} className="form_add_offer">
           <input
             type="text"
+            aria-label="Nom de l'offre"
             name="jobTitle"
             value={formData.jobTitle}
             onChange={handleChange}
@@ -115,6 +111,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
           <input
             type="text"
             name="contractType"
+            aria-label="Type de contrat"
             value={formData.contractType}
             onChange={handleChange}
             required
@@ -122,6 +119,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
           />
           <select
             name="company_id"
+            aria-label="Nom de l'enteprise"
             defaultValue={formData.company_id}
             onChange={handleChange}
             required
@@ -129,7 +127,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
             <option value="">-- Choisir une entreprise --</option>
             {companies.map((company) => (
               <option key={company.id} value={company.id}>
-                {company.siret}-{company.name}
+                {company.name}
               </option>
             ))}
           </select>
@@ -137,10 +135,11 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
           <select
             name="city_id"
             defaultValue={formData.city_id}
+            aria-label="Nom de département"
             onChange={handleChange}
             required
           >
-            <option value="">-- Choisir une ville --</option>
+            <option value="">-- Choisir un département --</option>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.departementId}-{city.name}
@@ -151,6 +150,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
           <input
             type="text"
             name="metier"
+            aria-label="Domaine de l'offre"
             value={formData.metier}
             onChange={handleChange}
             required
@@ -160,6 +160,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
           <input
             type="text"
             name="description"
+            aria-label="Description de l'offre"
             value={formData.description}
             onChange={handleChange}
             required
@@ -169,6 +170,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
           <input
             type="text"
             name="requirements"
+            aria-label="Critères de demandés pour l'offre"
             value={formData.requirements}
             onChange={handleChange}
             required
@@ -178,6 +180,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
           <input
             type="text"
             name="salary"
+            aria-label="Salaire à l'année"
             value={formData.salary}
             onChange={handleChange}
             required
