@@ -4,7 +4,7 @@ import { useCandidateDashboard } from "../../../hooks/useCandidateDashboard";
 import "../../../assets/styles/CandidateDashboard.css";
 
 const CandidateDashboardPage = () => {
-  const { user, isAuthenticated, error } = useCandidateDashboard();
+  const { user, isAuthenticated } = useCandidateDashboard();
 
   if (!isAuthenticated || !user) {
     return <div>Chargement...</div>;
@@ -17,12 +17,6 @@ const CandidateDashboardPage = () => {
           title={`Bienvenue, ${user.firstname} ${user.lastname}`}
           badge={true}
         />
-
-        {error && (
-          <div className="error-message">
-            <p>Erreur: {error}</p>
-          </div>
-        )}
       </div>
     </DashboardLayout>
   );
