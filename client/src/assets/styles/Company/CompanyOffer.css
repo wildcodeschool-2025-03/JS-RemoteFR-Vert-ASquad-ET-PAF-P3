@@ -1,0 +1,101 @@
+.container_offers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  padding: 1em;
+}
+
+.company_offers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f0f8ff;
+  border-radius: 1em;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  min-height: 250px;
+  position: relative;
+  width: 90%;
+  padding: 1em;
+  margin: 1em 0.5em;
+}
+
+.company_offers:hover {
+  transform: translateY(-5px);
+  color: rgb(226, 220, 220);
+}
+
+.offer_button {
+  margin-top: 1em;
+  padding: 0.75em 1.5em;
+  background-color: #ff8639;
+  border: none;
+  border-radius: 0.5em;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  align-self: center;
+  transition: background-color 0.3s;
+}
+
+.company_description {
+  margin-top: 1em;
+  text-align: left;
+  font-size: 0.9em;
+  color: black;
+}
+
+.offer_button {
+  padding: 0.75em 1.5em;
+  background-color: #ff8639;
+  color: white;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 0.6em 1.2em;
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container_offers {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .company_offers:hover {
+    transform: translateY(-5px);
+    color: white;
+  }
+
+  .offer_button {
+    font-size: 1em;
+    margin-top: 1em;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container_offers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+    padding: 2em 4em;
+  }
+
+  .company_offers {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+    min-height: 200px;
+  }
+
+  .offer_button {
+    font-size: 1em;
+    padding: 0.75em 1.5em;
+    margin-top: 1em;
+  }
+
+  .company_description {
+    font-size: 1em;
+  }
+}

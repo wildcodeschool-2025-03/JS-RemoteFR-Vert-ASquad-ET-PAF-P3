@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
-import "../../assets/styles/CompanyOffer.css";
+import "../../assets/styles/Company/CompanyOffer.css";
 import type { Offer } from "../../types/OffersType";
 import CompanyAddOffer from "./CompanyAddOffer";
 
@@ -31,29 +31,41 @@ const CompanyOffers = () => {
       <div>
         <CompanyAddOffer onAdd={fetchCompaniesOffers} />
       </div>
-      {offers.map((offer) => (
-        <section className="container_offers" key={offer.id}>
-          <div className="company_offers">
+
+      {/* Conteneur global avec la grille */}
+      <div className="container_offers">
+        {offers.map((offer) => (
+          <div className="company_offers" key={offer.id}>
             <h1 className="company_title">{offer.jobTitle}</h1>
             <p>{offer.contractType}</p>
+
+            <button
+              className="offer_button"
+              type="button"
+              onClick={() =>
+                setDiscover(discover === offer.id ? undefined : offer.id)
+              }
+            >
+              {discover === offer.id ? "Réduire" : "Découvrir plus"}
+            </button>
+
+            {discover === offer.id && (
+              <div className="company_description">
+                <p>
+                  <strong>Description de l'offre :</strong> {offer.description}
+                </p>
+                <p>
+                  <strong>Les attendus: </strong>
+                  {offer.requirements}
+                </p>
+                <p>
+                  <strong>Domaine:</strong> {offer.metier}
+                </p>
+              </div>
+            )}
           </div>
-          <button
-            type="button"
-            onClick={() =>
-              setDiscover(discover === offer.id ? undefined : offer.id)
-            }
-          >
-            {discover === offer.id ? "Réduire" : "Découvrir plus"}
-          </button>
-          {discover === offer.id && (
-            <>
-              <p>Description de l'offre : {offer.description}</p>
-              <p>Les attendus: {offer.requirements}</p>
-              <p>Domaine: {offer.metier}</p>
-            </>
-          )}
-        </section>
-      ))}
+        ))}
+      </div>
     </DashboardLayout>
   );
 };
