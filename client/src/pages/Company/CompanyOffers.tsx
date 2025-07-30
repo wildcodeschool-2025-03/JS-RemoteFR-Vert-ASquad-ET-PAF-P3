@@ -31,25 +31,25 @@ const CompanyOffers = () => {
       <div>
         <CompanyAddOffer onAdd={fetchCompaniesOffers} />
       </div>
-      {offers.map((offers) => (
-        <section className="container_offers" key={offers.id}>
-          <div key={offers.id} className="company_offers">
-            <h1 className="company_title">{offers.jobTitle}</h1>
-            <p>{offers.contractType}</p>
+      {offers.map((offer) => (
+        <section className="container_offers" key={offer.id}>
+          <div className="company_offers">
+            <h1 className="company_title">{offer.jobTitle}</h1>
+            <p>{offer.contractType}</p>
           </div>
           <button
             type="button"
             onClick={() =>
-              setDiscover(discover === offers.id ? undefined : offers.id)
+              setDiscover(discover === offer.id ? undefined : offer.id)
             }
           >
-            {discover === offers.id ? "Réduire" : "Découvrir plus"}
+            {discover === offer.id ? "Réduire" : "Découvrir plus"}
           </button>
-          {discover === offers.id && (
+          {discover === offer.id && (
             <>
-              <p>{offers.description}</p>
-              <p>{offers.requirements}</p>
-              <p>{offers.metier}</p>
+              <p>Description de l'offre : {offer.description}</p>
+              <p>Les attendus: {offer.requirements}</p>
+              <p>Domaine: {offer.metier}</p>
             </>
           )}
         </section>

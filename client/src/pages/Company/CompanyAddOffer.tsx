@@ -1,4 +1,4 @@
-import { type FormEventHandler, useState } from "react";
+import { type FormEventHandler, useCallback, useEffect, useState } from "react";
 import type { cityType } from "../../types/CitiesType";
 import "../../assets/styles/Company/CompanyAdd.css";
 import type Company from "../../../../server/src/types/CompaniesType";
@@ -20,22 +20,26 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
     city_id: "",
   });
 
-  const fetchCompaniesOffers = async () => {
-    try{
+  const fetchData = useCallback(async () => {
+    try {
       const [citiesRes, companiesRes] = await Promise.all([
-      fetch(`${API_URL}/cities`),
-      fetch(`${API_URL}/companies`),
-    ]);
-    const [cities, companies] = await Promise.all([
-      citiesRes.json(),
-      companiesRes.json(),
-    ]); setCities(cities);
-    setCompanies(companies);
-  }catch(error){
-console.error
-  }
-  fetchCompaniesOffers();
-  []};
+        fetch(`${API_URL}/cities`),
+        fetch(`${API_URL}/companies`),
+      ]);
+      const [citiesData, companiesData] = await Promise.all([
+        citiesRes.json(),
+        companiesRes.json(),
+      ]);
+      setCities(citiesData);
+      setCompanies(companiesData);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
