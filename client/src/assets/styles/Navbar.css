@@ -54,14 +54,19 @@
   transition: all 0.2s ease;
 }
 
-.nav-link.active {
+.nav-link {
+color: black;  
+}
+
+.nav-link.active:hover {
   background-color: #ca2061;
   color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
-
 .nav-link:not(.active):hover {
-  color: #ca2061;
+  background-color: #ca2061;
+  color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .btn-login,
@@ -206,7 +211,7 @@
   transition: all 0.2s ease;
 }
 
-.mobile-nav-link.active {
+.mobile-nav-link.active:hover {
   background-color: #ca2061;
   color: white;
 }
