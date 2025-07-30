@@ -155,16 +155,17 @@ export default function Offers() {
           </button>
         </span>
       </div>
-
-      {(filter.length > 0 ? filter : options).map((o) => (
-        <div className="offres" key={o.offer_id}>
-          <h2>{o.jobTitle}</h2>
-          <h3>
-            {o.departementId} - {o.city_name}
-          </h3>
-          <h4>{o.contractType}</h4>
-        </div>
-      ))}
+      <div className="offres-container">
+        {(filter.length > 0 ? filter : options).map((o) => (
+          <div className="offres" key={o.offer_id}>
+            <h2>{o.jobTitle}</h2>
+            <h3>
+              {o.departementId} - {o.city_name}
+            </h3>
+            <h4>{o.contractType}</h4>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
