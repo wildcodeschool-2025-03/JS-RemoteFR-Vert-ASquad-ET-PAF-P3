@@ -35,7 +35,7 @@ export default function CompanyAddOffer({ onAdd }: { onAdd: () => void }) {
 
   const fetchCompaniesOffers = useCallback(async () => {
     const res = await fetch(`${API_URL}/offers`);
-     await res.json();
+    await res.json();
   }, []);
 
   useEffect(() => {
