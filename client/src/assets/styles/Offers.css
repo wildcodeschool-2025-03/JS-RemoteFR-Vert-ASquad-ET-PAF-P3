@@ -84,7 +84,7 @@ select option {
 
 .button_filter:hover,
 .reset:hover {
-  background-color: #FF8639;
+  background-color: #ff8639;
 }
 
 .button_filter:active,
@@ -93,7 +93,6 @@ select option {
   box-shadow: 0 2px #70696c;
   transform: translateY(4px);
 }
-
 
 .button_filter:active,
 .reset:active {
@@ -108,16 +107,17 @@ select option {
   padding: 1rem;
 }
 .offres {
-  background-color: white; 
+  background-color: white;
   color: #000;
   padding: 1.5rem;
   border-radius: 1em;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px #FF8639;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s
+    ease;
+  box-shadow: 0 2px 6px #ff8639;
 }
 
 .offres:hover {
-  background-color: #FF9F66	; 
+  background-color: #ff9f66;
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -191,7 +191,6 @@ select option {
     align-items: end;
     margin-top: 2em;
   }
-
 }
 
 @media (min-width: 1024px) {
@@ -266,7 +265,4 @@ select option {
     font-size: 1.2em;
     padding: 0.5em 0.5em;
   }
-
-
-
 }
