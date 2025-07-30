@@ -1,15 +1,15 @@
 import { Edit } from "lucide-react";
 import { useState } from "react";
-import DashboardLayout from "../../components/Dashboard/DashboardLayout";
-import MemberRoleModal from "../../components/Members/MemberRoleModal";
-import Button from "../../components/UI/Button/Button";
-import PageHeader from "../../components/UI/Layout/PageHeader";
-import DataTable from "../../components/UI/Table/DataTable";
-import type { Column } from "../../components/UI/Table/DataTable";
-import { useMembersData } from "../../hooks/useMembersData";
-import { useRolesData } from "../../hooks/useRolesData";
-import type { Member } from "../../types/Member";
-import "../../assets/styles/common.css";
+import DashboardLayout from "../../../components/Dashboard/DashboardLayout";
+import MemberRoleModal from "../../../components/Members/MemberRoleModal";
+import Button from "../../../components/UI/Button/Button";
+import PageHeader from "../../../components/UI/Layout/PageHeader";
+import DataTable from "../../../components/UI/Table/DataTable";
+import type { Column } from "../../../components/UI/Table/DataTable";
+import { useMembersData } from "../../../hooks/useMembersData";
+import { useRolesData } from "../../../hooks/useRolesData";
+import type { Member } from "../../../types/Member";
+import "../../../assets/styles/common.css";
 
 const MembersListPage = () => {
   // Data hooks
