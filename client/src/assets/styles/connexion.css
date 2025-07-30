@@ -110,7 +110,7 @@
 
 @media (min-width: 640px) {
   .form_card_connexion {
-    width:80%;
+    width: 80%;
     left: 4em;
     height: 70vh;
     h2 {
@@ -129,7 +129,7 @@
   }
 
   .connexion_form {
-    width:70%;
+    width: 70%;
     input {
       padding-left: 2.5em;
       font-size: 1em;
