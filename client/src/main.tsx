@@ -17,6 +17,7 @@ import DashboardPageCandidat from "./pages/Candidat/DashboardCandidat";
 
 import CompanyLists from "./pages/Company/CompanyLists";
 import CompanyOffers from "./pages/Company/CompanyOffers";
+import CompanyProfile from "./pages/Company/CompanyProfil";
 import DashboardPageCompany from "./pages/Company/DashboardCompany";
 
 /* ************************************************************************* */
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       { path: "/dashboard/admin", element: <DashboardPage /> },
       { path: "/recruteur/trombinoscope", element: <CompanyLists /> },
       { path: "/recruteur/offers", element: <CompanyOffers /> },
+      { path: "/recruteur/profile", element: <CompanyProfile /> },
     ],
   },
 ]);
