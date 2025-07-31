@@ -3,7 +3,6 @@
   background-image: url("../images/developer-looking-at-code-1.png");
   background-size: cover;
   background-position: 30% center;
-  background-attachment: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -135,7 +134,6 @@
 @media (min-width: 640px) {
   .form_card_inscription {
     width: 80%;
-    position: absolute;
     left: 10%;
     top: 15%;
 
@@ -204,11 +202,9 @@
 @media (min-width: 1024px) {
   .form_card_inscription {
     justify-content: center;
-    width: 60%;
-    height: 93%;
-    position: absolute;
+    width: 70%;
+    height: 20%;
     left: 20%;
-    top: 10%;
 
     h2 {
       font-size: 1.8em;
@@ -220,8 +216,7 @@
   }
 
   .inscription_form {
-    width: 70%;
-    position: absolute;
+    width: 60%;
     top: 20%;
     label {
       padding: 0.1em;
