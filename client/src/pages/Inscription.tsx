@@ -1,5 +1,4 @@
-import { Link } from "react-router";
-
+import { ArrowRight, User, Users } from "lucide-react";
 import { Lock, Mail } from "lucide-react";
 import {
   type ChangeEventHandler,
@@ -7,13 +6,12 @@ import {
   useRef,
   useState,
 } from "react";
+import { Link, useNavigate } from "react-router";
 import "../assets/styles/inscription.css";
-
-import { useNavigate } from "react-router";
-
 import { Bounce, ToastContainer, toast } from "react-toastify";
+import logoVertical from "../assets/images/logo-vertical.png";
 
-export default function Candidat() {
+export default function Inscription() {
   const emailRef = useRef<HTMLInputElement>(null);
   const firstnameRef = useRef<HTMLInputElement>(null);
   const lastnameRef = useRef<HTMLInputElement>(null);
@@ -40,7 +38,7 @@ export default function Candidat() {
       return;
     }
     if (password !== confirmPassword) {
-      toast.error("Vos mots de passes ne correspondent pas");
+      toast.error("Vos mots de passe ne correspondent pas");
       return;
     }
 
@@ -71,6 +69,7 @@ export default function Candidat() {
       toast.error("Une erreur est survenue, nous nous occupons de ça !");
     }
   };
+
   return (
     <>
       <ToastContainer
@@ -87,101 +86,147 @@ export default function Candidat() {
         transition={Bounce}
       />
 
-      <section className="inscription_page">
-        <section className="filter_inscription" />
-      </section>
-      <section className="form_card_inscription">
-        <h2>Inscription</h2>
-        <section className="login_message">
-          <p>Déjà inscris ?</p>
-          <Link to="/login" className="link_connexion">
-            Connecte-toi
-          </Link>
-        </section>
-        <form className="inscription_form" onSubmit={handleSubmit}>
-          <section className="profil_role">
-            <legend> Quel est votre profil ? </legend>
-            <input
-              type="radio"
-              id="candidate"
-              name="profil"
-              value="1"
-              onChange={() => setRoleId(1)}
-              required
-            />
-            <label htmlFor="candidate">Postulant</label>
-            <input
-              type="radio"
-              id="company"
-              name="profil"
-              value="2"
-              onChange={() => setRoleId(2)}
-              required
-            />
-            <label htmlFor="company">Recruteur</label>
-          </section>
+      <main className="auth-page">
+        <div className="auth-container auth-container-large">
+          <div className="auth-card">
+            <div className="auth-header">
+              <img src={logoVertical} alt="Externatic" className="auth-logo" />
+              <h1 className="auth-title">Rejoignez notre communauté</h1>
+              <p className="auth-subtitle">
+                Créez votre compte pour accéder aux meilleures opportunités tech
+              </p>
+            </div>
 
-          <Mail />
+            <form className="auth-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <span className="form-label">
+                  <Users size={20} />
+                  Quel est votre profil ?
+                </span>
+                <div className="radio-group">
+                  <label className="radio-option">
+                    <input
+                      type="radio"
+                      name="profil"
+                      value="1"
+                      onChange={() => setRoleId(1)}
+                      required
+                    />
+                    <span className="radio-custom">
+                      <User size={16} />
+                      Candidat
+                    </span>
+                  </label>
+                  <label className="radio-option">
+                    <input
+                      type="radio"
+                      name="profil"
+                      value="2"
+                      onChange={() => setRoleId(2)}
+                      required
+                    />
+                    <span className="radio-custom">
+                      <Users size={16} />
+                      Recruteur
+                    </span>
+                  </label>
+                </div>
+              </div>
 
-          <section className="firstname-lastname">
-            <label htmlFor="firstname">Prénom</label>
-            <input
-              type="text"
-              id="prénom"
-              ref={firstnameRef}
-              placeholder="Votre prénom"
-              required
-            />
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="firstname" className="form-label">
+                    Prénom
+                  </label>
+                  <input
+                    type="text"
+                    id="firstname"
+                    className="form-input"
+                    placeholder="Votre prénom"
+                    ref={firstnameRef}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="lastname" className="form-label">
+                    Nom
+                  </label>
+                  <input
+                    type="text"
+                    id="lastname"
+                    className="form-input"
+                    placeholder="Votre nom"
+                    ref={lastnameRef}
+                    required
+                  />
+                </div>
+              </div>
 
-            <label htmlFor="lastname">Nom</label>
-            <input
-              type="text"
-              id="Nom"
-              ref={lastnameRef}
-              placeholder="Votre nom"
-              required
-            />
-          </section>
+              <div className="form-group">
+                <label htmlFor="email" className="form-label">
+                  <Mail size={20} />
+                  Adresse email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-input"
+                  placeholder="votre.email@exemple.com"
+                  ref={emailRef}
+                  required
+                />
+              </div>
 
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            ref={emailRef}
-            placeholder="Votre adresse mail"
-            required
-            title="Votre email doit suivre ce format"
-          />
-          <label htmlFor="password">Mot de passe</label>
-          <Lock />
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePassword}
-            placeholder="Entrez votre mot de passe"
-            required
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Votre mot de passe doit contenir au moins un chiffre et une lettre majuscule et minuscule avec au moins 8 caractères ou plus"
-          />
+              <div className="form-group">
+                <label htmlFor="password" className="form-label">
+                  <Lock size={20} />
+                  Mot de passe
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  className="form-input"
+                  placeholder="Au moins 8 caractères"
+                  value={password}
+                  onChange={handlePassword}
+                  required
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Le mot de passe doit contenir au moins 8 caractères, incluant une majuscule, une minuscule et un chiffre"
+                />
+              </div>
 
-          <label htmlFor="confirm-password">Confirmez votre mot de passe</label>
-          <Lock />
-          <input
-            type="password"
-            id="confirm-password"
-            placeholder="Confirmez votre mot de passe"
-            value={confirmPassword}
-            onChange={confirmHandlePassword}
-            required
-            title="Votre mot de passe doit correspondre"
-          />
+              <div className="form-group">
+                <label htmlFor="confirm-password" className="form-label">
+                  <Lock size={20} />
+                  Confirmez le mot de passe
+                </label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  className="form-input"
+                  placeholder="Confirmez votre mot de passe"
+                  value={confirmPassword}
+                  onChange={confirmHandlePassword}
+                  required
+                />
+              </div>
 
-          <button type="submit" className="button_inscription">
-            Valider mon compte
-          </button>
-        </form>
-      </section>
+              <button type="submit" className="auth-btn-primary">
+                Créer mon compte <ArrowRight size={20} />
+              </button>
+            </form>
+
+            <div className="auth-footer">
+              <p className="auth-link-text">
+                Déjà un compte ?{" "}
+                <Link to="/login" className="auth-link">
+                  Se connecter
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
     </>
   );
 }

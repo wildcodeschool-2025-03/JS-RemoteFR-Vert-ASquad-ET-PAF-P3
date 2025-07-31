@@ -1,8 +1,10 @@
+import { ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import "../assets/styles/connexion.css";
 import { Lock, Mail } from "lucide-react";
 import { type FormEventHandler, useEffect, useRef } from "react";
 import { Bounce, ToastContainer, toast } from "react-toastify";
+import logoVertical from "../assets/images/logo-vertical.png";
 import { useAuth } from "../context/AuthContext";
 
 export default function Connexion() {
@@ -71,46 +73,65 @@ export default function Connexion() {
         theme="colored"
         transition={Bounce}
       />
-      <section className="connexion_page">
-        <div className="filter_connexion" />
-      </section>
-      <section className="form_card_connexion">
-        <h2>Connexion</h2>
 
-        <form
-          action="connexion_form"
-          className="connexion_form"
-          onSubmit={handleSubmit}
-        >
-          <label htmlFor="email">Email</label>
-          <Mail size={24} />
-          <input
-            type="text"
-            id="email"
-            placeholder="Entrer votre adresse mail"
-            ref={emailRef}
-            required
-          />
+      <main className="auth-page">
+        <div className="auth-container">
+          <div className="auth-card">
+            <div className="auth-header">
+              <img src={logoVertical} alt="Externatic" className="auth-logo" />
+              <h1 className="auth-title">Bon retour parmi nous</h1>
+              <p className="auth-subtitle">
+                Connectez-vous pour accéder à votre espace personnel
+              </p>
+            </div>
 
-          <label htmlFor="password">Password</label>
-          <Lock size={24} />
-          <input
-            type="password"
-            id="password"
-            placeholder="Entrer votre mot de passe"
-            ref={passwordRef}
-            required
-          />
+            <form className="auth-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="email" className="form-label">
+                  <Mail size={20} />
+                  Adresse email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-input"
+                  placeholder="votre.email@exemple.com"
+                  ref={emailRef}
+                  required
+                />
+              </div>
 
-          <input type="submit" value="Connexion" className="button_connexion" />
-        </form>
-        <section className="inscription_message">
-          <p>Tu veux te donner une chance ?</p>
-          <Link to="/signup" className="link_inscription">
-            Rejoins-nous !
-          </Link>
-        </section>
-      </section>
+              <div className="form-group">
+                <label htmlFor="password" className="form-label">
+                  <Lock size={20} />
+                  Mot de passe
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  className="form-input"
+                  placeholder="Votre mot de passe"
+                  ref={passwordRef}
+                  required
+                />
+              </div>
+
+              <button type="submit" className="auth-btn-primary">
+                Se connecter <ArrowRight size={20} />
+              </button>
+            </form>
+
+            <div className="auth-footer">
+              <p className="auth-link-text">
+                Pas encore de compte ?{" "}
+                <Link to="/signup" className="auth-link">
+                  Créer un compte
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
     </>
   );
 }

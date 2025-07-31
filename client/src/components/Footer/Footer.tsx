@@ -133,11 +133,11 @@ const Footer: FC = () => {
 
           {navSections.map((section) => (
             <div key={section.id} className="footer-nav">
-              <h3 className="nav-title">{section.title}</h3>
-              <ul className="nav-list">
+              <h3 className="footer-nav-title">{section.title}</h3>
+              <ul className="footer-nav-list">
                 {section.links.map((link) => (
                   <li key={link.id}>
-                    <a href={link.url} className="nav-link">
+                    <a href={link.url} className="footer-nav-link">
                       {link.title}
                     </a>
                   </li>

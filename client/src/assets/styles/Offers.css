@@ -1,268 +1,383 @@
+/* ===== PAGE OFFERS ===== */
 .title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
-  padding: 1.5rem;
+  padding: 2rem 1rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
+/* ===== FORMULAIRE DE FILTRES ===== */
 .formulaire {
-  background-color: #ca2061;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #ca2061 0%, #e91e63 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(202, 32, 97, 0.15);
+  padding: 2rem;
+  margin: 1rem 2rem 3rem 2rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1em;
-  padding: 1em;
-  margin: 0.5em;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 1.5rem;
+  align-items: end;
 }
 
 .recherche {
-  grid-column: 1 / 5;
-}
-
-.lucide.lucide-search {
+  grid-column: 1;
   position: relative;
-  left: 1em;
-  bottom: -2.1em;
 }
 
 .catégories {
-  grid-column: 1 / 2;
+  grid-column: 2;
 }
 
 .salaires {
-  grid-column: 2 / 3;
+  grid-column: 3;
 }
 
 .départements {
-  grid-column: 3 / 5;
+  grid-column: 4;
 }
 
-.search_label {
-  font-size: 1em;
+.search_label,
+.formulaire p {
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-transform: capitalize;
+}
+
+.lucide.lucide-search {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  color: #666;
+  z-index: 2;
 }
 
 .search_input {
-  border-radius: 5em;
   width: 100%;
-  padding: 0.5em 0.5em 0.5em 2em;
-  margin: 0.5em;
+  padding: 0.9rem 1rem 0.9rem 3rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+  outline: none;
 }
 
-p {
-  color: white;
-  padding: 0.5em;
-  font-size: 1em;
+.search_input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+.search_input::placeholder {
+  color: #999;
+  font-style: italic;
 }
 
 select {
-  font-size: 0.7em;
-  padding: 0.5em 0;
   width: 100%;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+select:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
 }
 
 select option {
-  font-size: 0.7em;
+  font-size: 0.95rem;
+  padding: 0.5rem;
+  color: #333;
+}
+
+select option:first-child {
+  color: #999;
+  font-style: italic;
 }
 
 .submit {
-  grid-column: 1 / 5;
+  grid-column: 5;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 2em;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.8rem;
 }
 
-.button_filter,
-.reset {
-  background-color: #f1eff0;
-  color: #0b0b0b;
-  font-size: 1em;
-  border: none;
-  border-radius: 5em;
-  width: 8em;
-  margin: 0.5em;
-  padding: 0.5em;
-}
-
-.button_filter:hover,
-.reset:hover {
-  background-color: #ff8639;
-}
-
-.button_filter:active,
-.reset:active {
-  background-color: #de377c;
-  box-shadow: 0 2px #70696c;
-  transform: translateY(4px);
-}
-
-.button_filter:active,
-.reset:active {
-  background-color: #de377c;
-  box-shadow: 0 2px #f3f0f1;
-  transform: translateY(4px);
-}
+/* ===== CONTENEUR DES OFFRES ===== */
 .offres-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
+
 .offres {
-  background-color: white;
-  color: #000;
-  padding: 1.5rem;
-  border-radius: 1em;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s
-    ease;
-  box-shadow: 0 2px 6px #ff8639;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  position: relative;
 }
 
 .offres:hover {
-  background-color: #ff9f66;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
 }
 
-@media (min-width: 640px) {
-  .formulaire {
-    background-color: #ca2061;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 1.5em;
-    align-items: stretch;
-    padding: 1em;
-  }
-  .recherche {
-    grid-column: 1 / 5;
-    grid-row: 1;
+.offres h2 {
+  color: #333;
+  font-size: 1.4rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.offres h3 {
+  color: #666;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.offres h4 {
+  background: linear-gradient(135deg, #ca2061 0%, #e91e63 100%);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  display: inline-block;
+}
+
+.company_description {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.company_description p {
+  color: #666;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+/* ===== STYLES ADDITIONNELS ===== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+}
+
+/* Animation pour les cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
 
-  .lucide.lucide-search {
-    position: relative;
-    left: 2em;
-    bottom: -0.2em;
-  }
-
-  .catégories {
-    grid-column: 1 / 2;
-    grid-row: 2;
-  }
-
-  .salaires {
-    grid-column: 2 / 3;
-    grid-row: 2;
-  }
-
-  .départements {
-    grid-column: 3 / 5;
-    grid-row: 2;
-  }
-
-  p,
-  .search_label {
-    color: white;
-    font-size: 1em;
-  }
-  .search_input {
-    border-radius: 5em;
-    width: 80%;
-    padding: 0.5em;
-    padding: 0.5em 0.5em 0.5em 2em;
-    font-size: 0.9em;
-  }
-
-  select {
-    border-radius: 5em;
-    width: 100%;
-    padding: 0.5em;
-    margin: 0.5em 0;
-    font-size: 0.85em;
-  }
-
-  select option {
-    font-size: 0.7em;
-  }
-  .submit {
-    grid-column: 5 / 6;
-    grid-row: 2;
-    display: flex;
-    justify-content: flex-end;
-    align-items: end;
-    margin-top: 2em;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (min-width: 1024px) {
+.offres {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* États de focus améliorés */
+.search_input:focus,
+select:focus {
+  transform: scale(1.02);
+  outline: 2px solid #ca2061;
+  outline-offset: 2px;
+}
+
+/* Style pour les tooltips éventuels */
+.formulaire [title] {
+  position: relative;
+}
+
+/* Responsive pour les très petits écrans */
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
   .formulaire {
-    background-color: #ca2061;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: auto;
-    grid-gap: 1.5em;
-    align-items: center;
-    padding: 0.5em 0.4em;
-    height: 130px;
-  }
-
-  .recherche {
-    grid-column: 1 / 2;
-    grid-row: 1;
-    position: relative;
-    bottom: 0.6em;
-  }
-
-  .lucide.lucide-search {
-    position: relative;
-    left: 1em;
-    bottom: -2.2em;
-  }
-  .catégories {
-    grid-column: 2 / 3;
-    grid-row: 1;
-  }
-
-  .salaires {
-    grid-column: 3 / 4;
-    grid-row: 1;
-  }
-
-  .départements {
-    grid-column: 4 / 5;
-    grid-row: 1;
-  }
-  .search_label {
-    color: white;
-    font-size: 1em;
-    position: relative;
-    bottom: -1.3em;
-  }
-  p {
-    color: white;
-    font-size: 1em;
+    margin: 0.25rem;
+    padding: 0.75rem;
   }
 
   .search_input,
   select {
-    border-radius: 5em;
-    width: 100%;
-    padding: 0.5em;
-    padding: 0.5em 0.5em 0.5em 2em;
-    font-size: 0.9em;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes et petits écrans */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2rem;
+    padding: 1.5rem 1rem;
   }
 
-  select option {
-    font-size: 0.7em;
+  .formulaire {
+    margin: 1rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
-  .submit {
-    grid-column: 5 / 6;
+
+  .recherche {
+    grid-column: 1 / 3;
     grid-row: 1;
   }
 
-  .button_filter,
-  .reset {
-    font-size: 1.2em;
-    padding: 0.5em 0.5em;
+  .catégories {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .salaires {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .départements {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .submit {
+    grid-column: 2;
+    grid-row: 3;
+    align-items: end;
+    justify-content: end;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .offres-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 0 1rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .offres {
+    padding: 1.5rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+    padding: 1rem;
+  }
+
+  .formulaire {
+    margin: 0.5rem;
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 1rem;
+  }
+
+  .recherche {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .catégories {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .salaires {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .départements {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .submit {
+    grid-column: 1;
+    grid-row: 5;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .lucide.lucide-search {
+    bottom: 0.9rem;
+  }
+
+  .offres-container {
+    grid-template-columns: 1fr;
+    padding: 0 0.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .offres {
+    padding: 1rem;
+  }
+
+  .offres h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Desktop large */
+@media (min-width: 1200px) {
+  .formulaire {
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    max-width: 1400px;
+    margin: 1rem auto 3rem;
+  }
+
+  .recherche {
+    grid-column: 1;
+  }
+
+  .catégories {
+    grid-column: 2;
+  }
+
+  .salaires {
+    grid-column: 3;
+  }
+
+  .départements {
+    grid-column: 4;
+  }
+
+  .submit {
+    grid-column: 5;
+    flex-direction: column;
+  }
+
+  .offres-container {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2.5rem;
   }
 }

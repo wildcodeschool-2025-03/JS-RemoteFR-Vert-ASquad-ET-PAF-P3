@@ -2,6 +2,7 @@ import { ListFilter, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import "../assets/styles/Offers.css";
 import { useNavigate } from "react-router";
+import Button from "../components/UI/Button/Button";
 import type { OfferJoin } from "../types/OffersType";
 
 export default function Offers() {
@@ -145,17 +146,22 @@ export default function Offers() {
         </span>
 
         <span className="submit">
-          <button
+          <Button
+            variant="about-main"
+            size="medium"
             type="submit"
             onClick={handleSearch}
-            key={search}
-            className="button_filter"
           >
             <ListFilter size={16} /> Filtrer
-          </button>
-          <button type="button" className="reset" onClick={handlereset}>
+          </Button>
+          <Button
+            variant="about-secondary"
+            size="medium"
+            type="button"
+            onClick={handlereset}
+          >
             Réinitialiser
-          </button>
+          </Button>
         </span>
       </div>
       <div className="offres-container">
@@ -179,15 +185,17 @@ export default function Offers() {
                 <p>
                   <strong>Domaine:</strong> {o.metier}
                 </p>
-                <button
-                  className="offer_button"
+                <Button
+                  variant="about-main"
+                  size="medium"
                   type="button"
+                  fullWidth
                   onClick={() => {
                     navigate("/login");
                   }}
                 >
                   Postuler
-                </button>
+                </Button>
               </div>
             )}
           </div>
