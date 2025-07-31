@@ -5,8 +5,8 @@ import {
   LayoutDashboard,
   Mail,
   User,
-  Users,
-  UsersRound,
+  // Users,
+  // UsersRound,
 } from "lucide-react";
 
 import type { Role } from "../types/Role";
@@ -74,24 +74,24 @@ const companyBaseConfig: Omit<RoleConfig, "color"> = {
       icon: <Briefcase size={18} />,
       label: "Offres",
     },
-    {
-      id: "documents",
-      path: "/recruteur/documents",
-      icon: <FolderOpen size={18} />,
-      label: "Dossiers",
-    },
-    {
-      id: "messagerie",
-      path: "/recruteur/messagerie",
-      icon: <Mail size={18} />,
-      label: "Messages",
-    },
-    {
-      id: "trombinoscope",
-      path: "/recruteur/trombinoscope",
-      icon: <UsersRound size={18} />,
-      label: "Trombinoscope",
-    },
+    // {
+    //   id: "documents",
+    //   path: "/recruteur/documents",
+    //   icon: <FolderOpen size={18} />,
+    //   label: "Dossiers",
+    // },
+    // {
+    //   id: "messagerie",
+    //   path: "/recruteur/messagerie",
+    //   icon: <Mail size={18} />,
+    //   label: "Messages",
+    // },
+    // {
+    //   id: "trombinoscope",
+    //   path: "/recruteur/trombinoscope",
+    //   icon: <UsersRound size={18} />,
+    //   label: "Trombinoscope",
+    // },
   ],
 };
 
@@ -103,17 +103,17 @@ const adminBaseConfig: Omit<RoleConfig, "color"> = {
       icon: <LayoutDashboard size={18} />,
       label: "Tableau de bord",
     },
+    // {
+    //   id: "candidates",
+    //   path: "/candidates",
+    //   icon: <Users size={18} />,
+    //   label: "Candidats",
+    // },
     {
-      id: "candidates",
-      path: "/candidates",
-      icon: <Users size={18} />,
-      label: "Candidats",
-    },
-    {
-      id: "companies",
-      path: "/companies",
+      id: "roles",
+      path: "/dashboard/admin/roles",
       icon: <Building2 size={18} />,
-      label: "Entreprises",
+      label: "Rôles",
     },
     {
       id: "offers",
@@ -121,12 +121,12 @@ const adminBaseConfig: Omit<RoleConfig, "color"> = {
       icon: <Briefcase size={18} />,
       label: "Offres",
     },
-    {
-      id: "messages",
-      path: "/messages",
-      icon: <Mail size={18} />,
-      label: "Messages",
-    },
+    // {
+    //   id: "messages",
+    //   path: "/messages",
+    //   icon: <Mail size={18} />,
+    //   label: "Messages",
+    // },
   ],
 };
 

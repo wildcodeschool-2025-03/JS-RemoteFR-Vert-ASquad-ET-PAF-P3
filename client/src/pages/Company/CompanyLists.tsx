@@ -17,25 +17,25 @@ export default function CompanyLists() {
 
   return (
     <DashboardLayout userRole={2} activeItem="company">
-      <h1>Listes des candidats</h1>
-
+      <h1>Listes des utilisateurs</h1>
+      <p>1: Candidat 2:Company</p>
       <div className="container_candidatsLists">
         {candidatsLists.map((candidat) => (
           <section key={candidat.id} className="Company_candidatsLists">
             <section className="candidats_infos">
               <section>
-                {" "}
                 <User size={48} />
                 <h2>
                   {candidat.firstname} {candidat.lastname}
                 </h2>
+                <p>Status utilisateur :{candidat.id}</p>
               </section>
               <section className="candidats_content">
                 <button type="button" className="more_info_candidat">
                   Découvrir le profil
                 </button>
                 <h2 className="creation_date_account">
-                  Inscrit le :{" "}
+                  Inscrit le :
                   {new Date(candidat.created_at).toLocaleDateString()}
                 </h2>
               </section>
