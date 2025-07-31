@@ -26,22 +26,22 @@ const Navbar: React.FC = () => {
       <nav className="navbar">
         <div className="navbar-container">
           <div className="logo-container">
-            <img src={logo} alt="Externatic Logo" className="logo" />
+            <img src={logo} alt="Externatic Logo" className="navbar-logo" />
           </div>
 
-          <div className="nav-links">
+          <div className="navbar-nav-links">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`nav-link ${item.active ? "active" : ""}`}
+                className={`navbar-nav-link ${item.active ? "active" : ""}`}
               >
                 {item.name}
               </a>
             ))}
           </div>
 
-          <div className="nav-actions">
+          <div className="navbar-nav-actions">
             <NavLink to="/login">
               {!user ? (
                 <button
@@ -107,12 +107,12 @@ const Navbar: React.FC = () => {
           />
           <div className="mobile-menu">
             <div className="mobile-menu-content">
-              <div className="mobile-nav-links">
+              <div className="mobile-navbar-nav-links">
                 {navItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`mobile-nav-link ${item.active ? "active" : ""}`}
+                    className={`mobile-navbar-nav-link ${item.active ? "active" : ""}`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}

@@ -1,215 +1,214 @@
-.connexion_page {
-  position: fixed;
-  background-image: url("../images/developer-looking-at-code-1.png");
-  background-size: cover;
-  background-position: 30% center;
-  background-attachment: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  z-index: -2;
-}
+/* ===== AUTH PAGE STYLES ===== */
 
-.filter_connexion {
-  background-color: rgba(202, 32, 97, 0.3);
-  z-index: -1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.form_card_connexion {
-  background-color: rgba(88, 85, 85, 0.7);
-  padding: 2em;
-  z-index: 1;
-  margin: 1em;
-  border-radius: 3em;
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(202, 32, 97, 0.05) 100%
+  );
+  background-color: #f4eeee;
+  padding: 2rem 1rem;
   position: relative;
-  justify-items: center;
-  color: rgb(255, 255, 255);
-  backdrop-filter: blur(4px);
-
-  h2 {
-    font-size: 1.5em;
-    padding: 1em;
-  }
-
-  .inscription_message {
-    text-align: center;
-    font-size: 1em;
-  }
-  .link_inscription {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  .link_inscription:hover {
-    color: #ff297b;
-    font-size: 1.2em;
-  }
+  overflow: hidden;
 }
 
-.connexion_form {
+.auth-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/developer-looking-at-code-1.png") center / cover
+    no-repeat;
+  opacity: 0.03;
+  z-index: 1;
+}
+
+.auth-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/noise.png") repeat;
+  opacity: 0.02;
+  z-index: 2;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  z-index: 3;
+  position: relative;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(202, 32, 97, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(202, 32, 97, 0.1);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-logo {
+  height: 80px;
+  width: auto;
+  margin-bottom: 1.5rem;
+  object-fit: contain;
+}
+
+.auth-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #ca2061 0%, #851342 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+.auth-subtitle {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.auth-form {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  height: 45vh;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form-input {
+  padding: 1rem;
+  border: 2px solid rgba(202, 32, 97, 0.1);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+  color: #333;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ca2061;
+  box-shadow: 0 0 0 3px rgba(202, 32, 97, 0.1);
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+.auth-btn-primary {
+  background: linear-gradient(90deg, #ca2061 0%, #851342 100%);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin: 0.5em;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
 
-  input {
-    padding: 0.5em;
-    padding-left: 2.5em;
-    font-size: 0.8em;
-    border: none;
-    border-bottom: 2px solid #ffffff;
-    background-color: transparent;
-    outline: none;
-    color: white;
+.auth-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(202, 32, 97, 0.3);
+}
+
+.auth-btn-primary:active {
+  transform: translateY(0);
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.auth-link-text {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.auth-link {
+  color: #ca2061;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #851342;
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .auth-page {
+    padding: 1rem 0.5rem;
   }
 
-  ::placeholder {
-    color: white;
-    font-size: 1.2em;
+  .auth-card {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
   }
 
-  input:hover {
-    border-bottom: 2px solid #ca2061;
-  }
-  label {
-    font-size: 1em;
-    padding-top: 1em;
+  .auth-title {
+    font-size: 1.75rem;
   }
 
-  .lucide.lucide-mail {
-    position: relative;
-    bottom: -1.5em;
-    padding: 0.2em;
-  }
-
-  .lucide.lucide-lock {
-    position: relative;
-    bottom: -1.5em;
-    padding: 0.2em;
-  }
-
-  .button_connexion {
-    color: white;
-    background-color: #ca2061;
-    font-size: 1em;
-    border-radius: 1.5em;
-    border: none;
-    margin-top: 1em;
+  .auth-logo {
+    height: 60px;
   }
 }
 
-@media (min-width: 640px) {
-  .form_card_connexion {
-    width: 80%;
-    left: 4em;
-    height: 70vh;
-    h2 {
-      font-size: 2.5em;
-    }
-    .inscription_message {
-      font-size: 1.5em;
-      position: relative;
-      top: -1.5em;
-
-      .link_inscription:hover {
-        color: #ff297b;
-        font-size: 1.5em;
-      }
-    }
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.5rem;
+    border-radius: 16px;
   }
 
-  .connexion_form {
-    width: 70%;
-    input {
-      padding-left: 2.5em;
-      font-size: 1em;
-    }
-
-    ::placeholder {
-      color: white;
-      font-size: 1.5em;
-    }
-
-    label {
-      font-size: 1.5em;
-      padding-top: 2em;
-    }
-
-    .lucide.lucide-mail {
-      position: relative;
-      bottom: -1.6em;
-    }
-
-    .lucide.lucide-lock {
-      position: relative;
-      bottom: -1.6em;
-    }
-
-    .button_connexion {
-      font-size: 1.5em;
-    }
-  }
-}
-
-@media (min-width: 1024px) {
-  .form_card_connexion {
-    left: 20em;
-    color: rgb(255, 255, 255);
-    width: 50%;
-    height: 80vh;
-    top: 0;
-    h2 {
-      font-size: 2.5em;
-    }
-
-    .inscription_message {
-      font-size: 1.5em;
-    }
-
-    .link_inscription:hover {
-      color: #ff297b;
-      font-size: 1.2em;
-    }
+  .auth-title {
+    font-size: 1.5rem;
   }
 
-  .connexion_form {
-    margin: 0;
-    height: 50vh;
-    input {
-      padding-left: 2.5em;
-      font-size: 1em;
-    }
+  .form-input {
+    padding: 0.875rem;
+  }
 
-    ::placeholder {
-      color: white;
-      font-size: 1.5em;
-    }
-
-    label {
-      font-size: 1.5em;
-      padding-top: 0.5em;
-    }
-
-    .lucide.lucide-mail {
-      position: relative;
-    }
-
-    .lucide.lucide-lock {
-      position: relative;
-    }
-
-    .button_connexion {
-      font-size: 1.5em;
-    }
+  .auth-btn-primary {
+    padding: 0.875rem 1.25rem;
   }
 }

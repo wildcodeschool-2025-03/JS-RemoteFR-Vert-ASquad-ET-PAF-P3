@@ -1,157 +1,395 @@
-.mainhompage {
-  background-color: #e0e0e0;
+/* ===== LAYOUT PRINCIPAL ===== */
+.mainhomepage {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  position: relative;
 }
-.homepagetitle {
+
+.mainhomepage::before {
+  content: "";
   position: absolute;
+  inset: 0;
+  pointer-events: none;
   z-index: 1;
-  font-size: 1.3rem;
-  padding-top: 5.5rem;
-  padding-left: 9.5rem;
+  background-image: url("/assets/images/noise.png");
+  opacity: 0.1;
+  background-size: cover;
 }
-.imageDev {
-  position: absolute;
-  z-index: 1;
-  padding-left: 12px;
-  padding-top: 2.5rem;
-}
-.imageDev1 {
-  opacity: 0.33;
-  object-fit: cover;
-  width: 100%;
-}
-.homepageParagraph {
-  padding-top: 1.5rem;
-  margin: 1rem;
-  color: black;
-}
-.listdomaine {
-  color: white;
-  padding: 2rem;
-  gap: 0.9rem;
-  background-color: #ca2061;
+
+/* ===== SECTION HERO ===== */
+.hero-section {
+  position: relative;
+  min-height: 80vh;
   display: flex;
-  list-style: none;
+  align-items: center;
+  background: linear-gradient(
+      rgba(248, 249, 250, 0.85),
+      rgba(248, 249, 250, 0.85)
+    ), url("../images/developer-looking-at-code-1.png") center / cover no-repeat;
+  padding: 4rem 0;
+  z-index: 2;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(248, 249, 250, 0.1);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
   align-items: center;
 }
+
+.hero-images {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.imageDev {
+  width: 450px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  margin-left: -15rem;
+}
+
+.imageDev1 {
+  display: none;
+  /* Masquer l'image d'arrière-plan pour correspondre au Figma */
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 2rem;
+}
+
+.homepagetitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.homepagetitle .highlight {
+  color: #ca2061;
+}
+
+.homepagetitle .yellow-dot {
+  color: #ff8c00;
+}
+
+.homepageParagraph {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+}
+
+.hero-cta {
+  margin-top: 1rem;
+}
+
+.hero-highlight {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+/* ===== SECTION DOMAINES ===== */
+.domains-section {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+}
+
+.hook-section {
+  position: relative;
+  z-index: 2;
+}
+
+.listdomaine {
+  background: linear-gradient(135deg, #ca2061 0%, #e91e63 100%);
+  color: white;
+  padding: 2.5rem 1rem;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 20px rgba(202, 32, 97, 0.3);
+  border-radius: 0;
+  flex-wrap: wrap;
+}
+
+.listdomaine li {
+  flex: 0 0 auto;
+  text-align: center;
+  min-width: fit-content;
+}
+
 .listdomaine a {
   color: white;
   text-decoration: none;
-  font-size: 1em;
-  flex: none;
-  display: flex;
-  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  display: block;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  white-space: nowrap;
 }
-.phraseAccroche {
-  margin: 1rem;
-  padding: 1rem 0 1rem 0;
+
+.listdomaine a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ===== SECTION CARDS ===== */
+.cards-section {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 0;
+  background: #fff;
+}
+
+.cards-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   text-align: center;
-  font-size: 1.5rem;
+}
+
+.cards-title {
+  font-size: 2.5rem;
   font-weight: bold;
-}
-.imageDev2 {
-  width: 80%;
-  box-shadow: 10px 5px 5px gray;
-  border-radius: 30px;
-  margin: 1em 0 2em 2em;
-}
-@media (min-width: 640px) {
-  .homepagetitle {
-    font-size: 2.5rem;
-    padding-top: 8rem;
-    padding-left: 20rem;
-  }
-
-  .imageDev {
-    padding-left: 35px;
-    padding-top: 2.5rem;
-    width: 40%;
-  }
-  .imageDev1 {
-    max-height: 25em;
-  }
-
-  .homepageParagraph {
-    padding-top: 1.5rem;
-    margin: 1.5rem;
-    font-size: 1.5rem;
-    color: black;
-  }
-
-  .listdomaine {
-    padding: 3rem;
-    gap: 1rem;
-  }
-
-  .listdomaine a {
-    font-size: 1.8em;
-    padding: 0 0 0 2rem;
-  }
-
-  .phraseAccroche {
-    font-size: 2rem;
-  }
-
-  .imageDev2 {
-    width: 70%;
-    box-shadow: 10px 5px 5px gray;
-    border-radius: 30px;
-    margin: 1em 0 2em 7em;
-  }
+  color: #333;
+  margin-bottom: 3rem;
+  line-height: 1.2;
 }
 
-@media (min-width: 1024px) {
-  .homepagetitle {
-    font-size: 2.5rem;
-    padding-top: 5rem;
-    padding-left: 30.5rem;
-  }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
 
-  .imageDev {
-    width: 30%;
-    padding: 0 0 0 1rem;
-  }
+.card {
+  transition: transform 0.3s ease;
+}
 
-  .imageDev1 {
-    opacity: 10%;
-    max-height: 30em;
-  }
+.card:hover {
+  transform: translateY(-5px);
+}
 
-  .homepageParagraph {
-    padding-left: 32rem;
-    font-size: 1.5rem;
-    margin-top: -21rem;
-    color: #000000;
-  }
+.card-image {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
 
-  .listdomaine {
-    color: white;
-    gap: 1rem;
-    background-color: #ca2061;
-    display: flex;
-    list-style: none;
-    margin-top: -14rem;
-  }
+.card-image:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
 
-  .listdomaine a {
-    color: white;
-    text-decoration: none;
-    flex: none;
-    display: flex;
-    align-items: center;
-    font-size: 2rem;
-    padding: 0 0 0 12rem;
-  }
+/* Ajustement spécifique pour hp-1 */
+.card:first-child .card-image {
+  height: 582px;
+  object-fit: cover;
+}
 
-  .phraseAccroche {
-    margin: 1rem;
+.phraseAccroche {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.3;
+  margin: 0;
+  text-align: center;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
     text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20rem;
   }
 
-  .imageDev2 {
-    width: 50%;
-    margin: -17em 0 2em 24em;
+  .hero-text {
+    padding-left: 0;
+    order: 2;
+  }
+
+  .hero-images {
+    order: 1;
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .imageDev {
+    width: 320px;
+    height: auto;
+    margin-left: 0;
+  }
+
+  .homepagetitle {
+    font-size: 2rem;
+  }
+
+  .homepageParagraph {
+    font-size: 1rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cards-title {
+    font-size: 2rem;
+  }
+
+  .phraseAccroche {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .listdomaine {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .listdomaine a {
+    font-size: 1rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 60vh;
+    padding: 2rem 0;
+  }
+
+  .hero-content {
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+
+  .imageDev {
+    width: 280px;
+    height: auto;
+    margin-left: 0;
+  }
+
+  .homepagetitle {
+    font-size: 1.6rem;
+  }
+
+  .homepageParagraph {
+    font-size: 0.9rem;
+  }
+
+  .hero-highlight {
+    font-size: 1rem;
+  }
+
+  .cards-section {
+    padding: 2rem 0;
+  }
+
+  .cards-container {
+    padding: 0 1rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .cards-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .phraseAccroche {
+    font-size: 1.3rem;
+  }
+
+  .listdomaine {
+    padding: 1.5rem 0.5rem;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .listdomaine a {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+/* Desktop large */
+@media (min-width: 1200px) {
+  .imageDev {
+    width: 550px;
+    height: auto;
+  }
+
+  .homepagetitle {
+    font-size: 3rem;
+  }
+
+  .homepageParagraph {
+    font-size: 1.3rem;
+  }
+
+  .hero-highlight {
+    font-size: 1.2rem;
+  }
+
+  .phraseAccroche {
+    font-size: 2.2rem;
+  }
+
+  .listdomaine a {
+    font-size: 1.3rem;
+  }
+
+  .cards-title {
+    font-size: 3rem;
+  }
+
+  .card-image {
+    max-width: 450px;
   }
 }
