@@ -13,12 +13,13 @@ import NotFound from "./pages/NotFound";
 import Offers from "./pages/Offers";
 
 import { AuthProvider } from "./context/AuthContext";
-import DashboardPageCandidat from "./pages/Candidat/DashboardCandidat";
 
 import CompanyLists from "./pages/Company/CompanyLists";
 import CompanyOffers from "./pages/Company/CompanyOffers";
 import CompanyProfile from "./pages/Company/CompanyProfil";
 import DashboardPageCompany from "./pages/Company/DashboardCompany";
+import MembersListPage from "./pages/Dashboard/admin/MembersListPage";
+import RolesListPage from "./pages/Dashboard/admin/RoleListPage";
 
 /* ************************************************************************* */
 
@@ -33,9 +34,11 @@ const router = createBrowserRouter([
       { path: "/login", element: <Connexion /> },
       { path: "/signup", element: <Inscription /> },
       { path: "/dashboard", element: <DashboardPage /> },
-      { path: "/dashboard/candidat", element: <DashboardPageCandidat /> },
+      { path: "/dashboard/candidat", element: <NotFound /> },
       { path: "/dashboard/recruteur", element: <DashboardPageCompany /> },
       { path: "/dashboard/admin", element: <DashboardPage /> },
+      { path: "/dashboard/admin/members", element: <MembersListPage /> },
+      { path: "/dashboard/admin/roles", element: <RolesListPage /> },
       { path: "/recruteur/trombinoscope", element: <CompanyLists /> },
       { path: "/recruteur/offers", element: <CompanyOffers /> },
       { path: "/recruteur/profile", element: <CompanyProfile /> },

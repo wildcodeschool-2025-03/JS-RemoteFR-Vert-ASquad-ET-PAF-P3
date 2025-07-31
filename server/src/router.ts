@@ -76,5 +76,4 @@ router.post(
   verifyUniqueCompany,
   companyActions.add,
 );
-
 export default router;
