@@ -11,9 +11,24 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
-const read: RequestHandler = async (req, res, next) => {
+const readEmail: RequestHandler = async (req, res, next) => {
   try {
     const user = await userRepository.readByEmailWithPassword(req.params.id);
+
+    if (user == null) {
+      res.sendStatus(401);
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.id);
+
+    const user = await userRepository.read(userId);
 
     if (user == null) {
       res.sendStatus(401);
@@ -105,4 +120,4 @@ const readAllmembers: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, browseMembers, readAllmembers };
+export default { browse, readEmail, read, add, browseMembers, readAllmembers };

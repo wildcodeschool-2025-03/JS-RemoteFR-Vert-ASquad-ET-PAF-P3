@@ -15,8 +15,7 @@ const DashboardPageCompany = () => {
   return (
     <DashboardLayout userRole={user.role_id} activeItem="dashboard">
       <h1>Dashboard {currentRole.label}</h1>
-      <p>Interface dédiée au rôle {currentRole.label}</p>
-      <p>Bienvenue dashboard company</p>
+      <p>Interface dédiée au {currentRole.label}</p>
     </DashboardLayout>
   );
 };
