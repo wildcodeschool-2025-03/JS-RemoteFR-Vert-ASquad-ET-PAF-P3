@@ -1,6 +1,7 @@
 import { ListFilter, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import "../assets/styles/Offers.css";
+import { useNavigate } from "react-router";
 import type { OfferJoin } from "../types/OffersType";
 
 export default function Offers() {
@@ -10,6 +11,8 @@ export default function Offers() {
   const [select, setSelect] = useState("");
   const [salary, setSalary] = useState("");
   const [location, setLocation] = useState("");
+  const [discover] = useState<number | undefined>(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOffers = async () => {
@@ -163,6 +166,30 @@ export default function Offers() {
               {o.departementId} - {o.city_name}
             </h3>
             <h4>{o.contractType}</h4>
+
+            {discover === o.offer_id && (
+              <div className="company_description" key={o.offer_id}>
+                <p>
+                  <strong>Description de l'offre :</strong> {o.description}
+                </p>
+                <p>
+                  <strong>Les attendus: </strong>
+                  {o.requirements}
+                </p>
+                <p>
+                  <strong>Domaine:</strong> {o.metier}
+                </p>
+                <button
+                  className="offer_button"
+                  type="button"
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Postuler
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
