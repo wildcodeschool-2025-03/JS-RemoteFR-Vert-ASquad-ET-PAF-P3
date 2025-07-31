@@ -56,7 +56,7 @@ router.post("/login", authActions.login);
 /* ************************************************************************* */
 router.get("/api/users", userActions.browse);
 router.get("/api/users", userActions.readAllmembers);
-router.get("users/:id", userActions.read);
+router.get("/users/:id", userActions.read);
 
 router.get("/cities", CitiesActions.browse);
 router.get("/companies", companyActions.browse);

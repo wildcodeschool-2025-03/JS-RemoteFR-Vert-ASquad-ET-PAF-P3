@@ -28,7 +28,7 @@ export default function CompanyProfile() {
     };
 
     fetchProfile();
-  }, [user]);
+  }, [user?.id, user]);
 
   return (
     <>
