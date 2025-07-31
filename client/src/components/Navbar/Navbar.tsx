@@ -15,8 +15,8 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { name: "Accueil", href: "/", active: true },
-    { name: "Offres", href: "/offers" },
-    { name: "À Propos", href: "/about" },
+    { name: "Offres", href: "/offers", active: true },
+    { name: "À Propos", href: "/about", active: true },
   ];
   const navigate = useNavigate();
 
