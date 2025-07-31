@@ -13,7 +13,6 @@ import NotFound from "./pages/NotFound";
 import Offers from "./pages/Offers";
 
 import { AuthProvider } from "./context/AuthContext";
-// import DashboardPageCandidat from "./pages/Candidat/DashboardCandidat";
 
 import CompanyLists from "./pages/Company/CompanyLists";
 import CompanyOffers from "./pages/Company/CompanyOffers";
@@ -35,7 +34,6 @@ const router = createBrowserRouter([
       { path: "/login", element: <Connexion /> },
       { path: "/signup", element: <Inscription /> },
       { path: "/dashboard", element: <DashboardPage /> },
-      // { path: "/dashboard/candidat", element: <DashboardPageCandidat /> },
       { path: "/dashboard/candidat", element: <NotFound /> },
       { path: "/dashboard/recruteur", element: <DashboardPageCompany /> },
       { path: "/dashboard/admin", element: <DashboardPage /> },

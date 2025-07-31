@@ -76,5 +76,4 @@ router.post(
   verifyUniqueCompany,
   companyActions.add,
 );
-// router.get("/api/users/:id/stats", verifyToken, userActions.getCandidateStats);
 export default router;
