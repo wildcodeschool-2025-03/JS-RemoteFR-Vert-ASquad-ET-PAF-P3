@@ -37,8 +37,8 @@ import roleActions from "./modules/role/roleActions";
 router.get("/offers", offersActions.browse);
 router.get("/offers/:id", offersActions.read);
 router.post("/offers", offersActions.add);
-router.put("/offer/:id", offersActions.edit);
-router.delete("/offer/:id", offersActions.destroy);
+router.put("/offers/:id", offersActions.edit);
+router.delete("/offers/:id", offersActions.destroy);
 router.get("/offers/:id", offersActions.readOfferById);
 
 /* ************************************************************************* */
@@ -56,6 +56,7 @@ router.post("/login", authActions.login);
 /* ************************************************************************* */
 router.get("/api/users", userActions.browse);
 router.get("/api/users", userActions.readAllmembers);
+router.get("users/:id", userActions.read);
 
 router.get("/cities", CitiesActions.browse);
 router.get("/companies", companyActions.browse);
