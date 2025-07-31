@@ -1,0 +1,95 @@
+/* ===== STATS CARD ===== */
+.stats-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px
+    rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  width: fit-content;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -3px rgba(0, 0, 0, 0.15), 0 6px 8px -2px
+    rgba(0, 0, 0, 0.08);
+}
+
+/* ===== STATS CARD CONTENT ===== */
+.stats-card__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* ===== METRIC BADGE ===== */
+.metric-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+/* ===== METRIC ICON ===== */
+.metric-badge__icon {
+  width: 80px;
+  height: 80px;
+  background: #ca2061;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(202, 32, 97, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.metric-badge:hover .metric-badge__icon {
+  transform: scale(1.05);
+}
+
+/* ===== METRIC NUMBER ===== */
+.metric-badge__number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ===== METRIC LABEL ===== */
+.metric-badge__label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .stats-card {
+    padding: 1.5rem 1.25rem;
+    margin: 0 1rem;
+    max-width: 320px;
+  }
+
+  .stats-card__content {
+    gap: 1.5rem;
+  }
+
+  .metric-badge__icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .metric-badge__number {
+    font-size: 3rem;
+  }
+
+  .metric-badge__label {
+    font-size: 1rem;
+  }
+}
